@@ -1,4 +1,4 @@
-# MERN Boilerplate
+# Wabash Valley Trust for Historic Preservation: Official GitHub Repository
 
 ## Introduction 👋
 
