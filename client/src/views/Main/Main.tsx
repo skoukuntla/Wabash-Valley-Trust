@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from '@mui/material'
+import { Box, Button, Container, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 export default function Main() {
@@ -20,6 +20,15 @@ export default function Main() {
           <li>
             <Link to="/auth">Auth</Link>
           </li>
+          <Button
+            variant="contained"
+            onClick={() => {
+              console.log('hello')
+              // show textbox
+            }}
+          >
+            Hello World
+          </Button>
         </ul>
       </Box>
     </Container>
