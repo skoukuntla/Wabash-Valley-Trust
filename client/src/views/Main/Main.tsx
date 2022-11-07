@@ -1,6 +1,9 @@
 import { Box, Container, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 
+import mapImage from '../../assets/tempmap.png'
+import Map from '../../components/Map'
+
 export default function Main() {
   return (
     <Container sx={{ py: 4 }}>
@@ -22,6 +25,7 @@ export default function Main() {
           </li>
         </ul>
       </Box>
+      <Map image={mapImage} />
     </Container>
   )
 }
