@@ -5,29 +5,31 @@ import type { FC } from 'react'
 
 type MapProps = {
   image: string
+  markers: Array<Array<any>>
 }
 
-const Map: FC<MapProps> = ({ image }) => (
+const Map: FC<MapProps> = ({ image, markers }) => (
   <div>
     <MapContainer
       style={{ height: '500px' }}
-      center={[500, 500]}
-      zoom={2}
+      center={[380, 306]}
+      zoom={1}
       crs={CRS.Simple}
+      maxZoom={4}
     >
       <ImageOverlay
         url={image}
         bounds={[
           [0, 0],
-          [1000, 1000],
+          [628, 1024],
         ]}
         zIndex={10}
       />
-      <Marker position={[600, 600]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
+      {markers.map((marker) => (
+        <Marker position={[marker[0], marker[1]]}>
+          <Popup>{marker[2]}</Popup>
+        </Marker>
+      ))}
     </MapContainer>
   </div>
 )

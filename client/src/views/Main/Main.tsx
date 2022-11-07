@@ -2,6 +2,7 @@ import { Box, Container, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 import mapImage from '../../assets/tempmap.png'
+import { markers } from '../../assets/tempmarkers'
 import Map from '../../components/Map'
 
 export default function Main() {
@@ -25,7 +26,7 @@ export default function Main() {
           </li>
         </ul>
       </Box>
-      <Map image={mapImage} />
+      <Map image={mapImage} markers={markers} />
     </Container>
   )
 }
