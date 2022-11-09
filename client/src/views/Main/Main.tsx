@@ -1,6 +1,8 @@
 import { Box, Container, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 
+import Building from 'components/Building'
+
 export default function Main() {
   return (
     <Container sx={{ py: 4 }}>
@@ -20,6 +22,7 @@ export default function Main() {
           <li>
             <Link to="/auth">Auth</Link>
           </li>
+          <Building />
         </ul>
       </Box>
     </Container>
