@@ -1,7 +1,11 @@
 import { Box, Container, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 
-import Building from 'components/Building'
+import Building from 'components/Building/Building'
+
+const clickHandler = () => {
+  console.log('main clicked')
+}
 
 export default function Main() {
   return (
@@ -22,7 +26,7 @@ export default function Main() {
           <li>
             <Link to="/auth">Auth</Link>
           </li>
-          <Building />
+          <Building clickHandler={clickHandler} />
         </ul>
       </Box>
     </Container>

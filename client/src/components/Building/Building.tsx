@@ -1,7 +1,10 @@
+import './Building.css'
+
 const Building = (props: any) => {
   let { clickHandler } = props
 
   if (!clickHandler) {
+    console.log('no click handler found')
     clickHandler = () => {
       console.log('clicked')
     }
@@ -21,7 +24,7 @@ const Building = (props: any) => {
       role="button"
       tabIndex={0}
     >
-      <img alt="pin" />
+      <img alt="pin" className="pin" src="/pin.jpg" />
     </div>
   )
 }
