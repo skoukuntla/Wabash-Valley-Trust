@@ -5,6 +5,12 @@ import Modal from '@mui/material/Modal'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import Building from 'components/Building/Building'
+
+const clickHandler = () => {
+  console.log('main clicked')
+}
+
 export default function Main() {
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
@@ -39,6 +45,7 @@ export default function Main() {
           <li>
             <Link to="/auth">Auth</Link>
           </li>
+          <Building clickHandler={clickHandler} />
         </ul>
         <Button onClick={handleOpen}>Open modal</Button>
         <Modal
