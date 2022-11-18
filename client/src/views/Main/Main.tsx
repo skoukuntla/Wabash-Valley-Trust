@@ -45,7 +45,7 @@ export default function Main() {
           <li>
             <Link to="/auth">Auth</Link>
           </li>
-          <Building clickHandler={clickHandler} />
+          <Building clickHandler={handleOpen} />
         </ul>
         <Button onClick={handleOpen}>Open modal</Button>
         <Modal
