@@ -5,6 +5,10 @@ import Modal from '@mui/material/Modal'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import mapImage from '../../assets/tempmap.png'
+import { markers } from '../../assets/tempmarkers'
+import Map from '../../components/Map'
+
 export default function Main() {
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
@@ -59,6 +63,7 @@ export default function Main() {
           </Box>
         </Modal>
       </Box>
+      <Map image={mapImage} markers={markers} />
     </Container>
   )
 }
