@@ -1,5 +1,10 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { Box, Container, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
+
+import mapImage from 'assets/tempmap.png'
+import { markers } from 'assets/tempmarkers'
+import Map from 'components/Map'
 
 export default function Main() {
   return (
@@ -22,6 +27,7 @@ export default function Main() {
           </li>
         </ul>
       </Box>
+      <Map image={mapImage} markers={markers} />
     </Container>
   )
 }
