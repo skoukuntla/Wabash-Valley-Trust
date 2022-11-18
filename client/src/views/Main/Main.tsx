@@ -1,13 +1,17 @@
 /* eslint-disable jsx-a11y/alt-text */
-import Image from '@mui/icons-material'
 import { Box, Button, Container, Typography } from '@mui/material'
 import Modal from '@mui/material/Modal'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import mapImage from '../../assets/tempmap.png'
-import { markers } from '../../assets/tempmarkers'
-import Map from '../../components/Map'
+import { mapImage } from 'assets/tempmap.png'
+import { markers } from 'assets/tempmarkers'
+import Building from 'components/Building/Building'
+import Map from 'components/Map'
+
+const clickHandler = () => {
+  console.log('main clicked')
+}
 
 export default function Main() {
   const [open, setOpen] = React.useState(false)
@@ -43,6 +47,7 @@ export default function Main() {
           <li>
             <Link to="/auth">Auth</Link>
           </li>
+          <Building clickHandler={handleOpen} />
         </ul>
         <Button onClick={handleOpen}>Open modal</Button>
         <Modal
