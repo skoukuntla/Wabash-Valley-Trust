@@ -2,7 +2,7 @@ import L from 'leaflet'
 import ReactDOMServer from 'react-dom/server'
 import { Marker } from 'react-leaflet'
 
-import pin from '../../assets/pin.jpg'
+import pin from '../../assets/pin.ico'
 import '../../styles/Building.css'
 
 type BuildingProps = {
