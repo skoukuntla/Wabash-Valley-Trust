@@ -20,11 +20,17 @@ function Map({ image, markers }: MapProps) {
   return (
     <div>
       <MapContainer
-        style={{ height: '100vh' }}
+        style={{ height: '100vh', width: '100vw' }}
         center={[380, 306]}
         zoom={1}
         crs={CRS.Simple}
         maxZoom={4}
+        minZoom={1}
+        maxBoundsViscosity={1}
+        maxBounds={[
+          [0, 0],
+          [628, 1024],
+        ]}
       >
         <ImageOverlay
           url={image}
