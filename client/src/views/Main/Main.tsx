@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { Box, Container, Typography } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Container } from '@mui/material'
 
 import mapImage from 'assets/tempmap.png'
 import { markers } from 'assets/tempmarkers'
@@ -8,8 +7,8 @@ import Map from 'components/Map'
 
 export default function Main() {
   return (
-    <Container sx={{ py: 4 }}>
-      <Typography variant="h4">Main Page</Typography>
+    <Container>
+      {/* <Typography variant="h4">Main Page</Typography>
       <Typography variant="body1">
         Welcome! Feel free to check out all the demos here!
       </Typography>
@@ -26,7 +25,7 @@ export default function Main() {
             <Link to="/auth">Auth</Link>
           </li>
         </ul>
-      </Box>
+      </Box> */}
       <Map image={mapImage} markers={markers} />
     </Container>
   )
