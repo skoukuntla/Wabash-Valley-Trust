@@ -1,0 +1,56 @@
+{
+  "locationInfo": [
+
+    {
+      "name": "Jefferson Historic District",
+      "address": "1101-1199 Brown St, Lafayette, IN 47904",
+      "foundingYear": 1850,
+      "archiStyle": "Greek Revival, Italiante",
+      "locationType": "building",
+      "description": "Jefferson Historic District is a national historic district located at Lafayette, Tippecanoe County, Indiana. The district encompasses 161 contributing buildings, 2 contributing sites, and 22 contributing structures in a predominantly residential section of Lafayette.",
+      "additionalLinks": "https://en.wikipedia.org/wiki/Jefferson_Historic_District_(Lafayette,_Indiana)#:~:text=Jefferson%20Historic%20District%20is%20a,predominantly%20residential%20section%20of%20Lafayette."
+    },
+
+    {
+      "name": "Centennial Neighborhood District",
+      "address": "Centennial Park, 501-599 N 6th St, Lafayette, IN 47901",
+      "foundingYear": 1825,
+      "archiStyle": "Greek Revival, Queen Anne, Federal",
+      "locationType": "building",
+      "description": "A part of National Register of Historic Places Collection, is signficant because of it's relation to commerce, transportation, architecture, and religion. Area platted as Bartholomew and Davis Addition, 1829. Neighborhood grew rapidly during citywide expansion after canal (1843) and railroad (1853) arrived. Most structures, of many architectural styles, built 1870-1910. Named after Centennial School, at this site, 1876-1971. Listed in National Register of Historic Places, 1983.",
+      "additionalLinks": "https://www.in.gov/history/state-historical-markers/find-a-marker/centennial-historic-district/"
+    },
+
+    {
+      "name": "Ellsworth Historic District",
+      "address": "Roughly bounded by Columbia, Norfolk & Western RR tracks, Alabama, Seventh, South and Sixth Sts.",
+      "foundingYear": 1825,
+      "archiStyle": "Bungalow/Craftsman, Late Victorian",
+      "locationType": "building",
+      "description": "The District contains a remarkable collection of 19th Century architecture, from mansions built by community leaders to workers’ cottages, and includes some of the earliest structures built outside the original city limits. Important examples of all major architectural styles are present as well as modest vernacular houses dating from the 1850's to the 1920's.",
+      "additionalLinks": "https://www.hmdb.org/m.asp?m=35227"
+    },
+
+    {
+      "name": "Downtown Lafayette Historic District",
+      "address": "101-199 N 4th St, Lafayette, IN 47901",
+      "foundingYear": 1825,
+      "archiStyle": "Second Empire, Italianate, Other",
+      "locationType": "building",
+      "description": "It is significant because of it's relation to commerce, transportation, exploration/settlement, politcs/government, architecture, communications. Its development and growth reflects the changes in transportation over the intervening years.",
+      "additionalLinks": "https://en.wikipedia.org/wiki/Downtown_Lafayette_Historic_District#:~:text=Downtown%20Lafayette%20Historic%20District%20is,transportation%20over%20the%20intervening%20years."
+    },
+
+    {
+      "name": "Upper Main Street Historic District",
+      "address": "Roughly bounded by Ferry St., 6th St., Columbia St., and the Norfolk and Western Railroad tracks",
+      "foundingYear": 1825,
+      "archiStyle": "Classical Revival, Italianate, Romanesque",
+      "locationType": "building",
+      "description": "It is significant because of it's relation to commerce, transportation, and architecture. This area became the cities commercial center. Businesses around Eleventh Street developed to meet the traveling publics needs. The Enterprise Hotel, at 1015 Main Street, as well as the Alt Heidelberg, American Lafayette and the Derby Hotel were early established by 1899.",
+      "additionalLinks": "https://en.wikipedia.org/wiki/Upper_Main_Street_Historic_District_(Lafayette,_Indiana)#:~:text=Upper%20Main%20Street%20Historic%20District%20is%20a%20national%20historic%20district,Wabash%20Railroad%20at%20Eleventh%20Street."
+    }
+
+
+  ]
+}
