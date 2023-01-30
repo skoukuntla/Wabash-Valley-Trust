@@ -1,136 +1,75 @@
 {
-  "locationInfo": [
-
-    {
-      "name": "Judge Cyrus House Ball",
-      "address": "402 S. 9th St., Lafayette, Indiana 47904",
-      "foundingYear": 1868,
-      "archiStyle": "Second Empire",
-      "locationType": "building",
-      "description": "Judge Cyrus Ball House, also known as the Ball Mansion and Carriage House, is a historic home located at Lafayette, Tippecanoe County, Indiana. It was built in 1868 - 1869, and is a two-story, Second Empire style brick dwelling, with a three-story mansard roofed entrance tower. It sits on a limestone foundation, has intricate wood and stone detailing, and a slate roof. Also on the property is a contributing two-story, rectangular carriage house. It was named after Cyrus Ball, 1828 Justice of the Peace, who was integral to introducing the railroad system in Indiana.",
-      "additionalLinks": [ "https://en.wikipedia.org/wiki/Judge_Cyrus_Ball_House https://npgallery.nps.gov/AssetDetail/NRIS/84001649", "https://www.google.com/maps/dir//40.4138832,-86.8870621/@40.4138643,-86.9570754,12z"]
-    },
-
-    {
-      "name": "Big Four Depot",
-      "address": "200 N. 2nd St., Lafayette, Indiana 47901",
-      "foundingYear": 1902,
-      "archiStyle": "Romanesque",
-      "locationType": "building",
-      "description": "This treasured building was built in 1902. In 1994, as part of the Lafayette Railroad Relocation Project, it was moved to the plaza site. It has since been renovated and restored and was rededicated in 1995 as the centerpiece of the James F. Riehle Plaza. This is the perfect location for an occasion hosting 80-90 people.",
-      "additionalLinks": ["https://www.lafayette.in.gov/Facilities/Facility/Details/Big-Four-Depot-76", "https://npgallery.nps.gov/AssetDetail/NRIS/03000548", "https://www.google.com/maps?daddr=200+N.+2nd+St.,+Lafayette,+IN,+47901"]
-    },
-
-    {
-      "name": "Enterprise Hotel",
-      "address": "1015 Main St., Lafayette, Indiana 47901",
-      "foundingYear": 1895,
-      "archiStyle": "Italianate",
-      "locationType": "building",
-      "description": "Enterprise Hotel, also known as Gasthaus Alt Heidelberg, is a historic hotel building located at Lafayette, Tippecanoe County, Indiana. It was built in 1895, and is a three-story, five bay, rectangular, Italianate style brick building, with rear additions. It measures 42 feet wide and 32 feet deep. It is historically significant as a European style tavern / inn.",
-      "additionalLinks": ["https://en.wikipedia.org/wiki/Enterprise_Hotel", "https://npgallery.nps.gov/AssetDetail/NRIS/84001650", "https://www.google.com/maps/place/1015+Main+St,+Lafayette,+IN+47901/data=!4m2!3m1!1s0x88131d463712ab23:0x81c034ee28e789e9?sa=X&ved=2ahUKEwiJorvO1tn8AhWArIkEHSb4ClsQ8gF6BAgIEAI"]
-    },
-
-    {
-      "name": "Falley House",
-      "address": "601 New York St., Lafayette, Indiana",
-      "foundingYear": 1863,
-      "archiStyle": "Italian Villa",
-      "locationType": "building",
-      "description": "Falley Home, also known as the Lahr Home, is a historic home located at Lafayette, Tippecanoe County, Indiana. The Italian Villa style brick house was built in 1863, and consists of three two-story sections and a three-story entrance tower. It is sheathed in stucco. The square corner entrance tower is topped by a cupola and encloses a curve staircase.",
-      "additionalLinks": ["https://en.wikipedia.org/wiki/Falley_Home", "https://npgallery.nps.gov/AssetDetail/NRIS/82000078 "]
-    },
-
-    {
-      "name": "Moses Fowler House",
-      "address": "Corner of 10th and South St., Lafayette, Indiana ",
-      "foundingYear": 1851,
-      "archiStyle": "Gothic Revival",
-      "locationType": "building",
-      "description": "The Moses Fowler House is located at the corner of 10th and South streets in Lafayette, Indiana. The house is considered the finest example of a large Gothic Revival residence still standing in the United States. Upon his death in 1889, aged 74, Fowler had accumulated a fortune of an estimated three million dollars. Fowler and his wife, Eliza (1817 - 1902), were donors to various community interests, including Purdue University.",
-      "additionalLinks": ["https://en.wikipedia.org/wiki/Moses_Fowler_House", "https://npgallery.nps.gov/AssetDetail/NRIS/71000009", "https://www.google.com/maps/search/fowler+house/@40.4184898,-86.8937002,16z/data=!3m1!4b1"]
-    },
-
-    {
-      "name": "Marian Apartments",
-      "address": "615 North Street, Lafayette, Indiana ",
-      "foundingYear": 1907,
-      "archiStyle": "Eclectic",
-      "locationType": "building",
-      "description": "The Marian Apartments, also known as Marian Flats, is a historic apartment building located at Lafayette, Tippecanoe County, Indiana. It was designed by Oliver W. Pierce, Jr. and built in 1907. It is a three-story, rectangular, brick building with limestone and wood trim. It features polygonal three-story projecting bays.",
-      "additionalLinks": ["https://en.wikipedia.org/wiki/Marian_Apartments_(Lafayette,_Indiana)", "https://gohistoric.com/places/295690-marian-apartments-lafayette"]
-    },
-
-    {
-      "name": "Mars Theatre",
-      "address": "111 N 6th St, Lafayette, Indiana ",
-      "foundingYear": 1921,
-      "archiStyle": "Georgian Revival style",
-      "locationType": "building",
-      "description": "Mars Theatre is a historic theatre building at Lafayette, Tippecanoe County, Indiana. It was built in 1921, and is a four-story, rectangular, Georgian Revival style brick building, with limestone ornamentation and terra cotta panels.",
-      "additionalLinks": ["https://en.wikipedia.org/wiki/Marian_Apartments_(Lafayette,_Indiana)", "https://longpac.org/events/mars-theatre"]
-    },
-
-    {
-      "name": "William Potter House",
-      "address": "915 Columbia Street, Lafayette, Indiana ",
-      "foundingYear": 1855,
-      "archiStyle": "Greek Revival",
-      "locationType": "building",
-      "description": "William Potter House, also known as the Potter House, is a historic home located at Lafayette, Tippecanoe County, Indiana. It was built in 1855, and is a two-story, Greek Revival style brick dwelling, with a front gable roof.",
-      "additionalLinks": ["https://en.wikipedia.org/wiki/William_Potter_House", "https://indianamemory.contentdm.oclc.org/digital/collection/ILWDPeat/id/907/"]
-    },
-
-    {
-      "name": "St John's Ecpiscopal Church",
-      "address": "600 Ferry St, Lafayette, Indiana ",
-      "foundingYear": 1857,
-      "archiStyle": "Gothic Revival Style",
-      "locationType": "building",
-      "description": "St. John's Episcopal Church is a historic Episcopal church located at Lafayette, Tippecanoe County, Indiana. Founded by Parson Samuel R. Johnson, early services were held beginning in 1836–37 in the counting room of Thomas Benbridge.",
-      "additionalLinks": ["https://en.wikipedia.org/wiki/St._John's_Episcopal_Church_(Lafayette,_Indiana)", "http://www.stjohns-laf.org/"]
-    },
-
-    {
-      "name": "Temple Israel",
-      "address": "620 Cumberland Ave, Lafayette, Indiana ",
-      "foundingYear": 1849,
-      "archiStyle": "Romanesque",
-      "locationType": "building",
-      "description": "Temple Israel is a historic synagogue located at Lafayette, Tippecanoe County, Indiana. Its 1867 building is one of the oldest synagogue buildings in the United States.The congregation, which was formed in 1849, was the second Jewish congregation organized in Indiana.In 1874 it became a founding member of the Union of American Hebrew Congregations. The congregation moved to its third and present location on Cumberland Avenue in West Lafayette.",
-      "additionalLinks": ["https://templeisraelwlaf.org/", "https://en.wikipedia.org/wiki/Temple_Israel_(Lafayette,_Indiana)"]
-    },
-
-    {
-      "name": "Tippecanoe County Court House",
-      "address": "20 N 3rd St, Lafayette, Indiana ",
-      "foundingYear": 1822,
-      "archiStyle": "influence of Baroque, Gothic, Georgian, Victorian, Beaux Arts, Neo-Classical, and Second Empire styles",
-      "locationType": "building",
-      "description": "Built in the 1880s, this third local courthouse was requested by the citizens to be “of permanent and durable character.” Residents wanted a building that would show the pride they had in their county and filled 45 pages with instructions on how their wishes should be carried out. It has served the community for over 125 years, and with the carefully researched and implemented $15 million renovation in the mid-1990s, it will do so for many years to come.",
-      "additionalLinks": ["http://www.tippecanoe.in.gov/249/Courts", "https://en.wikipedia.org/wiki/Tippecanoe_County_Courthouse"]
-    },
-
-    {
-      "name": "Ward, James H., House",
-      "address": "1116 Columbia Street, Lafayette, Indiana ",
-      "foundingYear": 1875,
-      "archiStyle": "Second Empire, Italianate",
-      "locationType": "building",
-      "description": "James H. Ward House is a historic home located at Lafayette, Tippecanoe County, Indiana. It was built about 1875, and is a two-story, Italianate / Second Empire style brick dwelling, with a 3+1⁄2-story mansard roofed tower. It features deep overhanging eaves with corner brackets, asymmetrical massing, and an ornate semi-hexagonal, two-story projecting bay. Also on the property is a contributing carriage house.",
-      "additionalLinks": ["https://en.wikipedia.org/wiki/James_H._Ward_House", "https://www.theclio.com/entry/99875"]
-    }
-  ]
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.6.2",
+    "@mui/material": "^5.6.4",
+    "@reduxjs/toolkit": "^1.8.1",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.2.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/leaflet": "^1.9.0",
+    "await-to-js": "^3.0.0",
+    "axios": "^0.27.2",
+    "leaflet": "^1.9.2",
+    "react": "^18.1.0",
+    "react-dom": "^18.2.0",
+    "react-leaflet": "^4.1.0",
+    "react-redux": "^8.0.1",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint .",
+    "gen-sitemap": "cross-env NODE_PATH=./src ts-node --files --project ./tsconfig.node.json ./utils/sitemap.ts"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^27.5.1",
+    "@types/node": "^17.0.34",
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.4",
+    "@typescript-eslint/eslint-plugin": "^5.23.0",
+    "@typescript-eslint/parser": "^5.23.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.15.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^3.5.1",
+    "eslint-plugin-html": "^6.2.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "prettier": "^2.6.2",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
