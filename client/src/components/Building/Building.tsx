@@ -7,11 +7,12 @@ import '../../styles/Building.css'
 
 type BuildingProps = {
   marker: any[]
-  setCurrentText: React.Dispatch<React.SetStateAction<string>>
+  name: React.Dispatch<React.SetStateAction<string>>
+  description: React.Dispatch<React.SetStateAction<string>>
   handleOpen: () => void
 }
 
-const Building = ({ marker, setCurrentText, handleOpen }: BuildingProps) => (
+const Building = ({ marker, name, description, handleOpen }: BuildingProps) => (
   <Marker
     position={[marker[0], marker[1]]}
     icon={L.divIcon({
@@ -27,7 +28,8 @@ const Building = ({ marker, setCurrentText, handleOpen }: BuildingProps) => (
     })}
     eventHandlers={{
       click: () => {
-        setCurrentText(marker[2])
+        name(marker[2])
+        description(marker[3])
         handleOpen()
       },
     }}

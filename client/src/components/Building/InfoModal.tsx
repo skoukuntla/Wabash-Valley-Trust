@@ -16,12 +16,13 @@ const modalStyle = {
 }
 
 type ModalProps = {
-  text: string
+  name: string
+  description: string
   open: boolean
   handleClose: () => void
 }
 
-const InfoModal = ({ text, open, handleClose }: ModalProps) => (
+const InfoModal = ({ name, description, open, handleClose }: ModalProps) => (
   <Modal
     open={open}
     onClose={handleClose}
@@ -36,11 +37,11 @@ const InfoModal = ({ text, open, handleClose }: ModalProps) => (
     <Box sx={modalStyle}>
       <img src={htfLogo} alt="logo" />
       <Typography id="modal-modal-title" variant="h6" component="h2">
-        {text}
+        {name}
       </Typography>
 
       <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-        {text}
+        {description}
       </Typography>
     </Box>
   </Modal>

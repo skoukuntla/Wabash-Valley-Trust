@@ -1,11 +1,20 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { Container } from '@mui/material'
 
+import { markers } from 'assets/markers'
 import mapImage from 'assets/tempmap.png'
-import { markers } from 'assets/tempmarkers'
 import Map from 'components/Map'
 
 export default function Main() {
+  const items = []
+  for (let i = 0; i < markers.length; i += 1) {
+    const item = new Array<Object>()
+    item.push(50 + i * 10)
+    item.push(50 + i * 10)
+    item.push(markers[i].name)
+    item.push(markers[i].description)
+    items.push(item)
+  }
   return (
     <Container>
       {/* <Typography variant="h4">Main Page</Typography>
@@ -26,7 +35,7 @@ export default function Main() {
           </li>
         </ul>
       </Box> */}
-      <Map image={mapImage} markers={markers} />
+      <Map image={mapImage} markers={items} />
     </Container>
   )
 }
