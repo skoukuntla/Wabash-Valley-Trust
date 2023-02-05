@@ -11,9 +11,13 @@ type BuildingProps = {
   handleOpen: () => void
 }
 
-const Building = ({ marker, setCurrentText, handleOpen }: BuildingProps) => (
+const Building = ({
+  marker: markerData,
+  setCurrentText,
+  handleOpen,
+}: BuildingProps) => (
   <Marker
-    position={[marker[0], marker[1]]}
+    position={[markerData[0], markerData[1]]}
     icon={L.divIcon({
       className: 'custom icon',
       html: ReactDOMServer.renderToString(
@@ -27,7 +31,7 @@ const Building = ({ marker, setCurrentText, handleOpen }: BuildingProps) => (
     })}
     eventHandlers={{
       click: () => {
-        setCurrentText(marker[2])
+        setCurrentText(markerData[2])
         handleOpen()
       },
     }}
