@@ -12,6 +12,7 @@ export default function Main() {
     item.push(50 + i * 10)
     item.push(50 + i * 10)
     item.push(markers[i].name)
+    item.push(markers[i].address)
     item.push(markers[i].description)
     items.push(item)
   }

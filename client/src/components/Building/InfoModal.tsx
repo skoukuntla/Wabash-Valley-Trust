@@ -17,12 +17,19 @@ const modalStyle = {
 
 type ModalProps = {
   name: string
+  address: string
   description: string
   open: boolean
   handleClose: () => void
 }
 
-const InfoModal = ({ name, description, open, handleClose }: ModalProps) => (
+const InfoModal = ({
+  name,
+  address,
+  description,
+  open,
+  handleClose,
+}: ModalProps) => (
   <Modal
     open={open}
     onClose={handleClose}
@@ -35,11 +42,13 @@ const InfoModal = ({ name, description, open, handleClose }: ModalProps) => (
     aria-describedby="modal-modal-description"
   >
     <Box sx={modalStyle}>
-      <img src={htfLogo} alt="logo" />
-      <Typography id="modal-modal-title" variant="h6" component="h2">
+      <Typography id="modal-modal-title" variant="h3" component="h3">
         {name}
       </Typography>
-
+      <Typography id="modal-modal-title" variant="h6" component="h6">
+        {address}
+      </Typography>
+      <div />
       <Typography id="modal-modal-description" sx={{ mt: 2 }}>
         {description}
       </Typography>

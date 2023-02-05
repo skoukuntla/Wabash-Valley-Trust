@@ -14,6 +14,7 @@ type MapProps = {
 function Map({ image, markers }: MapProps) {
   // const [currentText, setCurrentText] = useState('')
   const [name, setName] = useState('')
+  const [address, setAddress] = useState('')
   const [desc, setDesc] = useState('')
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
@@ -46,6 +47,7 @@ function Map({ image, markers }: MapProps) {
           <Building
             marker={marker}
             name={setName}
+            address={setAddress}
             description={setDesc}
             handleOpen={handleOpen}
           />
@@ -53,6 +55,7 @@ function Map({ image, markers }: MapProps) {
       </MapContainer>
       <InfoModal
         name={name}
+        address={address}
         description={desc}
         open={open}
         handleClose={handleClose}
