@@ -37,9 +37,19 @@ export default function Main() {
               transform: 'rotate(45deg)',
               shapeRendering: 'geometricPrecision',
               borderTop: '10px solid transparent',
-              borderRight: '10px solid currentColor',
-              borderBottom: '10px solid transparent',
-              borderLeft: '10px solid transparent',
+              borderRight: '8px solid currentColor',
+              borderBottom: '8px solid transparent',
+              borderLeft: '8px solid transparent',
+              marginBottom: '-30px',
+              marginleft: '-50px',
+
+              marginRight: '-10px',
+              marginLeft: '-20px',
+            },
+            '& .MuiSlider-valueLabel': {
+              transform: 'rotate(-45deg)',
+              marginBottom: '-30px',
+              marginTop: '-20px',
             },
             '& .MuiSlider-mark': {
               borderRadius: '50%',
