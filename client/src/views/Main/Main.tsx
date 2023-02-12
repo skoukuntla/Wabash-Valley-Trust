@@ -9,11 +9,14 @@ export default function Main() {
   const items = []
   for (let i = 0; i < markers.length; i += 1) {
     const item = new Array<Object>()
-    item.push(50 + i * 10)
-    item.push(50 + i * 10)
+    item.push(400 + i * 15)
+    item.push(100 + i * 15)
     item.push(markers[i].name)
     item.push(markers[i].address)
     item.push(markers[i].description)
+    item.push(markers[i].img)
+    item.push(markers[i].foundingYear)
+    item.push(markers[i].archiStyle)
     items.push(item)
   }
   return (

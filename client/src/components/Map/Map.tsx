@@ -1,3 +1,4 @@
+import { style } from '@mui/system'
 import { CRS } from 'leaflet'
 import { useState } from 'react'
 import { ImageOverlay, MapContainer } from 'react-leaflet'
@@ -16,6 +17,9 @@ function Map({ image, markers }: MapProps) {
   const [name, setName] = useState('')
   const [address, setAddress] = useState('')
   const [desc, setDesc] = useState('')
+  const [img, setImg] = useState('')
+  const [year, setYear] = useState(0)
+  const [archStyle, setArchStyle] = useState('')
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
@@ -49,6 +53,9 @@ function Map({ image, markers }: MapProps) {
             name={setName}
             address={setAddress}
             description={setDesc}
+            img={setImg}
+            year={setYear}
+            style={setArchStyle}
             handleOpen={handleOpen}
           />
         ))}
@@ -57,6 +64,9 @@ function Map({ image, markers }: MapProps) {
         name={name}
         address={address}
         description={desc}
+        img={img}
+        year={year}
+        style={archStyle}
         open={open}
         handleClose={handleClose}
       />

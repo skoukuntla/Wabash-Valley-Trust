@@ -10,6 +10,9 @@ type BuildingProps = {
   name: React.Dispatch<React.SetStateAction<string>>
   address: React.Dispatch<React.SetStateAction<string>>
   description: React.Dispatch<React.SetStateAction<string>>
+  img: React.Dispatch<React.SetStateAction<string>>
+  year: React.Dispatch<React.SetStateAction<number>>
+  style: React.Dispatch<React.SetStateAction<string>>
   handleOpen: () => void
 }
 
@@ -18,6 +21,9 @@ const Building = ({
   name,
   address,
   description,
+  img,
+  year,
+  style,
   handleOpen,
 }: BuildingProps) => (
   <Marker
@@ -38,6 +44,9 @@ const Building = ({
         name(marker[2])
         address(marker[3])
         description(marker[4])
+        img(marker[5])
+        year(marker[6])
+        style(marker[7])
         handleOpen()
       },
     }}

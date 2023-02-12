@@ -7,6 +7,7 @@
       "archiStyle": "Second Empire",
       "locationType": "building",
       "description": "Judge Cyrus Ball House, also known as the Ball Mansion and Carriage House, is a historic home located at Lafayette, Tippecanoe County, Indiana. It was built in 1868 - 1869, and is a two-story, Second Empire style brick dwelling, with a three-story mansard roofed entrance tower. It sits on a limestone foundation, has intricate wood and stone detailing, and a slate roof. Also on the property is a contributing two-story, rectangular carriage house. It was named after Cyrus Ball, 1828 Justice of the Peace, who was integral to introducing the railroad system in Indiana.",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Judge_Cyrus_Ball_House_in_the_morning.jpg/1200px-Judge_Cyrus_Ball_House_in_the_morning.jpg",
       "additionalLinks": [
         "https://en.wikipedia.org/wiki/Judge_Cyrus_Ball_House https://npgallery.nps.gov/AssetDetail/NRIS/84001649",
         "https://www.google.com/maps/dir//40.4138832,-86.8870621/@40.4138643,-86.9570754,12z"
@@ -20,6 +21,7 @@
       "archiStyle": "Romanesque",
       "locationType": "building",
       "description": "This treasured building was built in 1902. In 1994, as part of the Lafayette Railroad Relocation Project, it was moved to the plaza site. It has since been renovated and restored and was rededicated in 1995 as the centerpiece of the James F. Riehle Plaza. This is the perfect location for an occasion hosting 80-90 people.",
+      "img": "https://www.lafayette.in.gov/ImageRepository/Document?documentID=762",
       "additionalLinks": [
         "https://www.lafayette.in.gov/Facilities/Facility/Details/Big-Four-Depot-76",
         "https://npgallery.nps.gov/AssetDetail/NRIS/03000548",
@@ -34,6 +36,7 @@
       "archiStyle": "Italianate",
       "locationType": "building",
       "description": "Enterprise Hotel, also known as Gasthaus Alt Heidelberg, is a historic hotel building located at Lafayette, Tippecanoe County, Indiana. It was built in 1895, and is a three-story, five bay, rectangular, Italianate style brick building, with rear additions. It measures 42 feet wide and 32 feet deep. It is historically significant as a European style tavern / inn.",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Enterprise_Hotel.jpg/375px-Enterprise_Hotel.jpg",
       "additionalLinks": [
         "https://en.wikipedia.org/wiki/Enterprise_Hotel",
         "https://npgallery.nps.gov/AssetDetail/NRIS/84001650",
@@ -48,6 +51,7 @@
       "archiStyle": "Italian Villa",
       "locationType": "building",
       "description": "Falley Home, also known as the Lahr Home, is a historic home located at Lafayette, Tippecanoe County, Indiana. The Italian Villa style brick house was built in 1863, and consists of three two-story sections and a three-story entrance tower. It is sheathed in stucco. The square corner entrance tower is topped by a cupola and encloses a curve staircase.",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Falley_Home.jpg/375px-Falley_Home.jpg",
       "additionalLinks": [
         "https://en.wikipedia.org/wiki/Falley_Home",
         "https://npgallery.nps.gov/AssetDetail/NRIS/82000078 "
@@ -61,6 +65,7 @@
       "archiStyle": "Gothic Revival",
       "locationType": "building",
       "description": "The Moses Fowler House is located at the corner of 10th and South streets in Lafayette, Indiana. The house is considered the finest example of a large Gothic Revival residence still standing in the United States. Upon his death in 1889, aged 74, Fowler had accumulated a fortune of an estimated three million dollars. Fowler and his wife, Eliza (1817 - 1902), were donors to various community interests, including Purdue University.",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Moses_Fowler-6.jpg/375px-Moses_Fowler-6.jpg",
       "additionalLinks": [
         "https://en.wikipedia.org/wiki/Moses_Fowler_House",
         "https://npgallery.nps.gov/AssetDetail/NRIS/71000009",
@@ -75,6 +80,7 @@
       "archiStyle": "Eclectic",
       "locationType": "building",
       "description": "The Marian Apartments, also known as Marian Flats, is a historic apartment building located at Lafayette, Tippecanoe County, Indiana. It was designed by Oliver W. Pierce, Jr. and built in 1907. It is a three-story, rectangular, brick building with limestone and wood trim. It features polygonal three-story projecting bays.",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Marian_Apartments%2C_Lafayette.jpg/375px-Marian_Apartments%2C_Lafayette.jpg",
       "additionalLinks": [
         "https://en.wikipedia.org/wiki/Marian_Apartments_(Lafayette,_Indiana)",
         "https://gohistoric.com/places/295690-marian-apartments-lafayette"
@@ -88,8 +94,9 @@
       "archiStyle": "Georgian Revival style",
       "locationType": "building",
       "description": "Mars Theatre is a historic theatre building at Lafayette, Tippecanoe County, Indiana. It was built in 1921, and is a four-story, rectangular, Georgian Revival style brick building, with limestone ornamentation and terra cotta panels.",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Mars_Theatre%2C_Lafayette.jpg/375px-Mars_Theatre%2C_Lafayette.jpg",
       "additionalLinks": [
-        "https://en.wikipedia.org/wiki/Marian_Apartments_(Lafayette,_Indiana)",
+        "https://en.wikipedia.org/wiki/Mars_Theatre",
         "https://longpac.org/events/mars-theatre"
       ]
     },
@@ -101,6 +108,7 @@
       "archiStyle": "Greek Revival",
       "locationType": "building",
       "description": "William Potter House, also known as the Potter House, is a historic home located at Lafayette, Tippecanoe County, Indiana. It was built in 1855, and is a two-story, Greek Revival style brick dwelling, with a front gable roof.",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/William_Potter_House.jpg/375px-William_Potter_House.jpg",
       "additionalLinks": [
         "https://en.wikipedia.org/wiki/William_Potter_House",
         "https://indianamemory.contentdm.oclc.org/digital/collection/ILWDPeat/id/907/"
@@ -114,6 +122,7 @@
       "archiStyle": "Gothic Revival Style",
       "locationType": "building",
       "description": "St. John's Episcopal Church is a historic Episcopal church located at Lafayette, Tippecanoe County, Indiana. Founded by Parson Samuel R. Johnson, early services were held beginning in 1836–37 in the counting room of Thomas Benbridge.",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/St._John%27s_Episcopal_Church%2C_Lafayette.jpg/375px-St._John%27s_Episcopal_Church%2C_Lafayette.jpg",
       "additionalLinks": [
         "https://en.wikipedia.org/wiki/St._John's_Episcopal_Church_(Lafayette,_Indiana)",
         "http://www.stjohns-laf.org/"
@@ -127,6 +136,7 @@
       "archiStyle": "Romanesque",
       "locationType": "building",
       "description": "Temple Israel is a historic synagogue located at Lafayette, Tippecanoe County, Indiana. Its 1867 building is one of the oldest synagogue buildings in the United States.The congregation, which was formed in 1849, was the second Jewish congregation organized in Indiana.In 1874 it became a founding member of the Union of American Hebrew Congregations. The congregation moved to its third and present location on Cumberland Avenue in West Lafayette.",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Temple_Israel_in_Lafayette_front_and_side.jpg/375px-Temple_Israel_in_Lafayette_front_and_side.jpg",
       "additionalLinks": [
         "https://templeisraelwlaf.org/",
         "https://en.wikipedia.org/wiki/Temple_Israel_(Lafayette,_Indiana)"
@@ -140,6 +150,7 @@
       "archiStyle": "influence of Baroque, Gothic, Georgian, Victorian, Beaux Arts, Neo-Classical, and Second Empire styles",
       "locationType": "building",
       "description": "Built in the 1880s, this third local courthouse was requested by the citizens to be “of permanent and durable character.” Residents wanted a building that would show the pride they had in their county and filled 45 pages with instructions on how their wishes should be carried out. It has served the community for over 125 years, and with the carefully researched and implemented $15 million renovation in the mid-1990s, it will do so for many years to come.",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Tippecanoe_courthouse_7-2004.jpg/375px-Tippecanoe_courthouse_7-2004.jpg",
       "additionalLinks": [
         "http://www.tippecanoe.in.gov/249/Courts",
         "https://en.wikipedia.org/wiki/Tippecanoe_County_Courthouse"
@@ -153,6 +164,7 @@
       "archiStyle": "Second Empire, Italianate",
       "locationType": "building",
       "description": "James H. Ward House is a historic home located at Lafayette, Tippecanoe County, Indiana. It was built about 1875, and is a two-story, Italianate / Second Empire style brick dwelling, with a 3+1⁄2-story mansard roofed tower. It features deep overhanging eaves with corner brackets, asymmetrical massing, and an ornate semi-hexagonal, two-story projecting bay. Also on the property is a contributing carriage house.",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/James_H._Ward_House.jpg/375px-James_H._Ward_House.jpg",
       "additionalLinks": [
         "https://en.wikipedia.org/wiki/James_H._Ward_House",
         "https://www.theclio.com/entry/99875"
