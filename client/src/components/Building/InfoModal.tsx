@@ -1,6 +1,7 @@
 import { Box, Modal, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 
+import '../../styles/InfoModal.css'
 import htfLogo from '../../assets/htfLogo.png'
 
 const modalStyle = {
@@ -25,19 +26,15 @@ type ModalProps = {
 const InfoModal = ({ text, open, handleClose }: ModalProps) => {
   const [isFavorite, setIsFavorite] = useState(false)
 
-  // runs whenever text gets changed, so whenever a new building modal is opened
+  // runs whenever text gets changed, so whenever a different building modal is opened
   useEffect(() => {
     setIsFavorite(localStorage.getItem(text) === 'true')
   }, [text])
 
+  // TODO should be changed to work with json data
   const toggleFavorite = () => {
     localStorage.setItem(text, isFavorite ? 'false' : 'true')
     setIsFavorite(!isFavorite)
-  }
-
-  const renderFavorite = () => {
-    if (isFavorite) return <div>Favorited</div>
-    return <div>Not</div>
   }
 
   return (
@@ -61,10 +58,16 @@ const InfoModal = ({ text, open, handleClose }: ModalProps) => {
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
           {text}
         </Typography>
-        <button type="button" onClick={toggleFavorite}>
-          imagine a heart icon
+        <button type="button" onClick={toggleFavorite} className="favorite">
+          <img
+            src={
+              isFavorite
+                ? '/assets/heart-filled.png'
+                : '/assets/heart-empty.png'
+            }
+            alt=""
+          />
         </button>
-        {renderFavorite()}
       </Box>
     </Modal>
   )
