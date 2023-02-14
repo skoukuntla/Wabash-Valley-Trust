@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { Container, Grid, Slider } from '@mui/material'
 
-import mapImage from 'assets/tempmap.png'
 import { markers } from 'assets/tempmarkers'
 import Map from 'components/Map'
 
@@ -58,7 +57,7 @@ export default function Main() {
           }}
         />
 
-        <Map image={mapImage} markers={markers} />
+        <Map image="/assets/map.png" markers={markers} />
       </Grid>
     </Container>
   )
