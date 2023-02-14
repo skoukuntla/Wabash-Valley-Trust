@@ -1,5 +1,7 @@
 import { Box, Modal, Typography } from '@mui/material'
+import { useEffect, useState } from 'react'
 
+import '../../styles/InfoModal.css'
 import htfLogo from '../../assets/htfLogo.png'
 
 const modalStyle = {
@@ -21,29 +23,54 @@ type ModalProps = {
   handleClose: () => void
 }
 
-const InfoModal = ({ text, open, handleClose }: ModalProps) => (
-  <Modal
-    open={open}
-    onClose={handleClose}
-    onKeyPress={(e) => {
-      if (e.key === 'Enter') {
-        handleClose()
-      }
-    }}
-    aria-labelledby="modal-modal-title"
-    aria-describedby="modal-modal-description"
-  >
-    <Box sx={modalStyle}>
-      <img src={htfLogo} alt="logo" />
-      <Typography id="modal-modal-title" variant="h6" component="h2">
-        {text}
-      </Typography>
+const InfoModal = ({ text, open, handleClose }: ModalProps) => {
+  const [isFavorite, setIsFavorite] = useState(false)
 
-      <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-        {text}
-      </Typography>
-    </Box>
-  </Modal>
-)
+  // runs whenever text gets changed, so whenever a different building modal is opened
+  useEffect(() => {
+    setIsFavorite(localStorage.getItem(text) === 'true')
+  }, [text])
+
+  // TODO should be changed to work with json data
+  const toggleFavorite = () => {
+    localStorage.setItem(text, isFavorite ? 'false' : 'true')
+    setIsFavorite(!isFavorite)
+  }
+
+  return (
+    <Modal
+      open={open}
+      onClose={handleClose}
+      onKeyPress={(e) => {
+        if (e.key === 'Enter') {
+          handleClose()
+        }
+      }}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box sx={modalStyle}>
+        <img src={htfLogo} alt="logo" />
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+          {text}
+        </Typography>
+
+        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          {text}
+        </Typography>
+        <button type="button" onClick={toggleFavorite} className="favorite">
+          <img
+            src={
+              isFavorite
+                ? '/assets/heart-filled.png'
+                : '/assets/heart-empty.png'
+            }
+            alt=""
+          />
+        </button>
+      </Box>
+    </Modal>
+  )
+}
 
 export default InfoModal
