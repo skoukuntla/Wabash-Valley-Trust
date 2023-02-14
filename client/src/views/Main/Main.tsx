@@ -42,7 +42,6 @@ export default function Main() {
               borderLeft: '8px solid transparent',
               marginBottom: '-30px',
               marginleft: '-50px',
-
               marginRight: '-10px',
               marginLeft: '-20px',
             },
