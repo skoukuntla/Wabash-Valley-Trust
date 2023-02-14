@@ -20,10 +20,11 @@ function Map({ image, markers }: MapProps) {
   const [img, setImg] = useState('')
   const [year, setYear] = useState(0)
   const [archStyle, setArchStyle] = useState('')
+  const [links, setLinks] = useState([''])
+  const [linkNames, setLinkNames] = useState([''])
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
-
   return (
     <div>
       <MapContainer
@@ -56,6 +57,8 @@ function Map({ image, markers }: MapProps) {
             img={setImg}
             year={setYear}
             style={setArchStyle}
+            links={setLinks}
+            linkNames={setLinkNames}
             handleOpen={handleOpen}
           />
         ))}
@@ -67,6 +70,8 @@ function Map({ image, markers }: MapProps) {
         img={img}
         year={year}
         style={archStyle}
+        links={links}
+        linkNames={linkNames}
         open={open}
         handleClose={handleClose}
       />

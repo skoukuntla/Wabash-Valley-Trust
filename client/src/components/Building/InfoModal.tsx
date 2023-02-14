@@ -1,9 +1,8 @@
+import { url } from 'inspector'
 import internal from 'stream'
 
 import { Box, Modal, Typography } from '@mui/material'
 import { Container, fontFamily } from '@mui/system'
-
-import htfLogo from '../../assets/htfLogo.png'
 
 const modalStyle = {
   position: 'absolute' as 'absolute',
@@ -25,6 +24,8 @@ type ModalProps = {
   img: string
   year: number
   style: string
+  links: string[]
+  linkNames: string[]
   open: boolean
   handleClose: () => void
 }
@@ -36,6 +37,8 @@ const InfoModal = ({
   img,
   year,
   style,
+  links,
+  linkNames,
   open,
   handleClose,
 }: ModalProps) => (
@@ -65,9 +68,36 @@ const InfoModal = ({
       <p>Founded: {year} &nbsp;</p>
       <p>Architectural Style: {style} </p>
       <Container sx={{ float: 'left', display: 'flex' }}>
-        <Typography id="modal-modal-description" sx={{ mt: 2, float: 'left' }}>
-          {description}
-        </Typography>
+        <Container sx={{ display: 'flex', flexDirection: 'column' }}>
+          <Typography
+            id="modal-modal-description"
+            sx={{ mt: 2, float: 'left' }}
+          >
+            {description}
+          </Typography>
+
+          <div>
+            <p>Additional Links:</p>
+            <ul>
+              <li>
+                <a href={links[0]} target="_blank" rel="noreferrer">
+                  {linkNames[0]}
+                </a>
+              </li>
+              <li>
+                <a href={links[1]} target="_blank" rel="noreferrer">
+                  {linkNames[1]}
+                </a>
+              </li>
+              <li>
+                <a href={links[2]} target="_blank" rel="noreferrer">
+                  {linkNames[2]}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </Container>
+
         <img alt="error loading img" width="250" height="250" src={img} />
       </Container>
 

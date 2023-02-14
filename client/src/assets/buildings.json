@@ -9,7 +9,8 @@
       "description": "Judge Cyrus Ball House, also known as the Ball Mansion and Carriage House, is a historic home located at Lafayette, Tippecanoe County, Indiana. It was built in 1868 - 1869, and is a two-story, Second Empire style brick dwelling, with a three-story mansard roofed entrance tower. It sits on a limestone foundation, has intricate wood and stone detailing, and a slate roof. Also on the property is a contributing two-story, rectangular carriage house. It was named after Cyrus Ball, 1828 Justice of the Peace, who was integral to introducing the railroad system in Indiana.",
       "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Judge_Cyrus_Ball_House_in_the_morning.jpg/1200px-Judge_Cyrus_Ball_House_in_the_morning.jpg",
       "additionalLinks": [
-        "https://en.wikipedia.org/wiki/Judge_Cyrus_Ball_House https://npgallery.nps.gov/AssetDetail/NRIS/84001649",
+        "https://en.wikipedia.org/wiki/Judge_Cyrus_Ball_House",
+        "https://npgallery.nps.gov/AssetDetail/NRIS/84001649",
         "https://www.google.com/maps/dir//40.4138832,-86.8870621/@40.4138643,-86.9570754,12z"
       ]
     },
@@ -116,7 +117,7 @@
     },
 
     {
-      "name": "St John's Ecpiscopal Church",
+      "name": "St John's Episcopal Church",
       "address": "600 Ferry St, Lafayette, Indiana ",
       "foundingYear": 1857,
       "archiStyle": "Gothic Revival Style",

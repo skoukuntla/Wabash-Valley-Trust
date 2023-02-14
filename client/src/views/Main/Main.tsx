@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { Container } from '@mui/material'
 
+import mapImage from 'assets/map.png'
 import { markers } from 'assets/markers'
-import mapImage from 'assets/tempmap.png'
 import Map from 'components/Map'
 
 export default function Main() {
@@ -17,29 +17,13 @@ export default function Main() {
     item.push(markers[i].img)
     item.push(markers[i].foundingYear)
     item.push(markers[i].archiStyle)
+    item.push(markers[i].additionalLinks)
+    const linkNames = []
+    for (let j = 0; j < markers[i].additionalLinks.length; j += 1) {
+      linkNames.push(new URL(markers[i].additionalLinks[j]).hostname)
+    }
+    item.push(linkNames)
     items.push(item)
   }
-  return (
-    <Container>
-      {/* <Typography variant="h4">Main Page</Typography>
-      <Typography variant="body1">
-        Welcome! Feel free to check out all the demos here!
-      </Typography>
-      <Box sx={{ mt: 4 }}>
-        <Typography variant="h6">Demos</Typography>
-        <ul>
-          <li>
-            <Link to="/axios">Axios</Link>
-          </li>
-          <li>
-            <Link to="/redux">Redux</Link>
-          </li>
-          <li>
-            <Link to="/auth">Auth</Link>
-          </li>
-        </ul>
-      </Box> */}
-      <Map image={mapImage} markers={items} />
-    </Container>
-  )
+  return <Map image={mapImage} markers={items} />
 }
