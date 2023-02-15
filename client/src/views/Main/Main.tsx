@@ -9,8 +9,8 @@ export default function Main() {
   const items = []
   for (let i = 0; i < markers.length; i += 1) {
     const item = new Array<Object>()
-    item.push(400 + i * 15)
-    item.push(100 + i * 15)
+    item.push(markers[i].coords[0])
+    item.push(markers[i].coords[1])
     item.push(markers[i].name)
     item.push(markers[i].address)
     item.push(markers[i].description)

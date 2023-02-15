@@ -1,6 +1,7 @@
 {
   "locationInfo": [
     {
+      "coords": [150, 540],
       "name": "Judge Cyrus House Ball",
       "address": "402 S. 9th St., Lafayette, Indiana 47904",
       "foundingYear": 1868,
@@ -16,6 +17,7 @@
     },
 
     {
+      "coords": [380, 120],
       "name": "Big Four Depot",
       "address": "200 N. 2nd St., Lafayette, Indiana 47901",
       "foundingYear": 1902,
@@ -31,6 +33,7 @@
     },
 
     {
+      "coords": [350, 585],
       "name": "Enterprise Hotel",
       "address": "1015 Main St., Lafayette, Indiana 47901",
       "foundingYear": 1895,
@@ -46,6 +49,7 @@
     },
 
     {
+      "coords": [220, 370],
       "name": "Falley House",
       "address": "601 New York St., Lafayette, Indiana",
       "foundingYear": 1863,
@@ -60,6 +64,7 @@
     },
 
     {
+      "coords": [420, 370],
       "name": "Moses Fowler House",
       "address": "Corner of 10th and South St., Lafayette, Indiana ",
       "foundingYear": 1851,
@@ -75,6 +80,7 @@
     },
 
     {
+      "coords": [350, 405],
       "name": "Marian Apartments",
       "address": "615 North Street, Lafayette, Indiana ",
       "foundingYear": 1907,
@@ -89,6 +95,7 @@
     },
 
     {
+      "coords": [340, 425],
       "name": "Mars Theatre",
       "address": "111 N 6th St, Lafayette, Indiana ",
       "foundingYear": 1921,
@@ -103,6 +110,7 @@
     },
 
     {
+      "coords": [290, 550],
       "name": "William Potter House",
       "address": "915 Columbia Street, Lafayette, Indiana ",
       "foundingYear": 1855,
@@ -117,6 +125,7 @@
     },
 
     {
+      "coords": [345, 635],
       "name": "St John's Episcopal Church",
       "address": "600 Ferry St, Lafayette, Indiana ",
       "foundingYear": 1857,
@@ -131,6 +140,7 @@
     },
 
     {
+      "coords": [450, 585],
       "name": "Temple Israel",
       "address": "620 Cumberland Ave, Lafayette, Indiana ",
       "foundingYear": 1849,
@@ -145,6 +155,7 @@
     },
 
     {
+      "coords": [320, 170],
       "name": "Tippecanoe County Court House",
       "address": "20 N 3rd St, Lafayette, Indiana ",
       "foundingYear": 1822,
@@ -159,6 +170,7 @@
     },
 
     {
+      "coords": [270, 640],
       "name": "Ward, James H., House",
       "address": "1116 Columbia Street, Lafayette, Indiana ",
       "foundingYear": 1875,
