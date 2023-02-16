@@ -33,7 +33,7 @@
     },
 
     {
-      "coords": [350, 585],
+      "coords": [360, 600],
       "name": "Enterprise Hotel",
       "address": "1015 Main St., Lafayette, Indiana 47901",
       "foundingYear": 1895,
@@ -64,7 +64,7 @@
     },
 
     {
-      "coords": [420, 370],
+      "coords": [265, 550],
       "name": "Moses Fowler House",
       "address": "Corner of 10th and South St., Lafayette, Indiana ",
       "foundingYear": 1851,
@@ -80,7 +80,7 @@
     },
 
     {
-      "coords": [350, 405],
+      "coords": [420, 375],
       "name": "Marian Apartments",
       "address": "615 North Street, Lafayette, Indiana ",
       "foundingYear": 1907,
@@ -110,7 +110,7 @@
     },
 
     {
-      "coords": [290, 550],
+      "coords": [320, 555],
       "name": "William Potter House",
       "address": "915 Columbia Street, Lafayette, Indiana ",
       "foundingYear": 1855,
@@ -125,7 +125,7 @@
     },
 
     {
-      "coords": [345, 635],
+      "coords": [405, 375],
       "name": "St John's Episcopal Church",
       "address": "600 Ferry St, Lafayette, Indiana ",
       "foundingYear": 1857,
@@ -170,7 +170,7 @@
     },
 
     {
-      "coords": [270, 640],
+      "coords": [350, 640],
       "name": "Ward, James H., House",
       "address": "1116 Columbia Street, Lafayette, Indiana ",
       "foundingYear": 1875,
