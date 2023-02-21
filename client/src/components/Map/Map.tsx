@@ -23,7 +23,7 @@ type MapProps = {
 
 function Map({ image, markers }: MapProps) {
   const [routes, setRoutes] = useState<Array<RouteData>>([])
-  const [currentRoute, setCurrentRoute] = useState<number>(1)
+  const [currentRoute, setCurrentRoute] = useState<number>(0)
   // const [currentText, setCurrentText] = useState('')
   const [name, setName] = useState('')
   const [address, setAddress] = useState('')
