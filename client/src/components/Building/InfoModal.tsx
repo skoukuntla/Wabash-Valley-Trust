@@ -2,7 +2,7 @@ import { url } from 'inspector'
 import internal from 'stream'
 
 import { Box, Modal, Typography } from '@mui/material'
-import { Container, fontFamily } from '@mui/system'
+import { Container, bgcolor, fontFamily } from '@mui/system'
 import { useEffect, useState } from 'react'
 import '../../styles/InfoModal.css'
 
