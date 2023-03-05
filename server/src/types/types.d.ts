@@ -12,3 +12,17 @@ interface IUserAuth extends PassportLocalDocument {
   password: string
   refreshTokens: [Session]
 }
+
+type LocationType = 'building' | 'neighborhood'
+
+interface IBuilding extends Document {
+  name: string
+  address: string
+  foundingYear: number
+  archiStyle: string
+  locationType: LocationType
+  description: string
+  img: string
+  coords: number[]
+  additionalLinks: string[]
+}
