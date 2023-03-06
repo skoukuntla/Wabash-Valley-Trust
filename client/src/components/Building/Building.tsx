@@ -15,6 +15,7 @@ type BuildingProps = {
   style: React.Dispatch<React.SetStateAction<string>>
   links: React.Dispatch<React.SetStateAction<string[]>>
   linkNames: React.Dispatch<React.SetStateAction<string[]>>
+  visible: any
   handleOpen: () => void
 }
 
@@ -29,8 +30,10 @@ const Building = ({
   links,
   linkNames,
   handleOpen,
+  visible,
 }: BuildingProps) => (
   <Marker
+    opacity={visible}
     position={[marker[0], marker[1]]}
     icon={L.divIcon({
       className: 'custom icon',
@@ -58,5 +61,4 @@ const Building = ({
     }}
   />
 )
-
 export default Building
