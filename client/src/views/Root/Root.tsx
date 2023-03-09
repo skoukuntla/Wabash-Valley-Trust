@@ -2,6 +2,7 @@ import { Container } from '@mui/material'
 import * as React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
+import AdminPage from 'views/AdminPage'
 import Main from 'views/Main'
 import { Auth, Login, Me, Register } from 'views/Tutorial/Auth'
 import Axios from 'views/Tutorial/Axios'
@@ -12,6 +13,7 @@ export default function Root() {
     <BrowserRouter>
       <Routes>
         <Route index element={<Main />} />
+        <Route path="admin" element={<AdminPage />} />
         <Route path="axios" element={<Axios />} />
         <Route path="redux" element={<Redux />} />
         <Route path="auth">
