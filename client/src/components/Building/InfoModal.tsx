@@ -5,7 +5,7 @@ import { faHeart as HeartRegular } from '@fortawesome/free-regular-svg-icons'
 import { faHeart as HeartSolid } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Box, Modal, Typography } from '@mui/material'
-import { Container, fontFamily } from '@mui/system'
+import { Container, bgcolor, fontFamily } from '@mui/system'
 import { useEffect, useState } from 'react'
 import '../../styles/InfoModal.css'
 
