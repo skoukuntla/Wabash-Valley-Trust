@@ -1,6 +1,9 @@
 import { url } from 'inspector'
 import internal from 'stream'
 
+import { faHeart as HeartRegular } from '@fortawesome/free-regular-svg-icons'
+import { faHeart as HeartSolid } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Box, Modal, Typography } from '@mui/material'
 import { Container, fontFamily } from '@mui/system'
 import { useEffect, useState } from 'react'
@@ -51,7 +54,6 @@ const InfoModal = ({
     setIsFavorite(localStorage.getItem(name) === 'true')
   }, [name])
 
-  // TODO should be changed to work with json data
   const toggleFavorite = () => {
     localStorage.setItem(name, isFavorite ? 'false' : 'true')
     setIsFavorite(!isFavorite)
@@ -119,14 +121,11 @@ const InfoModal = ({
 
         <div />
         <button type="button" onClick={toggleFavorite} className="favorite">
-          <img
-            src={
-              isFavorite
-                ? '/assets/heart-filled.png'
-                : '/assets/heart-empty.png'
-            }
-            alt=""
-          />
+          {isFavorite ? (
+            <FontAwesomeIcon icon={HeartSolid} className="heartIcon" />
+          ) : (
+            <FontAwesomeIcon icon={HeartRegular} className="heartIcon" />
+          )}
         </button>
       </Box>
     </Modal>
