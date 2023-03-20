@@ -149,6 +149,7 @@
     }
   ],
   "dependencies": {
+    "@material-ui/core": "^4.12.4",
     "@mui/styles": "^5.11.7"
   }
 }

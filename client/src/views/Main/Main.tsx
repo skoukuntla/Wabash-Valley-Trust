@@ -1,6 +1,11 @@
 /* eslint-disable jsx-a11y/alt-text */
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import FormGroup from '@material-ui/core/FormGroup'
+import Switch from '@material-ui/core/Switch'
 import { Container, Grid, Slider } from '@mui/material'
+import React, { useState } from 'react'
 
+import districtImage from 'assets/districts.png'
 import mapImage from 'assets/map.png'
 import { markers } from 'assets/markers'
 import Map from 'components/Map'
@@ -15,6 +20,12 @@ const marks = [
 ]
 
 export default function Main() {
+  const [showMap, setShowMap] = useState(false)
+
+  const toggleMap = () => {
+    setShowMap(!showMap)
+  }
+
   const items = []
   for (let i = 0; i < markers.length; i += 1) {
     const item = new Array<Object>()
@@ -38,6 +49,13 @@ export default function Main() {
   return (
     <Container>
       <Grid container justifyContent="center">
+        <FormGroup>
+          <FormControlLabel
+            control={<Switch checked={showMap} onChange={toggleMap} />}
+            label="District Map"
+          />
+        </FormGroup>
+
         <Slider
           aria-label="Restricted values"
           defaultValue={20}
@@ -78,7 +96,8 @@ export default function Main() {
           }}
         />
 
-        <Map image="/assets/map.png" markers={items} />
+        {showMap && <Map image={districtImage} markers={items} />}
+        {!showMap && <Map image={mapImage} markers={items} />}
       </Grid>
     </Container>
   )
