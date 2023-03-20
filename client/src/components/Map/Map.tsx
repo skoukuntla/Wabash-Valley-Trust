@@ -1,7 +1,7 @@
 import { style } from '@mui/system'
 import { CRS } from 'leaflet'
 import { useEffect, useState } from 'react'
-import { ImageOverlay, MapContainer } from 'react-leaflet'
+import { ImageOverlay, MapContainer, useMapEvents } from 'react-leaflet'
 
 import InfoModal from 'components/Building/InfoModal'
 
@@ -86,6 +86,7 @@ function Map({ image, markers }: MapProps) {
           />
         ))}
         <MapRoute currentRoute={currentRoute} routes={routes} />
+        {window.location.href.includes('admin') && <MapEvents />}
       </MapContainer>
       <InfoModal
         name={name}
@@ -101,6 +102,22 @@ function Map({ image, markers }: MapProps) {
       />
     </div>
   )
+}
+
+// used for click event that gets coordinates
+const MapEvents = () => {
+  useMapEvents({
+    click(e) {
+      // setState your coords here
+      // coords exist in "e.latlng.lat" and "e.latlng.lng"
+      console.log(e.latlng.lat)
+      console.log(e.latlng.lng)
+
+      // TODO change?
+      console.log(window.location.href.includes('admin'))
+    },
+  })
+  return <div />
 }
 
 export { Map }
