@@ -1,11 +1,27 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { Container, Grid, Slider } from '@mui/material'
 
+import {
+  Container,
+  FormControlLabel,
+  FormGroup,
+  Grid,
+  Slider,
+  Switch,
+} from '@mui/material'
+import React, { useState } from 'react'
+
+import districtImage from 'assets/districts.png'
 import mapImage from 'assets/map.png'
 import { markers } from 'assets/markers'
 import Map from 'components/Map'
 
 export default function Main() {
+  const [showMap, setShowMap] = useState(false)
+
+  const toggleMap = () => {
+    setShowMap(!showMap)
+  }
+
   const items = []
   for (let i = 0; i < markers.length; i += 1) {
     const item = new Array<Object>()
@@ -25,5 +41,17 @@ export default function Main() {
     item.push(linkNames)
     items.push(item)
   }
-  return <Map image="/assets/map.png" markers={items} />
+
+  return (
+    <Grid container justifyContent="center">
+      <FormGroup>
+        <FormControlLabel
+          control={<Switch checked={showMap} onChange={toggleMap} />}
+          label="District Map"
+        />
+      </FormGroup>
+      {showMap && <Map image={districtImage} markers={items} />}
+      {!showMap && <Map image={mapImage} markers={items} />}
+    </Grid>
+  )
 }

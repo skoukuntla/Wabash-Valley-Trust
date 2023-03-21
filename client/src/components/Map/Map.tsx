@@ -92,7 +92,7 @@ function Map({ image, markers }: MapProps) {
         }}
       />
       <MapContainer
-        style={{ height: '93vh', width: '100vw' }}
+        style={{ height: '100vh', width: '100vw' }}
         center={[380, 306]}
         zoom={1}
         crs={CRS.Simple}
