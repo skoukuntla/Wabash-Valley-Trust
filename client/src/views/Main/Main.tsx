@@ -1,8 +1,13 @@
 /* eslint-disable jsx-a11y/alt-text */
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import FormGroup from '@material-ui/core/FormGroup'
-import Switch from '@material-ui/core/Switch'
-import { Container, Grid, Slider } from '@mui/material'
+
+import {
+  Container,
+  FormControlLabel,
+  FormGroup,
+  Grid,
+  Slider,
+  Switch,
+} from '@mui/material'
 import React, { useState } from 'react'
 
 import districtImage from 'assets/districts.png'
