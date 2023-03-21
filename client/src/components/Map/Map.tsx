@@ -56,7 +56,7 @@ function Map({ image, markers }: MapProps) {
         aria-label="Restricted values"
         onChange={async (e, val) => {
           const target = e.target as HTMLTextAreaElement
-          await setTimeLine(target.value)
+          setTimeLine(target.value)
         }}
         defaultValue={1930}
         step={10}
@@ -112,22 +112,26 @@ function Map({ image, markers }: MapProps) {
           ]}
           zIndex={10}
         />
-        {markers.map((marker) => (
-          <Building
-            key={marker[3]}
-            marker={marker}
-            name={setName}
-            address={setAddress}
-            description={setDesc}
-            img={setImg}
-            year={setYear}
-            style={setArchStyle}
-            links={setLinks}
-            linkNames={setLinkNames}
-            handleOpen={handleOpen}
-            visible={marker[7] > parseInt(timeLine)}
-          />
-        ))}
+        {markers.map((marker) => {
+          if (marker[6] <= parseInt(timeLine)) {
+            return (
+              <Building
+                marker={marker}
+                name={setName}
+                address={setAddress}
+                description={setDesc}
+                img={setImg}
+                year={setYear}
+                style={setArchStyle}
+                links={setLinks}
+                linkNames={setLinkNames}
+                handleOpen={handleOpen}
+              />
+            )
+          }
+          // eslint-disable-next-line react/jsx-no-useless-fragment
+          return <></>
+        })}
         <MapRoute currentRoute={currentRoute} routes={routes} />
       </MapContainer>
       <InfoModal
