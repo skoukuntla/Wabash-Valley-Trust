@@ -1,4 +1,3 @@
-import { style } from '@mui/system'
 import { CRS } from 'leaflet'
 import { useEffect, useState } from 'react'
 import { ImageOverlay, MapContainer, useMapEvents } from 'react-leaflet'
@@ -19,9 +18,14 @@ interface RouteData {
 type MapProps = {
   image: string
   markers: Array<Array<any>>
+  addLocation: any
 }
 
-function Map({ image, markers }: MapProps) {
+type MapEventsProps = {
+  addLocation: Function
+}
+
+function Map({ image, markers, addLocation }: MapProps) {
   const [routes, setRoutes] = useState<Array<RouteData>>([])
   const [currentRoute, setCurrentRoute] = useState<number>(0)
   // const [currentText, setCurrentText] = useState('')
@@ -86,7 +90,9 @@ function Map({ image, markers }: MapProps) {
           />
         ))}
         <MapRoute currentRoute={currentRoute} routes={routes} />
-        {window.location.href.includes('admin') && <MapEvents />}
+        {window.location.href.includes('admin') && (
+          <MapEvents addLocation={addLocation} />
+        )}
       </MapContainer>
       <InfoModal
         name={name}
@@ -105,16 +111,27 @@ function Map({ image, markers }: MapProps) {
 }
 
 // used for click event that gets coordinates
-const MapEvents = () => {
+const MapEvents = ({ addLocation }: MapEventsProps) => {
   useMapEvents({
     click(e) {
       // setState your coords here
       // coords exist in "e.latlng.lat" and "e.latlng.lng"
-      console.log(e.latlng.lat)
-      console.log(e.latlng.lng)
+      console.log(e.latlng.lat + 20)
+      console.log(e.latlng.lng - 10)
 
-      // TODO change?
+      // TODO change
       console.log(window.location.href.includes('admin'))
+      addLocation({
+        coords: [e.latlng.lat + 20, e.latlng.lng - 10],
+        name: 'NAME',
+        address: 'here',
+        foundingYear: '2023',
+        archiStyle: 'sand',
+        description: 'freshmen housing',
+        img: 'https://www.yummymummykitchen.com/wp-content/uploads/2022/12/long-hair-cow-1.jpg',
+        additionalLinks: ['https://google.com', 'https://bing.com'],
+        locationType: 'dorm',
+      })
     },
   })
   return <div />

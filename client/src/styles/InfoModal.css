@@ -21,3 +21,16 @@ button.favorite:active {
   height: 32px;
   color: #a6652d;
 }
+
+.InfoModal .text {
+  padding-right: 20px;
+}
+
+.InfoModal .box {
+  overflow: auto;
+}
+
+.InfoModal .field {
+  padding-bottom: 15px;
+  max-width: 500px;
+}

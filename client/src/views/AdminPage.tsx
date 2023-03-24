@@ -9,30 +9,46 @@ const AdminPage = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [locations, setLocations]: any = useState(null)
+  const [markersState, setMarkersState]: any = useState(null)
+
+  const addLocation = (input: any) => {
+    console.log('add location input', input)
+
+    setMarkersState(markersState.concat(input))
+  }
 
   useEffect(() => {
+    setMarkersState(markers)
+  }, [])
+
+  useEffect(() => {
+    if (markersState === null) return
+
+    console.log('new markers', markersState)
+
     const items = []
-    for (let i = 0; i < markers.length; i += 1) {
+    for (let i = 0; i < markersState.length; i += 1) {
       const item = new Array<Object>()
-      item.push(markers[i].coords[0])
-      item.push(markers[i].coords[1])
-      item.push(markers[i].name)
-      item.push(markers[i].address)
-      item.push(markers[i].description)
-      item.push(markers[i].img)
-      item.push(markers[i].foundingYear)
-      item.push(markers[i].archiStyle)
-      item.push(markers[i].additionalLinks)
+      item.push(markersState[i].coords[0])
+      item.push(markersState[i].coords[1])
+      item.push(markersState[i].name)
+      item.push(markersState[i].address)
+      item.push(markersState[i].description)
+      item.push(markersState[i].img)
+      item.push(markersState[i].foundingYear)
+      item.push(markersState[i].archiStyle)
+      item.push(markersState[i].additionalLinks)
       const linkNames = []
-      for (let j = 0; j < markers[i].additionalLinks.length; j += 1) {
-        linkNames.push(new URL(markers[i].additionalLinks[j]).hostname)
+      for (let j = 0; j < markersState[i].additionalLinks.length; j += 1) {
+        linkNames.push(new URL(markersState[i].additionalLinks[j]).hostname)
       }
       item.push(linkNames)
       items.push(item)
     }
 
     setLocations(items)
-  }, [])
+    console.log('markers', markersState)
+  }, [markersState])
 
   const submitHandler = (e: any) => {
     e.preventDefault()
@@ -57,7 +73,13 @@ const AdminPage = () => {
           <button type="submit">Log in</button>
         </form>
 
-        {locations && <Map image="/assets/map.png" markers={locations} />}
+        {locations && (
+          <Map
+            image="/assets/map.png"
+            markers={locations}
+            addLocation={addLocation}
+          />
+        )}
       </main>
     </div>
   )
