@@ -58,8 +58,7 @@ const InfoModal = ({
   const [styleInput, setStyleInput] = useState('')
   const [descriptionInput, setDescriptionInput] = useState('')
   const [linksInput, setLinksInput] = useState([''])
-  const [linkNamesInput, setLinkNamesInput] = useState([''])
-  // TODO setup keeping track of which link is being changed
+  const [linksIDs, setLinksIDs] = useState([0])
 
   const handleTitle = (e: any) => {
     setTitle(e.target.value)
@@ -81,6 +80,21 @@ const InfoModal = ({
     setDescriptionInput(e.target.value)
   }
 
+  const handleLinkURL = (e: any, i: number) => {
+    const updatedLinks = [...linksInput]
+    updatedLinks[i] = e.target.value
+    setLinksInput(updatedLinks)
+  }
+
+  const deleteURL = (i: number) => {
+    console.log('index', i)
+
+    // filters out link to be deleted by index
+    setLinksInput([...linksInput].filter((_link, j) => i !== j))
+    setLinksIDs([...linksIDs].filter((_link, j) => i !== j))
+  }
+
+  // placeholder until API set up
   const handleSubmit = (e: any) => {
     e.preventDefault()
 
@@ -89,6 +103,8 @@ const InfoModal = ({
     console.log('Year:', yearInput)
     console.log('Style:', styleInput)
     console.log('Description:', descriptionInput)
+    console.log('Links:', linksInput)
+    console.log('Link IDs:', linksIDs)
   }
 
   // runs whenever text gets changed, so whenever a different building modal is opened
@@ -103,8 +119,8 @@ const InfoModal = ({
     setYearInput(year)
     setDescriptionInput(description)
     setLinksInput(links)
-    setLinkNamesInput(linkNames)
-  }, [name, address, style, year, description, links, linkNames])
+    setLinksIDs(links.map(() => Math.round(Math.random() * 100)))
+  }, [name, address, style, year, description, links])
 
   const toggleFavorite = () => {
     localStorage.setItem(name, isFavorite ? 'false' : 'true')
@@ -112,8 +128,10 @@ const InfoModal = ({
   }
 
   const addLinkField = () => {
-    console.log('add link', linksInput)
+    // adds empty link url & creates an ID for the key in the ul list
     setLinksInput(linksInput.concat(''))
+    const newIDs = [...linksIDs, Math.round(Math.random() * 100)]
+    setLinksIDs(newIDs)
   }
 
   const displayElements = (
@@ -209,6 +227,13 @@ const InfoModal = ({
             defaultValue={style}
             onChange={handleStyle}
           />
+          <TextField
+            multiline
+            className="field"
+            label="Description"
+            defaultValue={description}
+            onChange={handleDescription}
+          />
         </Container>
         <Container sx={{ float: 'left', display: 'flex' }}>
           <Container
@@ -216,29 +241,20 @@ const InfoModal = ({
             disableGutters
             className="text"
           >
-            <TextField
-              multiline
-              className="field"
-              label="Description"
-              defaultValue={description}
-              onChange={handleDescription}
-            />
-
             <div>
               <p>Additional Links:</p>
               <ul>
                 {linksInput.map((item, i) => (
-                  <li key={item}>
+                  <li key={linksIDs[i]}>
                     <TextField
                       className="field"
                       label="URL"
                       defaultValue={item}
+                      onChange={(e) => handleLinkURL(e, i)}
                     />
-                    <TextField
-                      className="field"
-                      label="Link Title"
-                      defaultValue={linkNamesInput[i]}
-                    />
+                    <button onClick={() => deleteURL(i)} type="button">
+                      delete
+                    </button>
                   </li>
                 ))}
                 <Button variant="outlined" onClick={addLinkField}>
