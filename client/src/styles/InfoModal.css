@@ -16,3 +16,16 @@ button.favorite:hover {
 button.favorite:active {
   transform: scale(0.9);
 }
+
+.InfoModal .text {
+  padding-right: 20px;
+}
+
+.InfoModal .box {
+  overflow: auto;
+}
+
+.InfoModal .field {
+  padding-bottom: 15px;
+  max-width: 500px;
+}
