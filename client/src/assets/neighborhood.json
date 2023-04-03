@@ -1,21 +1,35 @@
 {
   "locationInfo": [
     {
-      "coords": [151, 541],
-      "name": "Jefferson Historic District",
-      "address": "1101-1199 Brown St, Lafayette, IN 47904",
-      "foundingYear": 1850,
-      "archiStyle": "Greek Revival, Italiante",
-      "locationType": "building",
-      "description": "Jefferson Historic District is a national historic district located at Lafayette, Tippecanoe County, Indiana. The district encompasses 161 contributing buildings, 2 contributing sites, and 22 contributing structures in a predominantly residential section of Lafayette.",
+      "coords": [345, 285],
+      "name": "Downtown Lafayette Historic District",
+      "address": "101-199 N 4th St, Lafayette, IN 47901",
+      "foundingYear": 1825,
+      "archiStyle": "Second Empire, Italianate, Other",
+      "locationType": "District",
+      "description": "It is significant because of it's relation to commerce, transportation, exploration/settlement, politcs/government, architecture, communications. Its development and growth reflects the changes in transportation over the intervening years.",
       "img": "https://www.lafayette.in.gov/ImageRepository/Document?documentID=762",
       "additionalLinks": [
-        "https://en.wikipedia.org/wiki/Jefferson_Historic_District_(Lafayette,_Indiana)#:~:text=Jefferson%20Historic%20District%20is%20a,predominantly%20residential%20section%20of%20Lafayette."
+        "https://en.wikipedia.org/wiki/Downtown_Lafayette_Historic_District#:~:text=Downtown%20Lafayette%20Historic%20District%20is,transportation%20over%20the%20intervening%20years."
       ]
     },
 
     {
-      "coords": [400, 700],
+      "coords": [350, 490],
+      "name": "Upper Main Street Historic District",
+      "address": "Roughly bounded by Ferry St., 6th St., Columbia St., and the Norfolk and Western Railroad tracks",
+      "foundingYear": 1825,
+      "archiStyle": "Classical Revival, Italianate, Romanesque",
+      "locationType": "building",
+      "description": "It is significant because of it's relation to commerce, transportation, and architecture. This area became the cities commercial center. Businesses around Eleventh Street developed to meet the traveling publics needs. The Enterprise Hotel, at 1015 Main Street, as well as the Alt Heidelberg, American Lafayette and the Derby Hotel were early established by 1899.",
+      "img": "https://www.lafayette.in.gov/ImageRepository/Document?documentID=762",
+      "additionalLinks": [
+        "https://en.wikipedia.org/wiki/Upper_Main_Street_Historic_District_(Lafayette,_Indiana)#:~:text=Upper%20Main%20Street%20Historic%20District%20is%20a%20national%20historic%20district,Wabash%20Railroad%20at%20Eleventh%20Street."
+      ]
+    },
+
+    {
+      "coords": [450, 400],
       "name": "Centennial Neighborhood District",
       "address": "Centennial Park, 501-599 N 6th St, Lafayette, IN 47901",
       "foundingYear": 1825,
@@ -29,7 +43,63 @@
     },
 
     {
-      "coords": [361, 599],
+      "coords": [450, 635],
+      "name": "Jefferson Historic District",
+      "address": "1101-1199 Brown St, Lafayette, IN 47904",
+      "foundingYear": 1850,
+      "archiStyle": "Greek Revival, Italiante",
+      "locationType": "building",
+      "description": "Jefferson Historic District is a national historic district located at Lafayette, Tippecanoe County, Indiana. The district encompasses 161 contributing buildings, 2 contributing sites, and 22 contributing structures in a predominantly residential section of Lafayette.",
+      "img": "https://www.lafayette.in.gov/ImageRepository/Document?documentID=762",
+      "additionalLinks": [
+        "https://en.wikipedia.org/wiki/Jefferson_Historic_District_(Lafayette,_Indiana)#:~:text=Jefferson%20Historic%20District%20is%20a,predominantly%20residential%20section%20of%20Lafayette."
+      ]
+    },
+
+    {
+      "coords": [580, 590],
+      "name": "Park Mary Historic District",
+      "address": "Roughly bounded by Union, Hartford, N. 6th, and N. 14th Sts., Lafayette, Indiana",
+      "foundingYear": 1836,
+      "archiStyle": "Primarily consists of late 19th and early 20th-century homes in a variety of styles, including Queen Anne, Colonial Revival, Tudor Revival, and Arts and Crafts.",
+      "locationType": "building",
+      "description": "The Park Mary Historic District is a residential area in Lafayette, Indiana, that is listed on the National Register of Historic Places. It covers roughly 75 acres and contains 188 contributing buildings, including homes, churches, and a cemetery. The district is notable for its mix of architectural styles and its historic significance as one of the earliest and most prominent residential areas in Lafayette.",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/4/48/Park_Mary_Historic_District.jpg",
+      "additionalLinks": [
+        "https://en.wikipedia.org/wiki/Park_Mary_Historic_District"
+      ]
+    },
+
+    {
+      "coords": [305, 740],
+      "name": "St. Mary Historic District",
+      "address": "Roughly bounded by South St., S. 7th St., S. 11th St., and South St., Lafayette, Indiana, United States",
+      "foundingYear": 1831,
+      "archiStyle": "Primarily consists of late 19th and early 20th-century homes in a variety of styles, including Queen Anne, Colonial Revival, Tudor Revival, and Arts and Crafts.",
+      "locationType": "building",
+      "description": " St. Mary Historic District was established in the mid-19th century and played an important role in the growth and development of Lafayette as a prominent regional center for commerce, industry, and culture. Today, the St. Mary Historic District is recognized as a significant historical and cultural landmark in the community, and its well-preserved homes and buildings offer a glimpse into the rich history and character of Lafayette.",
+      "img": "https://en.wikipedia.org/wiki/St._Mary_Historic_District_(Lafayette,_Indiana)#/media/File:Cathedral_of_Saint_Mary_of_the_Immaculate_Conception_in_Indiana.jpg",
+      "additionalLinks": [
+        "https://en.wikipedia.org/wiki/St._Mary_Historic_District_(Lafayette,_Indiana)"
+      ]
+    },
+
+    {
+      "coords": [140, 566],
+      "name": "Ninth St. Hill District",
+      "address": "Roughly, 9th St. from South to Kossuth Sts. and State St. from 9th to Kossuth Sts., Lafayette, Indiana",
+      "foundingYear": 1890,
+      "archiStyle": "Thise, Lawrence & James R.; Halstead, George",
+      "locationType": "building",
+      "description": "This district covers roughly 62 acres and contains 463 contributing buildings, including homes, churches, and a school. The district is named after the steep hill that runs through the area and offers views of the surrounding landscape.",
+      "img": "https://en.wikipedia.org/wiki/Ninth_Street_Hill_Neighborhood_Historic_District#/media/File:Ninth_Street_Hill,_Lafayette.jpg",
+      "additionalLinks": [
+        "https://en.wikipedia.org/wiki/Ninth_Street_Hill_Neighborhood_Historic_District"
+      ]
+    },
+
+    {
+      "coords": [210, 430],
       "name": "Ellsworth Historic District",
       "address": "Roughly bounded by Columbia, Norfolk & Western RR tracks, Alabama, Seventh, South and Sixth Sts.",
       "foundingYear": 1825,
@@ -41,30 +111,16 @@
     },
 
     {
-      "coords": [219, 369],
-      "name": "Downtown Lafayette Historic District",
-      "address": "101-199 N 4th St, Lafayette, IN 47901",
-      "foundingYear": 1825,
-      "archiStyle": "Second Empire, Italianate, Other",
+      "coords": [410, 825],
+      "name": "Perrin Historic District",
+      "address": "Roughly bounded by Murdock Park, Sheridan Rd., Columbia, Main and Union Sts., Lafayette, Indiana",
+      "foundingYear": 1873,
+      "archiStyle": "includes a variety of early 20th-century homes in styles such as Colonial Revival, Tudor Revival, and Craftsman.",
       "locationType": "building",
-      "description": "It is significant because of it's relation to commerce, transportation, exploration/settlement, politcs/government, architecture, communications. Its development and growth reflects the changes in transportation over the intervening years.",
-      "img": "https://www.lafayette.in.gov/ImageRepository/Document?documentID=762",
+      "description": "The Perrin Historic District in Lafayette, Indiana is named after Charles Perrin, a prominent local businessman and civic leader who owned a lumber and coal company in the area. The district comprises 68 contributing buildings, including homes and a church, and covers roughly 14 acres.",
+      "img": "https://en.wikipedia.org/wiki/Perrin_Historic_District#/media/File:Perrin_Historic_District_Houses.jpg",
       "additionalLinks": [
-        "https://en.wikipedia.org/wiki/Downtown_Lafayette_Historic_District#:~:text=Downtown%20Lafayette%20Historic%20District%20is,transportation%20over%20the%20intervening%20years."
-      ]
-    },
-
-    {
-      "coords": [254, 531],
-      "name": "Upper Main Street Historic District",
-      "address": "Roughly bounded by Ferry St., 6th St., Columbia St., and the Norfolk and Western Railroad tracks",
-      "foundingYear": 1825,
-      "archiStyle": "Classical Revival, Italianate, Romanesque",
-      "locationType": "building",
-      "description": "It is significant because of it's relation to commerce, transportation, and architecture. This area became the cities commercial center. Businesses around Eleventh Street developed to meet the traveling publics needs. The Enterprise Hotel, at 1015 Main Street, as well as the Alt Heidelberg, American Lafayette and the Derby Hotel were early established by 1899.",
-      "img": "https://www.lafayette.in.gov/ImageRepository/Document?documentID=762",
-      "additionalLinks": [
-        "https://en.wikipedia.org/wiki/Upper_Main_Street_Historic_District_(Lafayette,_Indiana)#:~:text=Upper%20Main%20Street%20Historic%20District%20is%20a%20national%20historic%20district,Wabash%20Railroad%20at%20Eleventh%20Street."
+        "https://en.wikipedia.org/wiki/Perrin_Historic_District"
       ]
     }
   ]
