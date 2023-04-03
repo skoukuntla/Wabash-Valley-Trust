@@ -1,6 +1,6 @@
 import L from 'leaflet'
 import ReactDOMServer from 'react-dom/server'
-import { Marker } from 'react-leaflet'
+import { Marker, Tooltip } from 'react-leaflet'
 
 import pin from '../../assets/pin.ico'
 import '../../styles/Building.css'
@@ -29,34 +29,35 @@ const Building = ({
   links,
   linkNames,
   handleOpen,
-}: BuildingProps) => (
-  <Marker
-    position={[marker[0], marker[1]]}
-    icon={L.divIcon({
-      className: 'custom icon',
-      html: ReactDOMServer.renderToString(
-        <img
-          className="pin"
-          alt="pin"
-          src={pin}
-          style={{ height: '50px', width: 'auto' }}
-        />
-      ),
-    })}
-    eventHandlers={{
-      click: () => {
-        name(marker[2])
-        address(marker[3])
-        description(marker[4])
-        img(marker[5])
-        year(marker[6])
-        style(marker[7])
-        links(marker[8])
-        linkNames(marker[9])
-        handleOpen()
-      },
-    }}
-  />
-)
+}: BuildingProps) => {
+  const markerIcon = L.icon({
+    iconUrl: pin,
+    iconSize: [50, 50],
+  })
+
+  return (
+    <Marker
+      position={[marker[0], marker[1]]}
+      icon={markerIcon}
+      eventHandlers={{
+        click: () => {
+          name(marker[2])
+          address(marker[3])
+          description(marker[4])
+          img(marker[5])
+          year(marker[6])
+          style(marker[7])
+          links(marker[8])
+          linkNames(marker[9])
+          handleOpen()
+        },
+      }}
+    >
+      <Tooltip direction="top" offset={[0, -25]}>
+        {marker[2]}
+      </Tooltip>
+    </Marker>
+  )
+}
 
 export default Building

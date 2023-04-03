@@ -8,6 +8,7 @@ import Map from 'components/Map'
 const AdminPage = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [loggedIn, setLoggedIn] = useState(false)
   const [locations, setLocations]: any = useState(null)
   const [markersState, setMarkersState]: any = useState(null)
 
@@ -53,27 +54,35 @@ const AdminPage = () => {
   const submitHandler = (e: any) => {
     e.preventDefault()
     console.log('submission:', username, '||', password)
+
+    if (username === 'username' && password === 'password') setLoggedIn(true)
   }
 
   return (
     <div className="adminPage">
       <main>
-        <p>hello there</p>
-        <form onSubmit={submitHandler}>
-          <input
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="username"
-          />
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="password"
-          />
-          <button type="submit">Log in</button>
-        </form>
+        {!loggedIn && (
+          <div>
+            <p>hello there</p>
+            <form onSubmit={submitHandler}>
+              <input
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="username"
+                className="field"
+              />
+              <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="password"
+                className="field"
+              />
+              <button type="submit">Log in</button>
+            </form>
+          </div>
+        )}
 
-        {locations && (
+        {locations && loggedIn && (
           <Map
             image="/assets/map.png"
             markers={locations}

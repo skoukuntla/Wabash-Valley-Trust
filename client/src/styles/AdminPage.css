@@ -5,3 +5,16 @@
 .adminPage main {
   margin-left: 10px;
 }
+
+.adminPage form {
+  display: flex;
+  flex-direction: column;
+}
+
+.adminPage form .field {
+  max-width: 300px;
+}
+
+.adminPage form button {
+  max-width: 100px;
+}

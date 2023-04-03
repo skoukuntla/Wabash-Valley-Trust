@@ -57,6 +57,7 @@ const InfoModal = ({
   const [yearInput, setYearInput] = useState(1800)
   const [styleInput, setStyleInput] = useState('')
   const [descriptionInput, setDescriptionInput] = useState('')
+  const [imageURL, setImageURL] = useState('')
   const [linksInput, setLinksInput] = useState([''])
   const [linksIDs, setLinksIDs] = useState([0])
 
@@ -78,6 +79,10 @@ const InfoModal = ({
 
   const handleDescription = (e: any) => {
     setDescriptionInput(e.target.value)
+  }
+
+  const handleImageURL = (e: any) => {
+    setImageURL(e.target.value)
   }
 
   const handleLinkURL = (e: any, i: number) => {
@@ -103,6 +108,7 @@ const InfoModal = ({
     console.log('Year:', yearInput)
     console.log('Style:', styleInput)
     console.log('Description:', descriptionInput)
+    console.log('Image link:', imageURL)
     console.log('Links:', linksInput)
     console.log('Link IDs:', linksIDs)
   }
@@ -118,9 +124,10 @@ const InfoModal = ({
     setStyleInput(style)
     setYearInput(year)
     setDescriptionInput(description)
+    setImageURL(img)
     setLinksInput(links)
     setLinksIDs(links.map(() => Math.round(Math.random() * 100)))
-  }, [name, address, style, year, description, links])
+  }, [name, address, style, year, description, links, img])
 
   const toggleFavorite = () => {
     localStorage.setItem(name, isFavorite ? 'false' : 'true')
@@ -234,6 +241,12 @@ const InfoModal = ({
             defaultValue={description}
             onChange={handleDescription}
           />
+          <TextField
+            label="Image URL"
+            className="field"
+            defaultValue={img}
+            onChange={handleImageURL}
+          />
         </Container>
         <Container sx={{ float: 'left', display: 'flex' }}>
           <Container
@@ -270,13 +283,6 @@ const InfoModal = ({
       </form>
 
       <div />
-      <button type="button" onClick={toggleFavorite} className="favorite">
-        {isFavorite ? (
-          <FontAwesomeIcon icon={HeartSolid} className="heartIcon" />
-        ) : (
-          <FontAwesomeIcon icon={HeartRegular} className="heartIcon" />
-        )}
-      </button>
     </>
   )
 
