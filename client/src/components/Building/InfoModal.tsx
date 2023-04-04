@@ -74,7 +74,10 @@ const InfoModal = ({
   }
 
   const handleYear = (e: any) => {
-    setYearInput(e.target.value)
+    if (e.target.value === '') setYearInput(Number.NaN)
+    else {
+      setYearInput(Number(e.target.value))
+    }
   }
 
   const handleDescription = (e: any) => {
@@ -122,7 +125,7 @@ const InfoModal = ({
     setTitle(name)
     setAddressInput(address)
     setStyleInput(style)
-    setYearInput(year)
+    setYearInput(Number(year))
     setDescriptionInput(description)
     setImageURL(img)
     setLinksInput(links)
@@ -221,6 +224,7 @@ const InfoModal = ({
             className="field"
             label="Year Founded"
             defaultValue={year}
+            error={yearInput > 1930 || Number.isNaN(yearInput)}
             onChange={handleYear}
             InputProps={{
               startAdornment: (

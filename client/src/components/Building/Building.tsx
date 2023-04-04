@@ -1,5 +1,4 @@
 import L from 'leaflet'
-import ReactDOMServer from 'react-dom/server'
 import { Marker, Tooltip } from 'react-leaflet'
 
 import pin from '../../assets/pin.ico'

@@ -1,4 +1,3 @@
-import { Container, Grid, Slider } from '@mui/material'
 import { useEffect, useState } from 'react'
 
 import '../styles/AdminPage.css'
