@@ -25,4 +25,5 @@ interface IBuilding extends Document {
   img: string
   coords: number[]
   additionalLinks: string[]
+  likes?: number
 }

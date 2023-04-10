@@ -31,4 +31,5 @@ interface IBuilding {
   img: string
   coords: number[]
   additionalLinks: string[]
+  likes?: number // don't initialize this on the client side
 }

@@ -20,6 +20,10 @@ const BuildingSchema = new Schema<IBuilding>({
     type: [SchemaTypes.Number],
     required: true,
   },
+  likes: {
+    type: SchemaTypes.Number,
+    default: 0,
+  },
   additionalLinks: [SchemaTypes.String],
 })
 
