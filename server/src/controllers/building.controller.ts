@@ -5,13 +5,21 @@ import Building from 'models/building.model'
 import type { Request, Response } from 'express'
 
 export const getBuildings = async (req: Request, res: Response) => {
-  const [error, buildings] = await to(Building.find({}).lean().exec())
+  const { locationType } = req.query
+  if (!locationType)
+    return res
+      .status(400)
+      .send({ error: new Error('please provide a locationType') })
+
+  const [error, buildings] = await to(
+    Building.find({ locationType }).lean().exec()
+  )
   if (error) return res.status(500).send({ error })
 
   return res.json({ buildings })
 }
 
-export const addBuilding = async (req: Request, res: Response) => {
+const addSingleBuilding = async (req: Request, res: Response) => {
   const {
     name,
     address,
@@ -43,4 +51,15 @@ export const addBuilding = async (req: Request, res: Response) => {
 
   if (error) return res.status(500).send({ error })
   return res.json({ building })
+}
+
+export const addBuildings = async (req: Request, res: Response) => {
+  if (req.body.name) return addSingleBuilding(req, res)
+
+  const inbuildings = req.body.buildings
+  const [err, buildings] = await to(Building.create(inbuildings))
+
+  if (err) return res.status(500).send({ err })
+
+  return res.json({ buildings })
 }
