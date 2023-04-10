@@ -1,23 +1,23 @@
-button.favorite {
+.InfoModal button.favorite {
   background: none;
   border: none;
   transition: opacity 0.3s, transform 0.2s;
   cursor: pointer;
 }
 
-button.favorite img {
+.InfoModal button.favorite img {
   max-height: 35px;
 }
 
-button.favorite:hover {
+.InfoModal button.favorite:hover {
   opacity: 0.8;
 }
 
-button.favorite:active {
+.InfoModal button.favorite:active {
   transform: scale(0.9);
 }
 
-.heartIcon {
+.InfoModal .heartIcon {
   height: 32px;
   color: #a6652d;
 }

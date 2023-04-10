@@ -1,16 +1,20 @@
 /* eslint-disable jsx-a11y/alt-text */
-
+import { faUserGear as AdminIcon } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FormControlLabel, FormGroup, Grid, Switch } from '@mui/material'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import districtImage from 'assets/districts.png'
 import mapImage from 'assets/map.png'
 import { markers, markers2 } from 'assets/markers'
 import Map from 'components/Map'
 import Map2 from 'components/Map2'
+import '../../styles/Main.css'
 
 export default function Main() {
   const [showMap, setShowMap] = useState(false)
+  const navigate = useNavigate()
 
   const toggleMap = () => {
     setShowMap(!showMap)
@@ -57,13 +61,25 @@ export default function Main() {
   }
 
   return (
-    <Grid container justifyContent="center">
-      <FormGroup>
+    <Grid container justifyContent="center" className="Main">
+      <nav>
+        <div className="spacer" />
         <FormControlLabel
           control={<Switch checked={showMap} onChange={toggleMap} />}
           label="District Map"
+          className="switch"
         />
-      </FormGroup>
+
+        <div className="buttonContainer">
+          <button
+            type="button"
+            onClick={() => navigate('/admin')}
+            className="admin"
+          >
+            <FontAwesomeIcon icon={AdminIcon} className="adminIcon" />
+          </button>
+        </div>
+      </nav>
       {showMap && <Map2 image={districtImage} markers={items2} />}
       {!showMap && <Map image={mapImage} markers={items} addLocation={null} />}
     </Grid>

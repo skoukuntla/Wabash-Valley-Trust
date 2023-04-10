@@ -1,12 +1,13 @@
+import { Button, TextField } from '@mui/material'
+import '../styles/AdminPage.css'
 import { useEffect, useState } from 'react'
 
-import '../styles/AdminPage.css'
 import { markers } from 'assets/markers'
 import Map from 'components/Map'
 
 const AdminPage = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('a')
+  const [password, setPassword] = useState('a')
   const [loggedIn, setLoggedIn] = useState(false)
   const [locations, setLocations]: any = useState(null)
   const [markersState, setMarkersState]: any = useState(null)
@@ -17,8 +18,18 @@ const AdminPage = () => {
     setMarkersState(markersState.concat(input))
   }
 
+  const logout = () => {
+    setLoggedIn(false)
+    sessionStorage.removeItem('session-htf-wab-login')
+  }
+
   useEffect(() => {
     setMarkersState(markers)
+    const login = sessionStorage.getItem('session-htf-wab-login')
+    console.log('log in', login)
+    if (login === 'true') {
+      setLoggedIn(true)
+    }
   }, [])
 
   useEffect(() => {
@@ -50,43 +61,58 @@ const AdminPage = () => {
     console.log('markers', markersState)
   }, [markersState])
 
-  const submitHandler = (e: any) => {
+  const loginHandler = (e: any) => {
     e.preventDefault()
     console.log('submission:', username, '||', password)
 
-    if (username === 'username' && password === 'password') setLoggedIn(true)
+    if (username === 'username' && password === 'htfpass') {
+      setLoggedIn(true)
+      sessionStorage.setItem('session-htf-wab-login', 'true')
+    }
   }
 
   return (
     <div className="adminPage">
       <main>
         {!loggedIn && (
-          <div>
-            <p>hello there</p>
-            <form onSubmit={submitHandler}>
-              <input
-                value={username}
+          <div className="container">
+            <h1>Admin log in</h1>
+            <form onSubmit={loginHandler}>
+              <TextField
+                className="field"
+                error={username === ''}
+                label="Username"
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="username"
-                className="field"
+                size="small"
               />
-              <input
-                value={password}
+              <TextField
+                className="field"
+                error={password === ''}
+                label="Password"
+                type="password"
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="password"
-                className="field"
+                // size="small"
               />
-              <button type="submit">Log in</button>
+              <Button type="submit" variant="contained" className="loginButton">
+                Log in
+              </Button>
             </form>
           </div>
         )}
 
         {locations && loggedIn && (
-          <Map
-            image="/assets/map.png"
-            markers={locations}
-            addLocation={addLocation}
-          />
+          <>
+            <nav>
+              <Button type="button" onClick={logout} variant="contained">
+                Logout
+              </Button>
+            </nav>
+            <Map
+              image="/assets/map.png"
+              markers={locations}
+              addLocation={addLocation}
+            />
+          </>
         )}
       </main>
     </div>
