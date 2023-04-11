@@ -5,7 +5,7 @@ import { intercepts } from './config'
 // https://www.npmjs.com/package/axios-cache-adapter
 // best to cache GET requests for better performance
 
-type AuthResponse = { user: IUserAuth; token: Token }
+export type AuthResponse = { user: IUserAuth; token: Token }
 type Token = string
 
 const AuthInstance = axios.create({
