@@ -1,0 +1,46 @@
+.adminPage p {
+  border: 1px solid green;
+}
+
+.adminPage main {
+  margin-left: 10px;
+}
+
+.adminPage .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.adminPage form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+}
+
+.adminPage form .field {
+  padding-bottom: 10px;
+}
+
+.adminPage form .field input {
+  padding: 12px 14px;
+}
+
+.adminPage form .field label[data-shrink='false'] {
+  transform: translate(14px, 12px) scale(1);
+}
+
+.adminPage form button {
+  align-self: flex-start;
+}
+
+.adminPage nav {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.adminPage .loginButton {
+  width: 90px;
+}

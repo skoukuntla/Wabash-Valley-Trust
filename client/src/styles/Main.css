@@ -1,0 +1,39 @@
+.Main nav {
+  display: flex;
+  width: 100%;
+}
+
+.Main .spacer,
+.Main .buttonContainer {
+  flex: 1;
+}
+
+.Main .buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.Main button.admin {
+  background: none;
+  border: none;
+  transition: opacity 0.3s, transform 0.2s;
+  cursor: pointer;
+}
+
+.Main button.admin {
+  max-height: 35px;
+}
+
+.Main button.admin:hover {
+  opacity: 0.8;
+}
+
+.Main button.admin:active {
+  transform: scale(0.9);
+}
+
+.Main .adminIcon {
+  height: 20px;
+  color: #a6652d;
+}
