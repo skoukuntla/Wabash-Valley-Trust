@@ -9,18 +9,18 @@ const BuildingsInstance = axios.create({
   withCredentials: true,
 })
 
-type BuildingsResponse = { buiLdings: IBuilding[] }
+type BuildingsResponse = { buildings: IBuilding[] }
 type CounterResponse = {}
 
 intercepts(BuildingsInstance, getRefreshToken)
 
-// Call this to get all buildings with locationType == 'buildings'
+// Call this to get all buildings with locationType == 'building'
 export const getBuildings = () =>
   BuildingsInstance.get<BuildingsResponse>('/', {
     params: { locationType: 'building' },
   })
 
-// Call this to get all buildings with locationType == 'neighborhoods'
+// Call this to get all buildings with locationType == 'neighborhood'
 export const getNeighborhoods = () =>
   BuildingsInstance.get<BuildingsResponse>('/', {
     params: { locationType: 'neighborhood' },
@@ -30,10 +30,10 @@ export const getNeighborhoods = () =>
 export const addBulidings = (buildings: IBuilding[]) =>
   BuildingsInstance.post<BuildingsResponse>('/', { buildings })
 
-// Call this to add one like to the buildingId
+// Call this to add one like to the buildingIda (very bad practice)
 export const like = (buildingId: string) =>
   BuildingsInstance.post<CounterResponse>('/likes', { buildingId, amount: 1 })
 
-// Call this to remove one like from the buildingId
+// Call this to remove one like from the buildingId (very bad practice)
 export const removeLike = (buildingId: string) =>
   BuildingsInstance.post<CounterResponse>('/likes', { buildingId, amount: -1 })
