@@ -11,6 +11,7 @@ const AdminPage = () => {
   const [loggedIn, setLoggedIn] = useState(false)
   const [locations, setLocations]: any = useState(null)
   const [markersState, setMarkersState]: any = useState(null)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const addLocation = (input: any) => {
     console.log('add location input', input)
@@ -93,6 +94,7 @@ const AdminPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 // size="small"
               />
+              <p>{errorMessage}</p>
               <Button type="submit" variant="contained" className="loginButton">
                 Log in
               </Button>

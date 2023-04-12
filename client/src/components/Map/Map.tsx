@@ -170,7 +170,7 @@ const MapEvents = ({ addLocation }: MapEventsProps) => {
       // TODO change
       console.log(window.location.href.includes('admin'))
       addLocation({
-        coords: [e.latlng.lat + 20, e.latlng.lng - 10],
+        coords: [e.latlng.lat, e.latlng.lng],
         name: 'NAME',
         address: 'here',
         foundingYear: '1930',

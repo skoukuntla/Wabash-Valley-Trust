@@ -1,5 +1,9 @@
 import { faHeart as HeartRegular } from '@fortawesome/free-regular-svg-icons'
-import { faHeart as HeartSolid } from '@fortawesome/free-solid-svg-icons'
+import {
+  faXmark as CloseIcon,
+  faHeart as HeartSolid,
+  faTrash as TrashIcon,
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   Box,
@@ -114,6 +118,12 @@ const InfoModal = ({
     console.log('Image link:', imageURL)
     console.log('Links:', linksInput)
     console.log('Link IDs:', linksIDs)
+
+    handleClose()
+  }
+
+  const handleCancel = () => {
+    handleClose()
   }
 
   // runs whenever text gets changed, so whenever a different building modal is opened
@@ -192,7 +202,7 @@ const InfoModal = ({
       </Container>
 
       <div />
-      <button type="button" onClick={toggleFavorite} className="favorite">
+      <button type="button" onClick={toggleFavorite} className="favorite icon">
         {isFavorite ? (
           <FontAwesomeIcon icon={HeartSolid} className="heartIcon" />
         ) : (
@@ -262,20 +272,29 @@ const InfoModal = ({
               <p>Additional Links:</p>
               <ul>
                 {linksInput.map((item, i) => (
-                  <li key={linksIDs[i]}>
-                    <TextField
-                      className="field"
-                      label="URL"
-                      defaultValue={item}
-                      onChange={(e) => handleLinkURL(e, i)}
-                    />
-                    <button onClick={() => deleteURL(i)} type="button">
-                      delete
-                    </button>
+                  <li key={linksIDs[i]} className="urlList">
+                    <div className="urlContainer">
+                      <TextField
+                        className="field"
+                        label="URL"
+                        defaultValue={item}
+                        onChange={(e) => handleLinkURL(e, i)}
+                      />
+                      <button
+                        onClick={() => deleteURL(i)}
+                        type="button"
+                        className="icon"
+                      >
+                        <FontAwesomeIcon
+                          icon={TrashIcon}
+                          className="trashIcon"
+                        />
+                      </button>
+                    </div>
                   </li>
                 ))}
                 <Button variant="outlined" onClick={addLinkField}>
-                  +
+                  Add Link
                 </Button>
               </ul>
             </div>
@@ -283,7 +302,12 @@ const InfoModal = ({
 
           <img alt="error loading img" width="250" height="250" src={img} />
         </Container>
-        <Button type="submit">Save</Button>
+        <Button type="button" onClick={handleCancel}>
+          Cancel
+        </Button>
+        <Button type="submit" variant="contained">
+          Save
+        </Button>
       </form>
 
       <div />
@@ -304,6 +328,11 @@ const InfoModal = ({
       aria-describedby="modal-modal-description"
     >
       <Box sx={modalStyle} className="box">
+        <div className="closeContainer">
+          <button type="button" className="close icon" onClick={handleCancel}>
+            <FontAwesomeIcon icon={CloseIcon} className="closeIcon" />
+          </button>
+        </div>
         {window.location.href.includes('admin')
           ? adminElements
           : displayElements}
