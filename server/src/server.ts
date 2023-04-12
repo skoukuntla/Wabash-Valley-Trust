@@ -38,6 +38,17 @@ app.use(passport.session())
 
 initializeAuth()
 
+app.use(async (req, res, next) => {
+  console.log(
+    req.method,
+    `request received at ${req.path}\n\tBody:`,
+    `${JSON.stringify(req.body)}\n\tParams:`,
+    req.query
+  )
+
+  next()
+})
+
 // set up api route
 app.use('/api', rootRouter)
 

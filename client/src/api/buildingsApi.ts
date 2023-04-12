@@ -30,6 +30,14 @@ export const getNeighborhoods = () =>
 export const addBulidings = (buildings: IBuilding[]) =>
   BuildingsInstance.post<BuildingsResponse>('/', { buildings })
 
+// Call this to update this specific building
+export const updateBuilding = (buildingId: string, building: BuildingUpdate) =>
+  BuildingsInstance.post<BuildingsResponse>('/', { buildingId, building })
+
+// Call this to remove the building with the corresponding id
+export const removeBuilding = (buildingId: string) =>
+  BuildingsInstance.delete<BuildingsResponse>('/', { data: { buildingId } })
+
 // Call this to add one like to the buildingIda (very bad practice)
 export const like = (buildingId: string) =>
   BuildingsInstance.post<CounterResponse>('/likes', { buildingId, amount: 1 })

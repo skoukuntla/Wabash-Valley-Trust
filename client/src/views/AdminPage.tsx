@@ -1,11 +1,18 @@
 import { Button, TextField } from '@mui/material'
 import '../styles/AdminPage.css'
+import to from 'await-to-js'
 import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 
+import { getBuildings } from 'api/buildingsApi'
 import { markers } from 'assets/markers'
 import Map from 'components/Map'
+import { login, register } from 'store/thunks/authThunk'
+
+import type store from 'store'
 
 const AdminPage = () => {
+  const dispatch = useDispatch<typeof store.dispatch>()
   const [username, setUsername] = useState('a')
   const [password, setPassword] = useState('a')
   const [loggedIn, setLoggedIn] = useState(false)
@@ -25,47 +32,70 @@ const AdminPage = () => {
 
   useEffect(() => {
     setMarkersState(markers)
-    const login = sessionStorage.getItem('session-htf-wab-login')
-    console.log('log in', login)
-    if (login === 'true') {
+    const islogin = sessionStorage.getItem('session-htf-wab-login')
+    console.log('log in', islogin)
+    if (islogin === 'true') {
       setLoggedIn(true)
     }
   }, [])
 
   useEffect(() => {
-    if (markersState === null) return
-
-    console.log('new markers', markersState)
-
-    const items = []
-    for (let i = 0; i < markersState.length; i += 1) {
-      const item = new Array<Object>()
-      item.push(markersState[i].coords[0])
-      item.push(markersState[i].coords[1])
-      item.push(markersState[i].name)
-      item.push(markersState[i].address)
-      item.push(markersState[i].description)
-      item.push(markersState[i].img)
-      item.push(markersState[i].foundingYear)
-      item.push(markersState[i].archiStyle)
-      item.push(markersState[i].additionalLinks)
-      const linkNames = []
-      for (let j = 0; j < markersState[i].additionalLinks.length; j += 1) {
-        linkNames.push(new URL(markersState[i].additionalLinks[j]).hostname)
+    const fetchBuildings = async () => {
+      const [err, res] = await to(getBuildings())
+      if (err) {
+        console.log(err)
+        return
       }
-      item.push(linkNames)
-      items.push(item)
+      const { buildings } = res.data
+
+      const items = []
+      for (let i = 0; i < buildings.length; i += 1) {
+        const item = new Array<Object>()
+        item.push(buildings[i].coords[0]) // 0
+        item.push(buildings[i].coords[1]) // 1
+        item.push(buildings[i].name) // 2
+        item.push(buildings[i].address) // 3
+        item.push(buildings[i].description) // 4
+        item.push(buildings[i].img) // 5
+        item.push(buildings[i].foundingYear) // 6
+        item.push(buildings[i].archiStyle) // 7
+        item.push(buildings[i].additionalLinks) // 8
+        const linkNames = []
+        for (let j = 0; j < buildings[i].additionalLinks.length; j += 1) {
+          linkNames.push(new URL(buildings[i].additionalLinks[j]).hostname)
+        }
+        item.push(linkNames) // 9
+        item.push(buildings[i]._id as string) // 10
+        item.push(buildings[i].likes || 0) // 11
+        items.push(item)
+      }
+
+      setLocations(items)
+      console.log(buildings)
     }
 
-    setLocations(items)
-    console.log('markers', markersState)
+    fetchBuildings()
   }, [markersState])
 
-  const loginHandler = (e: any) => {
+  const loginHandler = async (e: any) => {
     e.preventDefault()
     console.log('submission:', username, '||', password)
 
     if (username === 'username' && password === 'htfpass') {
+      const req: IUserAuth = {
+        email: username,
+        password,
+      }
+      // const [err] = await to(dispatch(register(req)).unwrap())
+      // if (err) {
+      const [err] = await to(dispatch(login(req)).unwrap())
+
+      if (err) {
+        console.log(err)
+        return
+      }
+      // }
+
       setLoggedIn(true)
       sessionStorage.setItem('session-htf-wab-login', 'true')
     }

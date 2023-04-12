@@ -53,8 +53,34 @@ const addSingleBuilding = async (req: Request, res: Response) => {
   return res.json({ building })
 }
 
+export const removeBuilding = async (req: Request, res: Response) => {
+  const { buildingId } = req.query
+  if (!buildingId)
+    return res.status(400).send({ error: new Error('buildingId not provided') })
+
+  const [err] = await to(Building.findByIdAndRemove(buildingId).exec())
+  if (err) return res.status(500).send({ err })
+
+  return res.status(200).json({})
+}
+
+export const updateBuliding = async (req: Request, res: Response) => {
+  const { buildingId } = req.body
+  if (!buildingId)
+    return res.status(400).send({ error: new Error('buildingId not provided') })
+
+  const buildingUpdate = req.body.building
+  const [err, building] = await to(
+    Building.findByIdAndUpdate(buildingUpdate).exec()
+  )
+  if (err) return res.status(500).send({ err })
+
+  return res.status(200).json({ building })
+}
+
 export const addBuildings = async (req: Request, res: Response) => {
   if (req.body.name) return addSingleBuilding(req, res)
+  if (req.body.buildingId) return updateBuliding(req, res)
 
   const inbuildings = req.body.buildings
   const [err, buildings] = await to(Building.create(inbuildings))

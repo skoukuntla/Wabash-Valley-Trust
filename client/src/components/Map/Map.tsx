@@ -131,6 +131,7 @@ function Map({ image, markers, addLocation }: MapProps) {
                 links={setLinks}
                 linkNames={setLinkNames}
                 handleOpen={handleOpen}
+                key={marker[10]}
               />
             )
           }
