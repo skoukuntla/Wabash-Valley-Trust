@@ -164,8 +164,8 @@ const MapEvents = ({ addLocation }: MapEventsProps) => {
     click(e) {
       // setState your coords here
       // coords exist in "e.latlng.lat" and "e.latlng.lng"
-      console.log(e.latlng.lat + 20)
-      console.log(e.latlng.lng - 10)
+      console.log(e.latlng.lat)
+      console.log(e.latlng.lng)
 
       // TODO change
       console.log(window.location.href.includes('admin'))

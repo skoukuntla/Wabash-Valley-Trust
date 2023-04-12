@@ -6,17 +6,52 @@ import { markers } from 'assets/markers'
 import Map from 'components/Map'
 
 const AdminPage = () => {
-  const [username, setUsername] = useState('a')
-  const [password, setPassword] = useState('a')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [loggedIn, setLoggedIn] = useState(false)
   const [locations, setLocations]: any = useState(null)
   const [markersState, setMarkersState]: any = useState(null)
   const [errorMessage, setErrorMessage] = useState('')
+  const [usernameActive, setUsernameActive] = useState(false)
+  const [passwordActive, setPasswordActive] = useState(false)
 
   const addLocation = (input: any) => {
     console.log('add location input', input)
 
     setMarkersState(markersState.concat(input))
+  }
+
+  const checkError = (input: string) => {
+    if (input === 'username') {
+      if (errorMessage === 'Incorrect login') {
+        return true
+      }
+
+      if (usernameActive) {
+        return username === ''
+      }
+    }
+
+    if (input === 'password') {
+      if (errorMessage === 'Incorrect login') {
+        return true
+      }
+      if (passwordActive) {
+        return password === ''
+      }
+    }
+  }
+
+  const handleUsername = (e: any) => {
+    setUsername(e.target.value)
+    setErrorMessage('')
+    setUsernameActive(true)
+  }
+
+  const handlePassword = (e: any) => {
+    setPassword(e.target.value)
+    setErrorMessage('')
+    setPasswordActive(true)
   }
 
   const logout = () => {
@@ -64,11 +99,23 @@ const AdminPage = () => {
 
   const loginHandler = (e: any) => {
     e.preventDefault()
+    setUsernameActive(true)
+    setPasswordActive(true)
+
     console.log('submission:', username, '||', password)
+
+    if (username === '' || password === '') {
+      setErrorMessage('Enter all login information')
+      return
+    }
 
     if (username === 'username' && password === 'htfpass') {
       setLoggedIn(true)
       sessionStorage.setItem('session-htf-wab-login', 'true')
+      setUsername('')
+      setPassword('')
+    } else {
+      setErrorMessage('Incorrect login')
     }
   }
 
@@ -81,20 +128,23 @@ const AdminPage = () => {
             <form onSubmit={loginHandler}>
               <TextField
                 className="field"
-                error={username === ''}
+                error={checkError('username')}
                 label="Username"
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={handleUsername}
                 size="small"
               />
               <TextField
                 className="field"
-                error={password === ''}
+                error={
+                  passwordActive &&
+                  (password === '' || errorMessage === 'Incorrect login')
+                }
                 label="Password"
                 type="password"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handlePassword}
                 // size="small"
               />
-              <p>{errorMessage}</p>
+              <div className="errorMessage">{errorMessage}</div>
               <Button type="submit" variant="contained" className="loginButton">
                 Log in
               </Button>

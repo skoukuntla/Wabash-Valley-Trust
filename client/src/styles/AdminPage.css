@@ -8,6 +8,12 @@
   align-items: center;
 }
 
+.adminPage nav {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
 .adminPage form {
   display: flex;
   flex-direction: column;
@@ -27,16 +33,13 @@
   transform: translate(14px, 12px) scale(1);
 }
 
+.adminPage .errorMessage {
+  height: 30px;
+  color: rgb(232, 5, 5);
+  font-size: 14px;
+}
+
 .adminPage form button {
-  align-self: flex-start;
-}
-
-.adminPage nav {
-  display: flex;
-  justify-content: flex-end;
-  padding: 10px;
-}
-
-.adminPage .loginButton {
+  /* align-self: flex-start; */
   width: 90px;
 }
