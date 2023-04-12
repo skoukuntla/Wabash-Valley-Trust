@@ -211,7 +211,7 @@ const InfoModal = ({
         <p>Founded: {year} &nbsp;</p>
         <p>Architectural Style: {style} </p>
       </Container>
-      <Container sx={{ float: 'left', display: 'flex' }}>
+      <Container sx={{ display: 'flex' }} className="info">
         <Container
           sx={{ display: 'flex', flexDirection: 'column' }}
           disableGutters
@@ -241,7 +241,6 @@ const InfoModal = ({
         <img alt="error loading img" width="250" height="250" src={img} />
       </Container>
 
-      <div />
       <button type="button" onClick={toggleFavorite} className="favorite icon">
         {isFavorite ? (
           <FontAwesomeIcon icon={HeartSolid} className="heartIcon" />

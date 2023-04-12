@@ -11,6 +11,21 @@
   padding-bottom: 15px;
 }
 
+@media (max-width: 850px) {
+  .InfoModal .info {
+    flex-direction: column;
+  }
+
+  .InfoModal .box {
+    padding: 10px;
+  }
+}
+
+.InfoModal .info img {
+  box-sizing: content-box;
+  padding: 20px 0;
+}
+
 .InfoModal .urlContainer {
   display: flex;
   align-items: center;
@@ -19,6 +34,10 @@
 
 .InfoModal .urlContainer .field {
   padding-bottom: 0;
+}
+
+.InfoModal button.icon.favorite {
+  padding-left: 24px;
 }
 
 .InfoModal button.icon {

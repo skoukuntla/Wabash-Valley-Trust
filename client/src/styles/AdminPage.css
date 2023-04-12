@@ -6,8 +6,15 @@
 
 .adminPage nav {
   display: flex;
-  justify-content: flex-end;
   padding: 10px;
+}
+
+.adminPage .loggedOut nav {
+  justify-content: flex-end;
+}
+
+.adminPage .loggedIn nav > *:nth-child(odd) {
+  flex: 1;
 }
 
 .adminPage form {
@@ -36,8 +43,16 @@
 }
 
 .adminPage form button {
-  /* align-self: flex-start; */
   width: 90px;
+}
+
+.adminPage .buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.adminPage .logoutButton {
+  max-width: 100px;
 }
 
 .adminPage .homeLink {

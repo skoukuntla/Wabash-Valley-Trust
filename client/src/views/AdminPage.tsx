@@ -1,20 +1,29 @@
-import { Button, TextField } from '@mui/material'
+import { Button, FormControlLabel, Switch, TextField } from '@mui/material'
 import '../styles/AdminPage.css'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { markers } from 'assets/markers'
+import districtImage from 'assets/districts.png'
+import { markers, markers2 } from 'assets/markers'
 import Map from 'components/Map'
+import Map2 from 'components/Map2'
 
 const AdminPage = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [loggedIn, setLoggedIn] = useState(false)
-  const [locations, setLocations]: any = useState(null)
-  const [markersState, setMarkersState]: any = useState(null)
-  const [errorMessage, setErrorMessage] = useState('')
   const [usernameActive, setUsernameActive] = useState(false)
   const [passwordActive, setPasswordActive] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(false)
+
+  const [locations, setLocations]: any = useState(null)
+  const [districts, setDistricts]: any = useState(null)
+  const [markersState, setMarkersState]: any = useState(null)
+  const [errorMessage, setErrorMessage] = useState('')
+
+  const [showMap, setShowMap] = useState(false)
+  const toggleMap = () => {
+    setShowMap(!showMap)
+  }
 
   const addLocation = (input: any) => {
     console.log('add location input', input)
@@ -102,8 +111,29 @@ const AdminPage = () => {
       item.push(linkNames)
       items.push(item)
     }
-
     setLocations(items)
+
+    const items2 = []
+    for (let i = 0; i < markers2.length; i += 1) {
+      const item = new Array<Object>()
+      item.push(markers2[i].coords[0])
+      item.push(markers2[i].coords[1])
+      item.push(markers2[i].name)
+      item.push(markers2[i].address)
+      item.push(markers2[i].description)
+      item.push(markers2[i].img)
+      item.push(markers2[i].foundingYear)
+      item.push(markers2[i].archiStyle)
+      item.push(markers2[i].additionalLinks)
+      const linkNames = []
+      for (let j = 0; j < markers2[i].additionalLinks.length; j += 1) {
+        linkNames.push(new URL(markers[i].additionalLinks[j]).hostname)
+      }
+      item.push(linkNames)
+      items2.push(item)
+    }
+    setDistricts(items2)
+
     console.log('markers', markersState)
   }, [markersState])
 
@@ -133,62 +163,73 @@ const AdminPage = () => {
 
   return (
     <div className="adminPage">
-      <main>
-        {!loggedIn && (
-          <>
-            <nav>
-              <Link to="/" className="homeLink">
-                Home
-              </Link>
-            </nav>
-            <div className="container">
-              <h1>Admin log in</h1>
-              <form onSubmit={loginHandler}>
-                <TextField
-                  className="field"
-                  error={checkError('username')}
-                  label="Username"
-                  onChange={handleUsername}
-                />
-                <TextField
-                  className="field"
-                  error={
-                    passwordActive &&
-                    (password === '' || errorMessage === 'Incorrect login')
-                  }
-                  label="Password"
-                  type="password"
-                  onChange={handlePassword}
-                />
-                <div className="errorMessage">{errorMessage}</div>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  className="loginButton"
-                >
-                  Log in
-                </Button>
-              </form>
-            </div>
-          </>
-        )}
+      {!loggedIn && (
+        <main className="loggedOut">
+          <nav className="">
+            <Link to="/" className="homeLink">
+              Home
+            </Link>
+          </nav>
+          <div className="container">
+            <h1>Admin log in</h1>
+            <form onSubmit={loginHandler}>
+              <TextField
+                className="field"
+                error={checkError('username')}
+                label="Username"
+                onChange={handleUsername}
+              />
+              <TextField
+                className="field"
+                error={
+                  passwordActive &&
+                  (password === '' || errorMessage === 'Incorrect login')
+                }
+                label="Password"
+                type="password"
+                onChange={handlePassword}
+              />
+              <div className="errorMessage">{errorMessage}</div>
+              <Button type="submit" variant="contained" className="loginButton">
+                Log in
+              </Button>
+            </form>
+          </div>
+        </main>
+      )}
 
-        {locations && loggedIn && (
-          <>
-            <nav>
-              <Button type="button" onClick={logout} variant="contained">
+      {locations && loggedIn && (
+        <main className="loggedIn">
+          <nav>
+            <div className="spacer" />
+            <FormControlLabel
+              control={<Switch checked={showMap} onChange={toggleMap} />}
+              label="District Map"
+              className="switch"
+            />
+            <div className="buttonContainer">
+              <Button
+                type="button"
+                onClick={logout}
+                variant="contained"
+                className="logoutButton"
+              >
                 Logout
               </Button>
-            </nav>
+            </div>
+          </nav>
+          {showMap ? (
+            <Map2 image={districtImage} markers={districts} />
+          ) : (
             <Map
               image="/assets/map.png"
               markers={locations}
               addLocation={addLocation}
               deleteLocation={deleteLocation}
             />
-          </>
-        )}
-      </main>
+          )}
+        </main>
+      )}
     </div>
   )
 }

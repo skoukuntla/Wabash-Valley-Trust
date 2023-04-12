@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { faUserGear as AdminIcon } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { FormControlLabel, FormGroup, Grid, Switch } from '@mui/material'
-import React, { useState } from 'react'
+import { FormControlLabel, Grid, Switch } from '@mui/material'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import districtImage from 'assets/districts.png'
@@ -71,6 +71,7 @@ export default function Main() {
         />
 
         <div className="buttonContainer">
+          {/* a button is used instead of Link because links are draggable */}
           <button
             type="button"
             onClick={() => navigate('/admin')}
