@@ -26,6 +26,7 @@ function Map({ image, markers }: MapProps) {
   const [currentRoute, setCurrentRoute] = useState<number>(0)
   // const [currentText, setCurrentText] = useState('')
   const [name, setName] = useState('')
+  const [id, setId] = useState('')
   const [address, setAddress] = useState('')
   const [desc, setDesc] = useState('')
   const [img, setImg] = useState('')
@@ -83,6 +84,7 @@ function Map({ image, markers }: MapProps) {
                 description={setDesc}
                 img={setImg}
                 year={setYear}
+                _id={setId}
                 style={setArchStyle}
                 links={setLinks}
                 linkNames={setLinkNames}
@@ -101,6 +103,7 @@ function Map({ image, markers }: MapProps) {
         description={desc}
         img={img}
         year={year}
+        _id={id}
         style={archStyle}
         links={links}
         linkNames={linkNames}

@@ -10,8 +10,11 @@ import {
   Typography,
 } from '@mui/material'
 import { Container } from '@mui/system'
+import to from 'await-to-js'
 import { useEffect, useState } from 'react'
+
 import '../../styles/InfoModal.css'
+import { getBuildings, updateBuilding } from 'api/buildingsApi'
 
 const modalStyle = {
   position: 'absolute' as 'absolute',
@@ -32,6 +35,7 @@ type ModalProps = {
   description: string
   img: string
   year: number
+  _id: string
   style: string
   links: string[]
   linkNames: string[]
@@ -48,6 +52,7 @@ const InfoModal = ({
   style,
   links,
   linkNames,
+  _id,
   open,
   handleClose,
 }: ModalProps) => {
@@ -103,8 +108,20 @@ const InfoModal = ({
   }
 
   // placeholder until API set up
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault()
+
+    const buildingUpdate: BuildingUpdate = {
+      name: title,
+      address: addressInput,
+      foundingYear: yearInput,
+      archiStyle: styleInput,
+      description: descriptionInput,
+      img: imageURL,
+      additionalLinks: linksInput,
+    }
+    const [err, res] = await to(updateBuilding(_id, buildingUpdate))
+    if (err) console.log(err)
 
     console.log('Title:', title)
     console.log('Address:', addressInput)

@@ -27,7 +27,7 @@ export const getNeighborhoods = () =>
   })
 
 // Call this to add all the buildings in the array
-export const addBulidings = (buildings: IBuilding[]) =>
+export const addBuildings = (buildings: IBuilding[]) =>
   BuildingsInstance.post<BuildingsResponse>('/', { buildings })
 
 // Call this to update this specific building

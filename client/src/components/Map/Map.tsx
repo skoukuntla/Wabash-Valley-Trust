@@ -38,6 +38,7 @@ function Map({ image, markers, addLocation }: MapProps) {
   const [archStyle, setArchStyle] = useState('')
   const [links, setLinks] = useState([''])
   const [linkNames, setLinkNames] = useState([''])
+  const [id, setId] = useState('')
   const [open, setOpen] = useState(false)
   const [timeLine, setTimeLine] = useState('')
   const handleOpen = () => setOpen(true)
@@ -129,6 +130,7 @@ function Map({ image, markers, addLocation }: MapProps) {
                 year={setYear}
                 style={setArchStyle}
                 links={setLinks}
+                _id={setId}
                 linkNames={setLinkNames}
                 handleOpen={handleOpen}
                 key={marker[10]}
@@ -153,6 +155,7 @@ function Map({ image, markers, addLocation }: MapProps) {
         links={links}
         linkNames={linkNames}
         open={open}
+        _id={id}
         handleClose={handleClose}
       />
     </Grid>
@@ -179,7 +182,7 @@ const MapEvents = ({ addLocation }: MapEventsProps) => {
         description: 'freshmen housing',
         img: 'https://www.yummymummykitchen.com/wp-content/uploads/2022/12/long-hair-cow-1.jpg',
         additionalLinks: ['https://google.com', 'https://bing.com'],
-        locationType: 'dorm',
+        locationType: 'building',
       })
     },
   })

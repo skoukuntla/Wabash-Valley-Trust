@@ -4,7 +4,7 @@ import to from 'await-to-js'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
-import { getBuildings } from 'api/buildingsApi'
+import { addBuildings, getBuildings } from 'api/buildingsApi'
 import { markers } from 'assets/markers'
 import Map from 'components/Map'
 import { login, register } from 'store/thunks/authThunk'
@@ -19,8 +19,10 @@ const AdminPage = () => {
   const [locations, setLocations]: any = useState(null)
   const [markersState, setMarkersState]: any = useState(null)
 
-  const addLocation = (input: any) => {
+  const addLocation = async (input: IBuilding) => {
     console.log('add location input', input)
+    const [err, res] = await to(addBuildings([input]))
+    if (err) console.log(err)
 
     setMarkersState(markersState.concat(input))
   }

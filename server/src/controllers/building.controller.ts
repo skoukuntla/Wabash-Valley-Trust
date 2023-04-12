@@ -71,7 +71,7 @@ export const updateBuliding = async (req: Request, res: Response) => {
 
   const buildingUpdate = req.body.building
   const [err, building] = await to(
-    Building.findByIdAndUpdate(buildingUpdate).exec()
+    Building.findByIdAndUpdate(buildingId, buildingUpdate).exec()
   )
   if (err) return res.status(500).send({ err })
 
