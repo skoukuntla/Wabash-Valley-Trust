@@ -1,6 +1,7 @@
 import { Button, TextField } from '@mui/material'
 import '../styles/AdminPage.css'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 import { markers } from 'assets/markers'
 import Map from 'components/Map'
@@ -134,31 +135,42 @@ const AdminPage = () => {
     <div className="adminPage">
       <main>
         {!loggedIn && (
-          <div className="container">
-            <h1>Admin log in</h1>
-            <form onSubmit={loginHandler}>
-              <TextField
-                className="field"
-                error={checkError('username')}
-                label="Username"
-                onChange={handleUsername}
-              />
-              <TextField
-                className="field"
-                error={
-                  passwordActive &&
-                  (password === '' || errorMessage === 'Incorrect login')
-                }
-                label="Password"
-                type="password"
-                onChange={handlePassword}
-              />
-              <div className="errorMessage">{errorMessage}</div>
-              <Button type="submit" variant="contained" className="loginButton">
-                Log in
-              </Button>
-            </form>
-          </div>
+          <>
+            <nav>
+              <Link to="/" className="homeLink">
+                Home
+              </Link>
+            </nav>
+            <div className="container">
+              <h1>Admin log in</h1>
+              <form onSubmit={loginHandler}>
+                <TextField
+                  className="field"
+                  error={checkError('username')}
+                  label="Username"
+                  onChange={handleUsername}
+                />
+                <TextField
+                  className="field"
+                  error={
+                    passwordActive &&
+                    (password === '' || errorMessage === 'Incorrect login')
+                  }
+                  label="Password"
+                  type="password"
+                  onChange={handlePassword}
+                />
+                <div className="errorMessage">{errorMessage}</div>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  className="loginButton"
+                >
+                  Log in
+                </Button>
+              </form>
+            </div>
+          </>
         )}
 
         {locations && loggedIn && (

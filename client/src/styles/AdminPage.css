@@ -1,7 +1,3 @@
-.adminPage main {
-  margin-left: 10px;
-}
-
 .adminPage .container {
   display: flex;
   flex-direction: column;
@@ -42,4 +38,22 @@
 .adminPage form button {
   /* align-self: flex-start; */
   width: 90px;
+}
+
+.adminPage .homeLink {
+  display: inline-block;
+  border: 1px solid #1862da;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: #1862da;
+
+  font-size: 14px;
+  text-decoration: none;
+
+  transition: all 0.3s;
+}
+
+.adminPage .homeLink:hover {
+  border: 1px solid #5294ff;
+  background: #5294ff22;
 }
