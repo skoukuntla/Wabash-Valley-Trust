@@ -81,7 +81,14 @@ export default function Main() {
         </div>
       </nav>
       {showMap && <Map2 image={districtImage} markers={items2} />}
-      {!showMap && <Map image={mapImage} markers={items} addLocation={null} />}
+      {!showMap && (
+        <Map
+          image={mapImage}
+          markers={items}
+          addLocation={null}
+          deleteLocation={null}
+        />
+      )}
     </Grid>
   )
 }

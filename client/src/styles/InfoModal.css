@@ -52,3 +52,25 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.InfoModal .saveButton {
+  margin-left: 10px;
+}
+
+.InfoModal .deleteButton {
+  margin-left: auto;
+}
+
+.InfoModal .buttonContainer {
+  display: flex;
+  flex-direction: row;
+  max-width: 500px;
+  margin-top: 20px;
+}
+
+.InfoModal .errorMessage {
+  height: 30px;
+  margin-top: 10px;
+  color: rgb(232, 5, 5);
+  font-size: 14px;
+}

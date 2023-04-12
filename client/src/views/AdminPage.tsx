@@ -18,7 +18,16 @@ const AdminPage = () => {
   const addLocation = (input: any) => {
     console.log('add location input', input)
 
+    // TODO connect to backend for location creation
     setMarkersState(markersState.concat(input))
+  }
+
+  const deleteLocation = (input: any) => {
+    console.log('delete location', input)
+    const updatedMarkers = markersState.filter(
+      (item: any) => item.name !== input
+    )
+    setMarkersState(updatedMarkers)
   }
 
   const checkError = (input: string) => {
@@ -114,6 +123,8 @@ const AdminPage = () => {
       sessionStorage.setItem('session-htf-wab-login', 'true')
       setUsername('')
       setPassword('')
+      setUsernameActive(false)
+      setPasswordActive(false)
     } else {
       setErrorMessage('Incorrect login')
     }
@@ -131,7 +142,6 @@ const AdminPage = () => {
                 error={checkError('username')}
                 label="Username"
                 onChange={handleUsername}
-                size="small"
               />
               <TextField
                 className="field"
@@ -142,7 +152,6 @@ const AdminPage = () => {
                 label="Password"
                 type="password"
                 onChange={handlePassword}
-                // size="small"
               />
               <div className="errorMessage">{errorMessage}</div>
               <Button type="submit" variant="contained" className="loginButton">
@@ -163,6 +172,7 @@ const AdminPage = () => {
               image="/assets/map.png"
               markers={locations}
               addLocation={addLocation}
+              deleteLocation={deleteLocation}
             />
           </>
         )}

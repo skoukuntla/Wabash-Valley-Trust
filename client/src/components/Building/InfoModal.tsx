@@ -15,6 +15,7 @@ import {
 } from '@mui/material'
 import { Container } from '@mui/system'
 import { useEffect, useState } from 'react'
+
 import '../../styles/InfoModal.css'
 
 const modalStyle = {
@@ -41,6 +42,7 @@ type ModalProps = {
   linkNames: string[]
   open: boolean
   handleClose: () => void
+  deleteLocation: any
 }
 
 const InfoModal = ({
@@ -54,6 +56,7 @@ const InfoModal = ({
   linkNames,
   open,
   handleClose,
+  deleteLocation,
 }: ModalProps) => {
   const [isFavorite, setIsFavorite] = useState(false)
   const [title, setTitle] = useState('')
@@ -64,17 +67,21 @@ const InfoModal = ({
   const [imageURL, setImageURL] = useState('')
   const [linksInput, setLinksInput] = useState([''])
   const [linksIDs, setLinksIDs] = useState([0])
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleTitle = (e: any) => {
     setTitle(e.target.value)
+    setErrorMessage('')
   }
 
   const handleAddress = (e: any) => {
     setAddressInput(e.target.value)
+    setErrorMessage('')
   }
 
   const handleStyle = (e: any) => {
     setStyleInput(e.target.value)
+    setErrorMessage('')
   }
 
   const handleYear = (e: any) => {
@@ -82,14 +89,18 @@ const InfoModal = ({
     else {
       setYearInput(Number(e.target.value))
     }
+
+    setErrorMessage('')
   }
 
   const handleDescription = (e: any) => {
     setDescriptionInput(e.target.value)
+    setErrorMessage('')
   }
 
   const handleImageURL = (e: any) => {
     setImageURL(e.target.value)
+    setErrorMessage('')
   }
 
   const handleLinkURL = (e: any, i: number) => {
@@ -106,6 +117,32 @@ const InfoModal = ({
     setLinksIDs([...linksIDs].filter((_link, j) => i !== j))
   }
 
+  const handleDeleteLocation = () => {
+    deleteLocation(name)
+    // TODO confirm delete
+    handleClose()
+  }
+
+  const hasErrors = () => {
+    if (
+      title === '' ||
+      addressInput === '' ||
+      styleInput === '' ||
+      descriptionInput === '' ||
+      imageURL === ''
+    ) {
+      setErrorMessage('Enter information into all fields')
+      return true
+    }
+
+    if (Number.isNaN(yearInput) || yearInput > 1930 || yearInput < 1820) {
+      setErrorMessage('Enter a valid year between 1820 and 1930 inclusive')
+      return true
+    }
+
+    return false
+  }
+
   // placeholder until API set up
   const handleSubmit = (e: any) => {
     e.preventDefault()
@@ -119,6 +156,9 @@ const InfoModal = ({
     console.log('Links:', linksInput)
     console.log('Link IDs:', linksIDs)
 
+    if (hasErrors()) return
+
+    // TODO close if backend confirms successful change
     handleClose()
   }
 
@@ -234,7 +274,9 @@ const InfoModal = ({
             className="field"
             label="Year Founded"
             defaultValue={year}
-            error={yearInput > 1930 || Number.isNaN(yearInput)}
+            error={
+              yearInput > 1930 || yearInput < 1820 || Number.isNaN(yearInput)
+            }
             onChange={handleYear}
             InputProps={{
               startAdornment: (
@@ -262,7 +304,7 @@ const InfoModal = ({
             onChange={handleImageURL}
           />
         </Container>
-        <Container sx={{ float: 'left', display: 'flex' }}>
+        <Container sx={{ display: 'flex' }}>
           <Container
             sx={{ display: 'flex', flexDirection: 'column' }}
             disableGutters
@@ -270,44 +312,51 @@ const InfoModal = ({
           >
             <div>
               <p>Additional Links:</p>
-              <ul>
-                {linksInput.map((item, i) => (
-                  <li key={linksIDs[i]} className="urlList">
-                    <div className="urlContainer">
-                      <TextField
-                        className="field"
-                        label="URL"
-                        defaultValue={item}
-                        onChange={(e) => handleLinkURL(e, i)}
-                      />
-                      <button
-                        onClick={() => deleteURL(i)}
-                        type="button"
-                        className="icon"
-                      >
-                        <FontAwesomeIcon
-                          icon={TrashIcon}
-                          className="trashIcon"
-                        />
-                      </button>
-                    </div>
-                  </li>
-                ))}
-                <Button variant="outlined" onClick={addLinkField}>
-                  Add Link
-                </Button>
-              </ul>
+              {linksInput.map((item, i) => (
+                <div key={linksIDs[i]}>
+                  <div className="urlContainer">
+                    <TextField
+                      className="field"
+                      label="URL"
+                      defaultValue={item}
+                      onChange={(e) => handleLinkURL(e, i)}
+                    />
+                    <button
+                      onClick={() => deleteURL(i)}
+                      type="button"
+                      className="icon"
+                    >
+                      <FontAwesomeIcon icon={TrashIcon} className="trashIcon" />
+                    </button>
+                  </div>
+                </div>
+              ))}
+              <Button variant="outlined" onClick={addLinkField}>
+                Add Link
+              </Button>
+            </div>
+            <div className="errorMessage">{errorMessage}</div>
+            <div className="buttonContainer">
+              <Button type="button" variant="outlined" onClick={handleCancel}>
+                Cancel
+              </Button>
+              <Button type="submit" variant="contained" className="saveButton">
+                Save
+              </Button>
+              <Button
+                type="button"
+                variant="outlined"
+                color="error"
+                className="deleteButton"
+                onClick={handleDeleteLocation}
+              >
+                Delete location
+              </Button>
             </div>
           </Container>
 
           <img alt="error loading img" width="250" height="250" src={img} />
         </Container>
-        <Button type="button" onClick={handleCancel}>
-          Cancel
-        </Button>
-        <Button type="submit" variant="contained">
-          Save
-        </Button>
       </form>
 
       <div />

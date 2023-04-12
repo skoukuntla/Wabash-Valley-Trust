@@ -20,13 +20,14 @@ type MapProps = {
   image: string
   markers: Array<Array<any>>
   addLocation: any
+  deleteLocation: any
 }
 
 type MapEventsProps = {
   addLocation: Function
 }
 
-function Map({ image, markers, addLocation }: MapProps) {
+function Map({ image, markers, addLocation, deleteLocation }: MapProps) {
   const [routes, setRoutes] = useState<Array<RouteData>>([])
   const [currentRoute, setCurrentRoute] = useState<number>(0)
   // const [currentText, setCurrentText] = useState('')
@@ -153,6 +154,7 @@ function Map({ image, markers, addLocation }: MapProps) {
         linkNames={linkNames}
         open={open}
         handleClose={handleClose}
+        deleteLocation={deleteLocation}
       />
     </Grid>
   )
