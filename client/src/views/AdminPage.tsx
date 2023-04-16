@@ -1,12 +1,12 @@
-import { Button, FormControlLabel, Switch, TextField } from '@mui/material'
-import '../styles/AdminPage.css'
+import { Button, TextField } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import '../styles/AdminPage.css'
 
-import districtImage from 'assets/districts.png'
-import { markers, markers2 } from 'assets/markers'
+import { markers } from 'assets/markers'
 import Map from 'components/Map'
-import Map2 from 'components/Map2'
+
+import { getBuildings } from '../api/buildingsApi'
 
 const AdminPage = () => {
   const [username, setUsername] = useState('')
@@ -16,14 +16,8 @@ const AdminPage = () => {
   const [loggedIn, setLoggedIn] = useState(false)
 
   const [locations, setLocations]: any = useState(null)
-  const [districts, setDistricts]: any = useState(null)
   const [markersState, setMarkersState]: any = useState(null)
   const [errorMessage, setErrorMessage] = useState('')
-
-  const [showMap, setShowMap] = useState(false)
-  const toggleMap = () => {
-    setShowMap(!showMap)
-  }
 
   const addLocation = (input: any) => {
     console.log('add location input', input)
@@ -85,6 +79,9 @@ const AdminPage = () => {
     if (login === 'true') {
       setLoggedIn(true)
     }
+
+    console.log('attempt')
+    // console.log('mongo buildings', getBuildings())
   }, [])
 
   useEffect(() => {
@@ -112,27 +109,6 @@ const AdminPage = () => {
       items.push(item)
     }
     setLocations(items)
-
-    const items2 = []
-    for (let i = 0; i < markers2.length; i += 1) {
-      const item = new Array<Object>()
-      item.push(markers2[i].coords[0])
-      item.push(markers2[i].coords[1])
-      item.push(markers2[i].name)
-      item.push(markers2[i].address)
-      item.push(markers2[i].description)
-      item.push(markers2[i].img)
-      item.push(markers2[i].foundingYear)
-      item.push(markers2[i].archiStyle)
-      item.push(markers2[i].additionalLinks)
-      const linkNames = []
-      for (let j = 0; j < markers2[i].additionalLinks.length; j += 1) {
-        linkNames.push(new URL(markers[i].additionalLinks[j]).hostname)
-      }
-      item.push(linkNames)
-      items2.push(item)
-    }
-    setDistricts(items2)
 
     console.log('markers', markersState)
   }, [markersState])
@@ -201,33 +177,21 @@ const AdminPage = () => {
       {locations && loggedIn && (
         <main className="loggedIn">
           <nav>
-            <div className="spacer" />
-            <FormControlLabel
-              control={<Switch checked={showMap} onChange={toggleMap} />}
-              label="District Map"
-              className="switch"
-            />
-            <div className="buttonContainer">
-              <Button
-                type="button"
-                onClick={logout}
-                variant="contained"
-                className="logoutButton"
-              >
-                Logout
-              </Button>
-            </div>
+            <Button
+              type="button"
+              onClick={logout}
+              variant="contained"
+              className="logoutButton"
+            >
+              Logout
+            </Button>
           </nav>
-          {showMap ? (
-            <Map2 image={districtImage} markers={districts} />
-          ) : (
-            <Map
-              image="/assets/map.png"
-              markers={locations}
-              addLocation={addLocation}
-              deleteLocation={deleteLocation}
-            />
-          )}
+          <Map
+            image="/assets/map.png"
+            markers={locations}
+            addLocation={addLocation}
+            deleteLocation={deleteLocation}
+          />
         </main>
       )}
     </div>

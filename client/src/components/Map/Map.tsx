@@ -60,7 +60,7 @@ function Map({ image, markers, addLocation, deleteLocation }: MapProps) {
     <Grid container justifyContent="center" marginTop="2vh">
       <Slider
         aria-label="Restricted values"
-        onChange={async (e, val) => {
+        onChange={async (e) => {
           const target = e.target as HTMLTextAreaElement
           setTimeLine(target.value)
         }}
@@ -98,7 +98,7 @@ function Map({ image, markers, addLocation, deleteLocation }: MapProps) {
         }}
       />
       <MapContainer
-        style={{ height: '100vh', width: '100vw' }}
+        style={{ height: '85vh', width: '100vw' }}
         center={[380, 306]}
         zoom={1}
         crs={CRS.Simple}

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { faUserGear as AdminIcon } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { FormControlLabel, Grid, Switch } from '@mui/material'
+import { FormControlLabel, Switch } from '@mui/material'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -61,7 +61,7 @@ export default function Main() {
   }
 
   return (
-    <Grid container justifyContent="center" className="Main">
+    <main className="Main">
       <nav>
         <div className="spacer" />
         <FormControlLabel
@@ -90,6 +90,6 @@ export default function Main() {
           deleteLocation={null}
         />
       )}
-    </Grid>
+    </main>
   )
 }
