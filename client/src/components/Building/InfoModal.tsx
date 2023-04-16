@@ -9,9 +9,11 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import { Container } from '@mui/system'
+import { Container, border } from '@mui/system'
 import { useEffect, useState } from 'react'
+
 import '../../styles/InfoModal.css'
+import paper from '../../assets/paper.png'
 
 const modalStyle = {
   position: 'absolute' as 'absolute',
@@ -20,7 +22,7 @@ const modalStyle = {
   transform: 'translate(-50%, -50%)',
   width: '90%',
   height: '90%',
-  bgcolor: 'background.paper',
+  bgcolor: 'beige',
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
@@ -146,7 +148,12 @@ const InfoModal = ({
 
   const displayElements = (
     <>
-      <Container sx={{ display: 'flex', flexDirection: 'column' }}>
+      <Container
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
         <Typography
           id="modal-modal-title"
           variant="h3"
