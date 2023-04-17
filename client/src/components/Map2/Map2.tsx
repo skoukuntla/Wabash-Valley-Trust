@@ -108,7 +108,8 @@ function Map({ image, markers }: MapProps) {
         linkNames={linkNames}
         open={open}
         handleClose={handleClose}
-        deleteLocation={null}
+        deleteLocationLocally={null}
+        updateLocationLocally={null}
       />
     </Grid>
   )

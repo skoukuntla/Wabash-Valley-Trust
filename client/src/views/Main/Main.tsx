@@ -121,8 +121,9 @@ export default function Main() {
         <Map
           image={mapImage}
           markers={items}
-          addLocation={null}
-          deleteLocation={null}
+          addLocationLocally={null}
+          deleteLocationLocally={null}
+          updateLocationLocally={null}
         />
       )}
     </main>

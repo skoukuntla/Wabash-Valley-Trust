@@ -54,7 +54,7 @@ const addSingleBuilding = async (req: Request, res: Response) => {
 }
 
 export const removeBuilding = async (req: Request, res: Response) => {
-  const { buildingId } = req.query
+  const { buildingId } = req.body
   if (!buildingId)
     return res.status(400).send({ error: new Error('buildingId not provided') })
 

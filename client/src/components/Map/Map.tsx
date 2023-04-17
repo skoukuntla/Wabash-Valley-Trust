@@ -19,15 +19,22 @@ interface RouteData {
 type MapProps = {
   image: string
   markers: Array<Array<any>>
-  addLocation: any
-  deleteLocation: any
+  addLocationLocally: any
+  deleteLocationLocally: any
+  updateLocationLocally: any
 }
 
 type MapEventsProps = {
-  addLocation: Function
+  addLocationLocally: Function
 }
 
-function Map({ image, markers, addLocation, deleteLocation }: MapProps) {
+function Map({
+  image,
+  markers,
+  addLocationLocally,
+  deleteLocationLocally,
+  updateLocationLocally,
+}: MapProps) {
   const [routes, setRoutes] = useState<Array<RouteData>>([])
   const [currentRoute, setCurrentRoute] = useState<number>(0)
   // const [currentText, setCurrentText] = useState('')
@@ -143,7 +150,7 @@ function Map({ image, markers, addLocation, deleteLocation }: MapProps) {
         })}
         <MapRoute currentRoute={currentRoute} routes={routes} />
         {window.location.href.includes('admin') && (
-          <MapEvents addLocation={addLocation} />
+          <MapEvents addLocationLocally={addLocationLocally} />
         )}
       </MapContainer>
       <InfoModal
@@ -158,14 +165,15 @@ function Map({ image, markers, addLocation, deleteLocation }: MapProps) {
         open={open}
         _id={id}
         handleClose={handleClose}
-        deleteLocation={deleteLocation}
+        deleteLocationLocally={deleteLocationLocally}
+        updateLocationLocally={updateLocationLocally}
       />
     </Grid>
   )
 }
 
 // used for click event that gets coordinates
-const MapEvents = ({ addLocation }: MapEventsProps) => {
+const MapEvents = ({ addLocationLocally }: MapEventsProps) => {
   useMapEvents({
     click(e) {
       // setState your coords here
@@ -175,7 +183,7 @@ const MapEvents = ({ addLocation }: MapEventsProps) => {
 
       // TODO change
       console.log(window.location.href.includes('admin'))
-      addLocation({
+      addLocationLocally({
         coords: [e.latlng.lat, e.latlng.lng],
         name: 'NAME',
         address: 'here',
