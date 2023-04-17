@@ -15,19 +15,6 @@ import { useEffect, useState } from 'react'
 import '../../styles/InfoModal.css'
 import paper from '../../assets/paper.png'
 
-const modalStyle = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '90%',
-  height: '90%',
-  bgcolor: 'beige',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-}
-
 type ModalProps = {
   name: string
   address: string
@@ -317,6 +304,19 @@ const InfoModal = ({
       </Box>
     </Modal>
   )
+}
+const modalStyle = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '90%',
+  height: '90%',
+  background: `url(${paper}) no-repeat center center`,
+  backgroundSize: 'cover',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
 }
 
 export default InfoModal
