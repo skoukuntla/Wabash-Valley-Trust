@@ -20,13 +20,14 @@ type MapProps = {
   image: string
   markers: Array<Array<any>>
   addLocation: any
+  deleteLocation: any
 }
 
 type MapEventsProps = {
   addLocation: Function
 }
 
-function Map({ image, markers, addLocation }: MapProps) {
+function Map({ image, markers, addLocation, deleteLocation }: MapProps) {
   const [routes, setRoutes] = useState<Array<RouteData>>([])
   const [currentRoute, setCurrentRoute] = useState<number>(0)
   // const [currentText, setCurrentText] = useState('')
@@ -60,7 +61,7 @@ function Map({ image, markers, addLocation }: MapProps) {
     <Grid container justifyContent="center" marginTop="2vh">
       <Slider
         aria-label="Restricted values"
-        onChange={async (e, val) => {
+        onChange={async (e) => {
           const target = e.target as HTMLTextAreaElement
           setTimeLine(target.value)
         }}
@@ -98,7 +99,7 @@ function Map({ image, markers, addLocation }: MapProps) {
         }}
       />
       <MapContainer
-        style={{ height: '100vh', width: '100vw' }}
+        style={{ height: '85vh', width: '100vw' }}
         center={[380, 306]}
         zoom={1}
         crs={CRS.Simple}
@@ -157,6 +158,7 @@ function Map({ image, markers, addLocation }: MapProps) {
         open={open}
         _id={id}
         handleClose={handleClose}
+        deleteLocation={deleteLocation}
       />
     </Grid>
   )
@@ -168,13 +170,13 @@ const MapEvents = ({ addLocation }: MapEventsProps) => {
     click(e) {
       // setState your coords here
       // coords exist in "e.latlng.lat" and "e.latlng.lng"
-      console.log(e.latlng.lat + 20)
-      console.log(e.latlng.lng - 10)
+      console.log(e.latlng.lat)
+      console.log(e.latlng.lng)
 
       // TODO change
       console.log(window.location.href.includes('admin'))
       addLocation({
-        coords: [e.latlng.lat + 20, e.latlng.lng - 10],
+        coords: [e.latlng.lat, e.latlng.lng],
         name: 'NAME',
         address: 'here',
         foundingYear: '1930',

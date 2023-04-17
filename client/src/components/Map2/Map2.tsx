@@ -1,5 +1,4 @@
-import { Container, Grid, Slider } from '@mui/material'
-import { style } from '@mui/system'
+import { Grid } from '@mui/material'
 import { CRS } from 'leaflet'
 import { useEffect, useState } from 'react'
 import { ImageOverlay, MapContainer } from 'react-leaflet'
@@ -54,7 +53,7 @@ function Map({ image, markers }: MapProps) {
   return (
     <Grid container justifyContent="center" marginTop="2vh">
       <MapContainer
-        style={{ height: '100vh', width: '100vw' }}
+        style={{ height: '85vh', width: '100vw' }}
         center={[380, 306]}
         zoom={1}
         crs={CRS.Simple}
@@ -109,6 +108,7 @@ function Map({ image, markers }: MapProps) {
         linkNames={linkNames}
         open={open}
         handleClose={handleClose}
+        deleteLocation={null}
       />
     </Grid>
   )

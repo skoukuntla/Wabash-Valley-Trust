@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { faUserGear as AdminIcon } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { FormControlLabel, FormGroup, Grid, Switch } from '@mui/material'
+import { FormControlLabel, Switch } from '@mui/material'
 import to from 'await-to-js'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -96,7 +96,7 @@ export default function Main() {
   }, [])
 
   return (
-    <Grid container justifyContent="center" className="Main">
+    <main className="Main">
       <nav>
         <div className="spacer" />
         <FormControlLabel
@@ -106,6 +106,7 @@ export default function Main() {
         />
 
         <div className="buttonContainer">
+          {/* a button is used instead of Link because links are draggable */}
           <button
             type="button"
             onClick={() => navigate('/admin')}
@@ -116,7 +117,14 @@ export default function Main() {
         </div>
       </nav>
       {showMap && <Map2 image={districtImage} markers={items2} />}
-      {!showMap && <Map image={mapImage} markers={items} addLocation={null} />}
-    </Grid>
+      {!showMap && (
+        <Map
+          image={mapImage}
+          markers={items}
+          addLocation={null}
+          deleteLocation={null}
+        />
+      )}
+    </main>
   )
 }

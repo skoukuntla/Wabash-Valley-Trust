@@ -1,27 +1,3 @@
-.InfoModal button.favorite {
-  background: none;
-  border: none;
-  transition: opacity 0.3s, transform 0.2s;
-  cursor: pointer;
-}
-
-.InfoModal button.favorite img {
-  max-height: 35px;
-}
-
-.InfoModal button.favorite:hover {
-  opacity: 0.8;
-}
-
-.InfoModal button.favorite:active {
-  transform: scale(0.9);
-}
-
-.InfoModal .heartIcon {
-  height: 32px;
-  color: #a6652d;
-}
-
 .InfoModal .text {
   padding-right: 20px;
 }
@@ -31,6 +7,89 @@
 }
 
 .InfoModal .field {
-  padding-bottom: 15px;
   max-width: 500px;
+  padding-bottom: 15px;
+}
+
+@media (max-width: 850px) {
+  .InfoModal .info {
+    flex-direction: column;
+  }
+
+  .InfoModal .box {
+    padding: 10px;
+  }
+}
+
+.InfoModal .info img {
+  box-sizing: content-box;
+  padding: 20px 0;
+}
+
+.InfoModal .urlContainer {
+  display: flex;
+  align-items: center;
+  padding-bottom: 15px;
+}
+
+.InfoModal .urlContainer .field {
+  padding-bottom: 0;
+}
+
+.InfoModal button.icon.favorite {
+  padding-left: 24px;
+}
+
+.InfoModal button.icon {
+  background: none;
+  border: none;
+  transition: opacity 0.3s, transform 0.2s;
+  cursor: pointer;
+}
+
+.InfoModal button.icon svg {
+  height: 32px;
+}
+
+.InfoModal button.icon:hover {
+  opacity: 0.8;
+}
+
+.InfoModal button.icon:active {
+  transform: scale(0.9);
+}
+
+.InfoModal .heartIcon {
+  color: #a6652d;
+}
+
+.InfoModal button svg.trashIcon {
+  height: 20px;
+}
+
+.InfoModal .closeContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.InfoModal .saveButton {
+  margin-left: 10px;
+}
+
+.InfoModal .deleteButton {
+  margin-left: auto;
+}
+
+.InfoModal .buttonContainer {
+  display: flex;
+  flex-direction: row;
+  max-width: 500px;
+  margin-top: 20px;
+}
+
+.InfoModal .errorMessage {
+  height: 30px;
+  margin-top: 10px;
+  color: rgb(232, 5, 5);
+  font-size: 14px;
 }

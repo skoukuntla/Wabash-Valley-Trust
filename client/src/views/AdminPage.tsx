@@ -3,28 +3,75 @@ import '../styles/AdminPage.css'
 import to from 'await-to-js'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { addBuildings, getBuildings } from 'api/buildingsApi'
 import { markers } from 'assets/markers'
 import Map from 'components/Map'
-import { login, register } from 'store/thunks/authThunk'
+import { login } from 'store/thunks/authThunk'
 
 import type store from 'store'
 
 const AdminPage = () => {
   const dispatch = useDispatch<typeof store.dispatch>()
-  const [username, setUsername] = useState('a')
-  const [password, setPassword] = useState('a')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [usernameActive, setUsernameActive] = useState(false)
+  const [passwordActive, setPasswordActive] = useState(false)
   const [loggedIn, setLoggedIn] = useState(false)
+
   const [locations, setLocations]: any = useState(null)
   const [markersState, setMarkersState]: any = useState(null)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const addLocation = async (input: IBuilding) => {
     console.log('add location input', input)
     const [err, res] = await to(addBuildings([input]))
     if (err) console.log(err)
 
+    // TODO connect to backend for location creation
     setMarkersState(markersState.concat(input))
+  }
+
+  const deleteLocation = (input: any) => {
+    console.log('delete location', input)
+    const updatedMarkers = markersState.filter(
+      (item: any) => item.name !== input
+    )
+    setMarkersState(updatedMarkers)
+  }
+
+  const checkError = (input: string) => {
+    if (input === 'username') {
+      if (errorMessage === 'Incorrect login') {
+        return true
+      }
+
+      if (usernameActive) {
+        return username === ''
+      }
+    }
+
+    if (input === 'password') {
+      if (errorMessage === 'Incorrect login') {
+        return true
+      }
+      if (passwordActive) {
+        return password === ''
+      }
+    }
+  }
+
+  const handleUsername = (e: any) => {
+    setUsername(e.target.value)
+    setErrorMessage('')
+    setUsernameActive(true)
+  }
+
+  const handlePassword = (e: any) => {
+    setPassword(e.target.value)
+    setErrorMessage('')
+    setPasswordActive(true)
   }
 
   const logout = () => {
@@ -39,6 +86,9 @@ const AdminPage = () => {
     if (islogin === 'true') {
       setLoggedIn(true)
     }
+
+    console.log('attempt')
+    // console.log('mongo buildings', getBuildings())
   }, [])
 
   useEffect(() => {
@@ -81,7 +131,15 @@ const AdminPage = () => {
 
   const loginHandler = async (e: any) => {
     e.preventDefault()
+    setUsernameActive(true)
+    setPasswordActive(true)
+
     console.log('submission:', username, '||', password)
+
+    if (username === '' || password === '') {
+      setErrorMessage('Enter all login information')
+      return
+    }
 
     if (username === 'username' && password === 'htfpass') {
       const req: IUserAuth = {
@@ -100,53 +158,72 @@ const AdminPage = () => {
 
       setLoggedIn(true)
       sessionStorage.setItem('session-htf-wab-login', 'true')
+      setUsername('')
+      setPassword('')
+      setUsernameActive(false)
+      setPasswordActive(false)
+    } else {
+      setErrorMessage('Incorrect login')
     }
   }
 
   return (
     <div className="adminPage">
-      <main>
-        {!loggedIn && (
+      {!loggedIn && (
+        <main className="loggedOut">
+          <nav className="">
+            <Link to="/" className="homeLink">
+              Home
+            </Link>
+          </nav>
           <div className="container">
             <h1>Admin log in</h1>
             <form onSubmit={loginHandler}>
               <TextField
                 className="field"
-                error={username === ''}
+                error={checkError('username')}
                 label="Username"
-                onChange={(e) => setUsername(e.target.value)}
-                size="small"
+                onChange={handleUsername}
               />
               <TextField
                 className="field"
-                error={password === ''}
+                error={
+                  passwordActive &&
+                  (password === '' || errorMessage === 'Incorrect login')
+                }
                 label="Password"
                 type="password"
-                onChange={(e) => setPassword(e.target.value)}
-                // size="small"
+                onChange={handlePassword}
               />
+              <div className="errorMessage">{errorMessage}</div>
               <Button type="submit" variant="contained" className="loginButton">
                 Log in
               </Button>
             </form>
           </div>
-        )}
+        </main>
+      )}
 
-        {locations && loggedIn && (
-          <>
-            <nav>
-              <Button type="button" onClick={logout} variant="contained">
-                Logout
-              </Button>
-            </nav>
-            <Map
-              image="/assets/map.png"
-              markers={locations}
-              addLocation={addLocation}
-            />
-          </>
-        )}
-      </main>
+      {locations && loggedIn && (
+        <main className="loggedIn">
+          <nav>
+            <Button
+              type="button"
+              onClick={logout}
+              variant="contained"
+              className="logoutButton"
+            >
+              Logout
+            </Button>
+          </nav>
+          <Map
+            image="/assets/map.png"
+            markers={locations}
+            addLocation={addLocation}
+            deleteLocation={deleteLocation}
+          />
+        </main>
+      )}
     </div>
   )
 }
