@@ -44,3 +44,7 @@
   height: 20px;
   color: #a6652d;
 }
+
+.Main .mainError {
+  text-align: center;
+}

@@ -5,10 +5,16 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { addBuildings, getBuildings, updateBuilding } from 'api/buildingsApi'
+import { getRefreshToken } from 'api/auth'
+import {
+  addBuildings,
+  getBuildings,
+  removeBuilding,
+  updateBuilding,
+} from 'api/buildingsApi'
 import mapImage from 'assets/map_clean.png'
 import Map from 'components/Map'
-import { login } from 'store/thunks/authThunk'
+import { logout as _logout, login } from 'store/thunks/authThunk'
 
 import type store from 'store'
 
@@ -19,6 +25,7 @@ const AdminPage = () => {
   const [usernameActive, setUsernameActive] = useState(false)
   const [passwordActive, setPasswordActive] = useState(false)
   const [loggedIn, setLoggedIn] = useState(false)
+  const [requestError, setRequestError] = useState(false)
 
   // the data that gets passed to the Map
   const [locations, setLocations]: any = useState(null)
@@ -27,30 +34,35 @@ const AdminPage = () => {
   const [markersState, setMarkersState]: any = useState(null)
   const [errorMessage, setErrorMessage] = useState('')
 
-  const addLocationLocally = async (input: IBuilding) => {
-    console.log('add location input', input)
+  const addLocation = async (input: IBuilding) => {
+    // console.log('add location input', input)
     const [err] = await to(addBuildings([input]))
-    if (err) console.log(err)
+    if (err) {
+      console.log('add error', err)
+    }
 
     fetchBuildings()
   }
 
-  const updateLocationLocally = async (_id: any, input: any) => {
-    console.log('update location', input)
+  const updateLocation = async (_id: any, input: any) => {
+    // console.log('update location', input)
     const [err] = await to(updateBuilding(_id, input))
-    if (err) console.log(err)
+    if (err) {
+      console.log('update error', err)
+    }
 
     fetchBuildings()
   }
 
-  const deleteLocationLocally = async (input: any) => {
-    console.log('delete location', input)
-    console.log('markers', markersState)
+  const deleteLocation = async (_id: any, input: any) => {
+    // console.log('delete location', input)
+    // console.log('markers', markersState)
 
-    // const updatedMarkers = markersState.filter(
-    //   (item: any) => item.name !== input
-    // )
-    // setMarkersState(updatedMarkers)
+    const [err] = await to(removeBuilding(_id))
+    if (err) {
+      console.log('delete error', err)
+    }
+
     fetchBuildings()
   }
 
@@ -87,39 +99,47 @@ const AdminPage = () => {
     setPasswordActive(true)
   }
 
-  const logout = () => {
+  const logout = async () => {
+    const [err] = await to(dispatch(_logout()).unwrap())
+    if (err) console.log(err)
+  }
+
+  const logoutHandler = () => {
     setLoggedIn(false)
-    sessionStorage.removeItem('session-htf-wab-login')
+    logout()
+    // console.log('logout')
   }
 
   const fetchBuildings = async () => {
     const [err, res] = await to(getBuildings())
     if (err) {
+      if ((err as NodeJS.ErrnoException).code === 'ERR_NETWORK') {
+        console.log('Network error')
+      }
+
+      setRequestError(true)
       console.log(err)
       return
     }
     const { buildings } = res.data
     setMarkersState(buildings)
-
-    console.log('received data', buildings)
+    // console.log('received data', buildings)
   }
 
-  // runs on initial render
+  // initially gets buildings & checks login
   useEffect(() => {
-    // TODO change this to checking for auth token cause this is super insecure
-    const islogin = sessionStorage.getItem('session-htf-wab-login')
-    console.log('log in', islogin)
-    if (islogin === 'true') {
-      setLoggedIn(true)
+    const checkLogin = async () => {
+      getRefreshToken().then((item) => {
+        if (!item) {
+          setLoggedIn(false)
+        } else {
+          setLoggedIn(true)
+        }
+      })
     }
 
-    console.log('attempt')
-    // console.log('mongo buildings', getBuildings())
-  }, [])
-
-  // initially gets buildings & updates locations
-  useEffect(() => {
     fetchBuildings()
+    checkLogin()
   }, [])
 
   // updates locations whenever markersState changes (after new get requests)
@@ -158,42 +178,32 @@ const AdminPage = () => {
     setUsernameActive(true)
     setPasswordActive(true)
 
-    console.log('submission:', username, '||', password)
-
     if (username === '' || password === '') {
       setErrorMessage('Enter all login information')
       return
     }
 
-    if (username === 'username' && password === 'htfpass') {
-      const req: IUserAuth = {
-        email: username,
-        password,
-      }
-      // const [err] = await to(dispatch(register(req)).unwrap())
-      // if (err) {
-      const [err] = await to(dispatch(login(req)).unwrap())
+    const req: IUserAuth = {
+      email: username,
+      password,
+    }
 
-      if (err) {
-        console.log(err)
-        return
-      }
-      // }
+    const [err] = await to(dispatch(login(req)).unwrap())
 
+    if (err) {
+      setErrorMessage('Incorrect login')
+    } else {
       setLoggedIn(true)
-      sessionStorage.setItem('session-htf-wab-login', 'true')
       setUsername('')
       setPassword('')
       setUsernameActive(false)
       setPasswordActive(false)
-    } else {
-      setErrorMessage('Incorrect login')
     }
   }
 
   return (
     <div className="adminPage">
-      {!loggedIn && (
+      {!requestError && !loggedIn && (
         <main className="loggedOut">
           <nav className="">
             <Link to="/" className="homeLink">
@@ -228,12 +238,12 @@ const AdminPage = () => {
         </main>
       )}
 
-      {locations && loggedIn && (
+      {!requestError && locations && loggedIn && (
         <main className="loggedIn">
           <nav>
             <Button
               type="button"
-              onClick={logout}
+              onClick={logoutHandler}
               variant="contained"
               className="logoutButton"
             >
@@ -243,11 +253,21 @@ const AdminPage = () => {
           <Map
             image={mapImage}
             markers={locations}
-            addLocationLocally={addLocationLocally}
-            deleteLocationLocally={deleteLocationLocally}
-            updateLocationLocally={updateLocationLocally}
+            addLocation={addLocation}
+            deleteLocation={deleteLocation}
+            updateLocation={updateLocation}
           />
         </main>
+      )}
+
+      {requestError && (
+        <div className="mainError">
+          <h1>Couldn't connect to the server.</h1>
+          <p>
+            Try checking your internet connection. If the issue persists, check
+            that the server is running properly
+          </p>
+        </div>
       )}
     </div>
   )

@@ -30,6 +30,7 @@ export const JWTInterceptor = <T extends AxiosInstance>(config: any) => {
   return config
 }
 
+let refreshCount = 0
 export const ErrorInterceptor =
   <T extends AxiosInstance>(
     instance: T,
@@ -41,6 +42,14 @@ export const ErrorInterceptor =
     if (!originalConfig) {
       return Promise.reject(err)
     }
+
+    // attempt to stop infinite loop from spamming server
+    if (refreshCount === 10) {
+      refreshCount = 0
+      return
+    }
+
+    refreshCount += 1
 
     // token was expired
     if (err.response) {

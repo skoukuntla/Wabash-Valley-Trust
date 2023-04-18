@@ -22,7 +22,7 @@
 }
 
 .InfoModal .info img {
-  /* box-sizing: content-box; */
+  object-fit: cover;
   padding: 20px 0;
 }
 

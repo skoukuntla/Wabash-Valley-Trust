@@ -18,16 +18,7 @@ import { Container } from '@mui/system'
 import to from 'await-to-js'
 import { useEffect, useState } from 'react'
 
-import {
-  getBuildings,
-  getLikes,
-  like,
-  removeBuilding,
-  removeLike,
-  updateBuilding,
-} from 'api/buildingsApi'
-
-import '../../styles/InfoModal.css'
+import { getLikes, like, removeBuilding, removeLike } from 'api/buildingsApi'
 
 import '../../styles/InfoModal.css'
 import paper from '../../assets/paper.png'
@@ -44,8 +35,8 @@ type ModalProps = {
   linkNames: string[]
   open: boolean
   handleClose: () => void
-  deleteLocationLocally: any
-  updateLocationLocally: any
+  deleteLocation: any
+  updateLocation: any
 }
 
 const InfoModal = ({
@@ -60,8 +51,8 @@ const InfoModal = ({
   _id,
   open,
   handleClose,
-  deleteLocationLocally,
-  updateLocationLocally,
+  deleteLocation,
+  updateLocation,
 }: ModalProps) => {
   const [isFavorite, setIsFavorite] = useState(false)
   const [confirmDelete, setConfirmDelete] = useState(0)
@@ -123,7 +114,7 @@ const InfoModal = ({
   // #endregion
 
   const deleteURL = (i: number) => {
-    console.log('index', i)
+    // console.log('index', i)
 
     // filters out link to be deleted by index
     setLinksInput([...linksInput].filter((_link, j) => i !== j))
@@ -145,7 +136,7 @@ const InfoModal = ({
     for (let i = 0; i < linksInput.length; i += 1) {
       try {
         const url = new URL(linksInput[i])
-        console.log('url', url)
+        // console.log('url', url)
       } catch (err) {
         setErrorMessage(
           'Enter a valid URL into each field or delete unused ones'
@@ -177,10 +168,8 @@ const InfoModal = ({
 
     if (hasErrors()) return
 
-    updateLocationLocally(_id, buildingUpdate)
-
-    // TODO close if backend confirms successful change
-    handleClose()
+    updateLocation(_id, buildingUpdate)
+    closeModal()
   }
 
   const handleDeleteLocation = async () => {
@@ -189,13 +178,7 @@ const InfoModal = ({
       return
     }
 
-    const [err] = await to(removeBuilding(_id))
-    if (err) {
-      console.log(err)
-      return
-    }
-
-    deleteLocationLocally(name)
+    deleteLocation(_id, name)
     closeModal()
   }
 
@@ -212,6 +195,8 @@ const InfoModal = ({
 
   useEffect(() => {
     const handleLikes = async () => {
+      if (_id === '') return
+
       try {
         const [err, response] = await to(getLikes(_id))
         if (err) {
@@ -237,11 +222,11 @@ const InfoModal = ({
     setStyleInput(style)
     setYearInput(Number(year))
     setDescriptionInput(description)
-    console.log('description', description)
     setImageURL(img)
     setLinksInput(links)
     setLinksIDs(links.map(() => Math.round(Math.random() * 100)))
     setErrorMessage('')
+    setConfirmDelete(0)
   }, [name, address, style, year, description, links, img, open])
 
   const toggleFavorite = async () => {
@@ -455,11 +440,6 @@ const InfoModal = ({
       className="InfoModal"
       open={open}
       onClose={handleClose}
-      onKeyPress={(e) => {
-        if (e.key === 'Enter') {
-          handleClose()
-        }
-      }}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >

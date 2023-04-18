@@ -26,6 +26,11 @@ export const getBuildings = () =>
     params: { locationType: 'building' },
   })
 
+export const getBuildingsWithAuth = () =>
+  BuildingsInstance.get<BuildingsResponse>('/admin', {
+    params: { locationType: 'building' },
+  })
+
 // Call this to get all buildings with locationType == 'neighborhood'
 export const getNeighborhoods = () =>
   BuildingsInstance.get<BuildingsResponse>('/', {

@@ -88,11 +88,11 @@ function Map({ image, markers }: MapProps) {
                 links={setLinks}
                 linkNames={setLinkNames}
                 handleOpen={handleOpen}
+                key={marker[10]}
               />
             )
           }
-          // eslint-disable-next-line react/jsx-no-useless-fragment
-          return <></>
+          return ''
         })}
         <MapRoute currentRoute={currentRoute} routes={routes} />
       </MapContainer>
@@ -108,8 +108,8 @@ function Map({ image, markers }: MapProps) {
         linkNames={linkNames}
         open={open}
         handleClose={handleClose}
-        deleteLocationLocally={null}
-        updateLocationLocally={null}
+        deleteLocation={null}
+        updateLocation={null}
       />
     </Grid>
   )
