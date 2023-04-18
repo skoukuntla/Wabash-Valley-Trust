@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { addBuildings, getBuildings, updateBuilding } from 'api/buildingsApi'
+import mapImage from 'assets/map_clean.png'
 import Map from 'components/Map'
 import { login } from 'store/thunks/authThunk'
 
@@ -240,7 +241,7 @@ const AdminPage = () => {
             </Button>
           </nav>
           <Map
-            image="assets/map_clean.png"
+            image={mapImage}
             markers={locations}
             addLocationLocally={addLocationLocally}
             deleteLocationLocally={deleteLocationLocally}
