@@ -19,14 +19,22 @@ interface RouteData {
 type MapProps = {
   image: string
   markers: Array<Array<any>>
-  addLocation: any
+  addLocationLocally: any
+  deleteLocationLocally: any
+  updateLocationLocally: any
 }
 
 type MapEventsProps = {
-  addLocation: Function
+  addLocationLocally: Function
 }
 
-function Map({ image, markers, addLocation }: MapProps) {
+function Map({
+  image,
+  markers,
+  addLocationLocally,
+  deleteLocationLocally,
+  updateLocationLocally,
+}: MapProps) {
   const [routes, setRoutes] = useState<Array<RouteData>>([])
   const [currentRoute, setCurrentRoute] = useState<number>(0)
   // const [currentText, setCurrentText] = useState('')
@@ -38,6 +46,7 @@ function Map({ image, markers, addLocation }: MapProps) {
   const [archStyle, setArchStyle] = useState('')
   const [links, setLinks] = useState([''])
   const [linkNames, setLinkNames] = useState([''])
+  const [id, setId] = useState('')
   const [open, setOpen] = useState(false)
   const [timeLine, setTimeLine] = useState('')
   const handleOpen = () => setOpen(true)
@@ -59,7 +68,7 @@ function Map({ image, markers, addLocation }: MapProps) {
     <Grid container justifyContent="center" marginTop="2vh">
       <Slider
         aria-label="Restricted values"
-        onChange={async (e, val) => {
+        onChange={async (e) => {
           const target = e.target as HTMLTextAreaElement
           setTimeLine(target.value)
         }}
@@ -97,7 +106,7 @@ function Map({ image, markers, addLocation }: MapProps) {
         }}
       />
       <MapContainer
-        style={{ height: '100vh', width: '100vw' }}
+        style={{ height: '85vh', width: '100vw' }}
         center={[380, 306]}
         zoom={1}
         crs={CRS.Simple}
@@ -129,8 +138,10 @@ function Map({ image, markers, addLocation }: MapProps) {
                 year={setYear}
                 style={setArchStyle}
                 links={setLinks}
+                _id={setId}
                 linkNames={setLinkNames}
                 handleOpen={handleOpen}
+                key={marker[10]}
               />
             )
           }
@@ -139,7 +150,7 @@ function Map({ image, markers, addLocation }: MapProps) {
         })}
         <MapRoute currentRoute={currentRoute} routes={routes} />
         {window.location.href.includes('admin') && (
-          <MapEvents addLocation={addLocation} />
+          <MapEvents addLocationLocally={addLocationLocally} />
         )}
       </MapContainer>
       <InfoModal
@@ -152,25 +163,28 @@ function Map({ image, markers, addLocation }: MapProps) {
         links={links}
         linkNames={linkNames}
         open={open}
+        _id={id}
         handleClose={handleClose}
+        deleteLocationLocally={deleteLocationLocally}
+        updateLocationLocally={updateLocationLocally}
       />
     </Grid>
   )
 }
 
 // used for click event that gets coordinates
-const MapEvents = ({ addLocation }: MapEventsProps) => {
+const MapEvents = ({ addLocationLocally }: MapEventsProps) => {
   useMapEvents({
     click(e) {
       // setState your coords here
       // coords exist in "e.latlng.lat" and "e.latlng.lng"
-      console.log(e.latlng.lat + 20)
-      console.log(e.latlng.lng - 10)
+      console.log(e.latlng.lat)
+      console.log(e.latlng.lng)
 
       // TODO change
       console.log(window.location.href.includes('admin'))
-      addLocation({
-        coords: [e.latlng.lat + 20, e.latlng.lng - 10],
+      addLocationLocally({
+        coords: [e.latlng.lat, e.latlng.lng],
         name: 'NAME',
         address: 'here',
         foundingYear: '1930',
@@ -178,7 +192,7 @@ const MapEvents = ({ addLocation }: MapEventsProps) => {
         description: 'freshmen housing',
         img: 'https://www.yummymummykitchen.com/wp-content/uploads/2022/12/long-hair-cow-1.jpg',
         additionalLinks: ['https://google.com', 'https://bing.com'],
-        locationType: 'dorm',
+        locationType: 'building',
       })
     },
   })

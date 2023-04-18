@@ -1,12 +1,14 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { faUserGear as AdminIcon } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { FormControlLabel, FormGroup, Grid, Switch } from '@mui/material'
-import React, { useState } from 'react'
+import { FormControlLabel, Switch } from '@mui/material'
+import to from 'await-to-js'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import districtImage from 'assets/districts.png'
-import mapImage from 'assets/map.png'
+import { getBuildings, getNeighborhoods } from 'api/buildingsApi'
+import districtImage from 'assets/districts_clean.png'
+import mapImage from 'assets/map_clean.png'
 import { markers, markers2 } from 'assets/markers'
 import Map from 'components/Map'
 import Map2 from 'components/Map2'
@@ -14,54 +16,87 @@ import '../../styles/Main.css'
 
 export default function Main() {
   const [showMap, setShowMap] = useState(false)
+  const [items, setItems]: any = useState([]) // buildings
+  const [items2, setItems2]: any = useState([]) // neighborhoods
   const navigate = useNavigate()
 
   const toggleMap = () => {
     setShowMap(!showMap)
   }
 
-  const items = []
-  for (let i = 0; i < markers.length; i += 1) {
-    const item = new Array<Object>()
-    item.push(markers[i].coords[0])
-    item.push(markers[i].coords[1])
-    item.push(markers[i].name)
-    item.push(markers[i].address)
-    item.push(markers[i].description)
-    item.push(markers[i].img)
-    item.push(markers[i].foundingYear)
-    item.push(markers[i].archiStyle)
-    item.push(markers[i].additionalLinks)
-    const linkNames = []
-    for (let j = 0; j < markers[i].additionalLinks.length; j += 1) {
-      linkNames.push(new URL(markers[i].additionalLinks[j]).hostname)
-    }
-    item.push(linkNames)
-    items.push(item)
-  }
+  useEffect(() => {
+    const fetchBuildings = async () => {
+      const [err, res] = await to(getBuildings())
+      if (err) {
+        console.log(err)
+        return
+      }
+      const { buildings } = res.data
 
-  const items2 = []
-  for (let i = 0; i < markers2.length; i += 1) {
-    const item = new Array<Object>()
-    item.push(markers2[i].coords[0])
-    item.push(markers2[i].coords[1])
-    item.push(markers2[i].name)
-    item.push(markers2[i].address)
-    item.push(markers2[i].description)
-    item.push(markers2[i].img)
-    item.push(markers2[i].foundingYear)
-    item.push(markers2[i].archiStyle)
-    item.push(markers2[i].additionalLinks)
-    const linkNames = []
-    for (let j = 0; j < markers2[i].additionalLinks.length; j += 1) {
-      linkNames.push(new URL(markers[i].additionalLinks[j]).hostname)
+      const newItems = []
+      for (let i = 0; i < buildings.length; i += 1) {
+        const item = new Array<Object>()
+        item.push(buildings[i].coords[0]) // 0
+        item.push(buildings[i].coords[1]) // 1
+        item.push(buildings[i].name) // 2
+        item.push(buildings[i].address) // 3
+        item.push(buildings[i].description) // 4
+        item.push(buildings[i].img) // 5
+        item.push(buildings[i].foundingYear) // 6
+        item.push(buildings[i].archiStyle) // 7
+        item.push(buildings[i].additionalLinks) // 8
+        const linkNames = []
+        for (let j = 0; j < buildings[i].additionalLinks.length; j += 1) {
+          linkNames.push(new URL(buildings[i].additionalLinks[j]).hostname)
+        }
+        item.push(linkNames) // 9
+        item.push(buildings[i]._id as string) // 10
+        item.push(buildings[i].likes || 0) // 11
+        newItems.push(item)
+      }
+
+      setItems(newItems)
     }
-    item.push(linkNames)
-    items2.push(item)
-  }
+    const fetchNeighborhoods = async () => {
+      const [err, res] = await to(getNeighborhoods())
+      if (err) {
+        console.log(err)
+        return
+      }
+      const { buildings } = res.data
+
+      const newItems = []
+      for (let i = 0; i < buildings.length; i += 1) {
+        const item = new Array<Object>()
+        item.push(buildings[i].coords[0]) // 0
+        item.push(buildings[i].coords[1]) // 1
+        item.push(buildings[i].name) // 2
+        item.push(buildings[i].address) // 3
+        item.push(buildings[i].description) // 4
+        item.push(buildings[i].img) // 5
+        item.push(buildings[i].foundingYear) // 6
+        item.push(buildings[i].archiStyle) // 7
+        item.push(buildings[i].additionalLinks) // 8
+        const linkNames = []
+        for (let j = 0; j < buildings[i].additionalLinks.length; j += 1) {
+          linkNames.push(new URL(buildings[i].additionalLinks[j]).hostname)
+        }
+        item.push(linkNames) // 9
+        item.push(buildings[i]._id as string) // 10
+        item.push(buildings[i].likes || 0) // 11
+        newItems.push(item)
+      }
+
+      console.log(newItems)
+      setItems2(newItems)
+    }
+
+    fetchBuildings()
+    fetchNeighborhoods()
+  }, [])
 
   return (
-    <Grid container justifyContent="center" className="Main">
+    <main className="Main">
       <nav>
         <div className="spacer" />
         <FormControlLabel
@@ -71,6 +106,7 @@ export default function Main() {
         />
 
         <div className="buttonContainer">
+          {/* a button is used instead of Link because links are draggable */}
           <button
             type="button"
             onClick={() => navigate('/admin')}
@@ -81,7 +117,15 @@ export default function Main() {
         </div>
       </nav>
       {showMap && <Map2 image={districtImage} markers={items2} />}
-      {!showMap && <Map image={mapImage} markers={items} addLocation={null} />}
-    </Grid>
+      {!showMap && (
+        <Map
+          image={mapImage}
+          markers={items}
+          addLocationLocally={null}
+          deleteLocationLocally={null}
+          updateLocationLocally={null}
+        />
+      )}
+    </main>
   )
 }

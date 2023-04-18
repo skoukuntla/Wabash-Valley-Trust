@@ -1,5 +1,4 @@
-import { Container, Grid, Slider } from '@mui/material'
-import { style } from '@mui/system'
+import { Grid } from '@mui/material'
 import { CRS } from 'leaflet'
 import { useEffect, useState } from 'react'
 import { ImageOverlay, MapContainer } from 'react-leaflet'
@@ -26,6 +25,7 @@ function Map({ image, markers }: MapProps) {
   const [currentRoute, setCurrentRoute] = useState<number>(0)
   // const [currentText, setCurrentText] = useState('')
   const [name, setName] = useState('')
+  const [id, setId] = useState('')
   const [address, setAddress] = useState('')
   const [desc, setDesc] = useState('')
   const [img, setImg] = useState('')
@@ -53,7 +53,7 @@ function Map({ image, markers }: MapProps) {
   return (
     <Grid container justifyContent="center" marginTop="2vh">
       <MapContainer
-        style={{ height: '100vh', width: '100vw' }}
+        style={{ height: '85vh', width: '100vw' }}
         center={[380, 306]}
         zoom={1}
         crs={CRS.Simple}
@@ -83,6 +83,7 @@ function Map({ image, markers }: MapProps) {
                 description={setDesc}
                 img={setImg}
                 year={setYear}
+                _id={setId}
                 style={setArchStyle}
                 links={setLinks}
                 linkNames={setLinkNames}
@@ -101,11 +102,14 @@ function Map({ image, markers }: MapProps) {
         description={desc}
         img={img}
         year={year}
+        _id={id}
         style={archStyle}
         links={links}
         linkNames={linkNames}
         open={open}
         handleClose={handleClose}
+        deleteLocationLocally={null}
+        updateLocationLocally={null}
       />
     </Grid>
   )

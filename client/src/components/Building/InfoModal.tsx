@@ -1,16 +1,33 @@
 import { faHeart as HeartRegular } from '@fortawesome/free-regular-svg-icons'
-import { faHeart as HeartSolid } from '@fortawesome/free-solid-svg-icons'
+import {
+  faXmark as CloseIcon,
+  faHeart as HeartSolid,
+  faTrash as TrashIcon,
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   Box,
   Button,
+  IconButton,
   InputAdornment,
   Modal,
   TextField,
   Typography,
 } from '@mui/material'
-import { Container, border } from '@mui/system'
+import { Container } from '@mui/system'
+import to from 'await-to-js'
 import { useEffect, useState } from 'react'
+
+import {
+  getBuildings,
+  getLikes,
+  like,
+  removeBuilding,
+  removeLike,
+  updateBuilding,
+} from 'api/buildingsApi'
+
+import '../../styles/InfoModal.css'
 
 import '../../styles/InfoModal.css'
 import paper from '../../assets/paper.png'
@@ -21,11 +38,14 @@ type ModalProps = {
   description: string
   img: string
   year: number
+  _id: string
   style: string
   links: string[]
   linkNames: string[]
   open: boolean
   handleClose: () => void
+  deleteLocationLocally: any
+  updateLocationLocally: any
 }
 
 const InfoModal = ({
@@ -37,10 +57,15 @@ const InfoModal = ({
   style,
   links,
   linkNames,
+  _id,
   open,
   handleClose,
+  deleteLocationLocally,
+  updateLocationLocally,
 }: ModalProps) => {
   const [isFavorite, setIsFavorite] = useState(false)
+  const [confirmDelete, setConfirmDelete] = useState(0)
+  // #region editing fields states
   const [title, setTitle] = useState('')
   const [addressInput, setAddressInput] = useState('')
   const [yearInput, setYearInput] = useState(1800)
@@ -49,17 +74,24 @@ const InfoModal = ({
   const [imageURL, setImageURL] = useState('')
   const [linksInput, setLinksInput] = useState([''])
   const [linksIDs, setLinksIDs] = useState([0])
+  const [errorMessage, setErrorMessage] = useState('')
+  // #endregion
+  const [likes, setLikes] = useState(0)
 
+  // #region field onChange handlers
   const handleTitle = (e: any) => {
     setTitle(e.target.value)
+    setErrorMessage('')
   }
 
   const handleAddress = (e: any) => {
     setAddressInput(e.target.value)
+    setErrorMessage('')
   }
 
   const handleStyle = (e: any) => {
     setStyleInput(e.target.value)
+    setErrorMessage('')
   }
 
   const handleYear = (e: any) => {
@@ -67,21 +99,28 @@ const InfoModal = ({
     else {
       setYearInput(Number(e.target.value))
     }
+
+    setErrorMessage('')
   }
 
   const handleDescription = (e: any) => {
     setDescriptionInput(e.target.value)
+    setErrorMessage('')
   }
 
   const handleImageURL = (e: any) => {
     setImageURL(e.target.value)
+    setErrorMessage('')
   }
 
   const handleLinkURL = (e: any, i: number) => {
     const updatedLinks = [...linksInput]
     updatedLinks[i] = e.target.value
     setLinksInput(updatedLinks)
+    setErrorMessage('')
   }
+
+  // #endregion
 
   const deleteURL = (i: number) => {
     console.log('index', i)
@@ -91,18 +130,79 @@ const InfoModal = ({
     setLinksIDs([...linksIDs].filter((_link, j) => i !== j))
   }
 
-  // placeholder until API set up
-  const handleSubmit = (e: any) => {
+  const hasErrors = () => {
+    if (
+      title === '' ||
+      addressInput === '' ||
+      styleInput === '' ||
+      descriptionInput === '' ||
+      imageURL === ''
+    ) {
+      setErrorMessage('Enter information into all fields')
+      return true
+    }
+
+    for (let i = 0; i < linksInput.length; i += 1) {
+      try {
+        const url = new URL(linksInput[i])
+        console.log('url', url)
+      } catch (err) {
+        setErrorMessage(
+          'Enter a valid URL into each field or delete unused ones'
+        )
+        return true
+      }
+    }
+
+    if (Number.isNaN(yearInput) || yearInput > 1930 || yearInput < 1820) {
+      setErrorMessage('Enter a valid year between 1820 and 1930 inclusive')
+      return true
+    }
+
+    return false
+  }
+
+  const handleSubmit = async (e: any) => {
     e.preventDefault()
 
-    console.log('Title:', title)
-    console.log('Address:', addressInput)
-    console.log('Year:', yearInput)
-    console.log('Style:', styleInput)
-    console.log('Description:', descriptionInput)
-    console.log('Image link:', imageURL)
-    console.log('Links:', linksInput)
-    console.log('Link IDs:', linksIDs)
+    const buildingUpdate: BuildingUpdate = {
+      name: title,
+      address: addressInput,
+      foundingYear: yearInput,
+      archiStyle: styleInput,
+      description: descriptionInput,
+      img: imageURL,
+      additionalLinks: linksInput,
+    }
+
+    if (hasErrors()) return
+
+    updateLocationLocally(_id, buildingUpdate)
+
+    // TODO close if backend confirms successful change
+    handleClose()
+  }
+
+  const handleDeleteLocation = async () => {
+    if (confirmDelete === 0) {
+      setConfirmDelete(1)
+      return
+    }
+
+    const [err] = await to(removeBuilding(_id))
+    if (err) {
+      console.log(err)
+      return
+    }
+
+    deleteLocationLocally(name)
+    closeModal()
+  }
+
+  const closeModal = () => {
+    handleClose()
+    setConfirmDelete(0)
+    setErrorMessage('')
   }
 
   // runs whenever text gets changed, so whenever a different building modal is opened
@@ -111,18 +211,56 @@ const InfoModal = ({
   }, [name])
 
   useEffect(() => {
+    const handleLikes = async () => {
+      try {
+        const [err, response] = await to(getLikes(_id))
+        if (err) {
+          console.log(err)
+          return
+        }
+
+        if (response && response.data.likes !== undefined) {
+          const newLikes = response.data.likes
+          setLikes(newLikes)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    handleLikes()
+  }, [_id])
+
+  useEffect(() => {
     setTitle(name)
     setAddressInput(address)
     setStyleInput(style)
     setYearInput(Number(year))
     setDescriptionInput(description)
+    console.log('description', description)
     setImageURL(img)
     setLinksInput(links)
     setLinksIDs(links.map(() => Math.round(Math.random() * 100)))
-  }, [name, address, style, year, description, links, img])
+    setErrorMessage('')
+  }, [name, address, style, year, description, links, img, open])
 
-  const toggleFavorite = () => {
+  const toggleFavorite = async () => {
     localStorage.setItem(name, isFavorite ? 'false' : 'true')
+    if (!isFavorite) {
+      const [err] = await to(like(_id))
+      if (err) {
+        console.log(err)
+        return
+      }
+      setLikes(likes + 1)
+    } else {
+      const [err] = await to(removeLike(_id))
+      if (err) {
+        console.log(err)
+        return
+      }
+      setLikes(likes - 1)
+    }
     setIsFavorite(!isFavorite)
   }
 
@@ -155,7 +293,7 @@ const InfoModal = ({
         <p>Founded: {year} &nbsp;</p>
         <p>Architectural Style: {style} </p>
       </Container>
-      <Container sx={{ float: 'left', display: 'flex' }}>
+      <Container sx={{ display: 'flex' }} className="info">
         <Container
           sx={{ display: 'flex', flexDirection: 'column' }}
           disableGutters
@@ -184,15 +322,15 @@ const InfoModal = ({
 
         <img alt="error loading img" width="250" height="250" src={img} />
       </Container>
-
       <div />
-      <button type="button" onClick={toggleFavorite} className="favorite">
+      <IconButton type="button" onClick={toggleFavorite} className="favorite">
         {isFavorite ? (
           <FontAwesomeIcon icon={HeartSolid} className="heartIcon" />
         ) : (
           <FontAwesomeIcon icon={HeartRegular} className="heartIcon" />
         )}
-      </button>
+      </IconButton>
+      {likes}
     </>
   )
 
@@ -218,7 +356,9 @@ const InfoModal = ({
             className="field"
             label="Year Founded"
             defaultValue={year}
-            error={yearInput > 1930 || Number.isNaN(yearInput)}
+            error={
+              yearInput > 1930 || yearInput < 1820 || Number.isNaN(yearInput)
+            }
             onChange={handleYear}
             InputProps={{
               startAdornment: (
@@ -231,6 +371,7 @@ const InfoModal = ({
             label="Architectural Style"
             defaultValue={style}
             onChange={handleStyle}
+            error={styleInput === ''}
           />
           <TextField
             multiline
@@ -238,15 +379,17 @@ const InfoModal = ({
             label="Description"
             defaultValue={description}
             onChange={handleDescription}
+            error={descriptionInput === ''}
           />
           <TextField
             label="Image URL"
             className="field"
             defaultValue={img}
             onChange={handleImageURL}
+            error={imageURL === ''}
           />
         </Container>
-        <Container sx={{ float: 'left', display: 'flex' }}>
+        <Container sx={{ display: 'flex' }} className="info">
           <Container
             sx={{ display: 'flex', flexDirection: 'column' }}
             disableGutters
@@ -254,32 +397,55 @@ const InfoModal = ({
           >
             <div>
               <p>Additional Links:</p>
-              <ul>
-                {linksInput.map((item, i) => (
-                  <li key={linksIDs[i]}>
+              {linksInput.map((item, i) => (
+                <div key={linksIDs[i]}>
+                  <div className="urlContainer">
                     <TextField
                       className="field"
                       label="URL"
                       defaultValue={item}
                       onChange={(e) => handleLinkURL(e, i)}
+                      error={linksInput[i] === ''}
                     />
-                    <button onClick={() => deleteURL(i)} type="button">
-                      delete
+                    <button
+                      onClick={() => deleteURL(i)}
+                      type="button"
+                      className="icon"
+                    >
+                      <FontAwesomeIcon icon={TrashIcon} className="trashIcon" />
                     </button>
-                  </li>
-                ))}
-                <Button variant="outlined" onClick={addLinkField}>
-                  +
-                </Button>
-              </ul>
+                  </div>
+                </div>
+              ))}
+              <Button variant="outlined" onClick={addLinkField}>
+                Add Link
+              </Button>
+            </div>
+            <div className="errorMessage">{errorMessage}</div>
+            <div className="buttonContainer">
+              <Button type="button" variant="outlined" onClick={closeModal}>
+                Cancel
+              </Button>
+              <Button type="submit" variant="contained" className="saveButton">
+                Save
+              </Button>
+              <Button
+                type="button"
+                variant="outlined"
+                color="error"
+                className="deleteButton"
+                onClick={handleDeleteLocation}
+              >
+                {confirmDelete === 0
+                  ? 'Delete location'
+                  : 'Click again to confirm'}
+              </Button>
             </div>
           </Container>
 
           <img alt="error loading img" width="250" height="250" src={img} />
         </Container>
-        <Button type="submit">Save</Button>
       </form>
-
       <div />
     </>
   )
@@ -298,6 +464,11 @@ const InfoModal = ({
       aria-describedby="modal-modal-description"
     >
       <Box sx={modalStyle} className="box">
+        <div className="closeContainer">
+          <button type="button" className="close icon" onClick={closeModal}>
+            <FontAwesomeIcon icon={CloseIcon} className="closeIcon" />
+          </button>
+        </div>
         {window.location.href.includes('admin')
           ? adminElements
           : displayElements}

@@ -12,6 +12,7 @@ const BuildingSchema = new Schema<IBuilding>({
     type: SchemaTypes.String,
     required: true,
   },
+  description: SchemaTypes.String,
   foundingYear: SchemaTypes.String,
   archiStyle: SchemaTypes.String,
   locationType: SchemaTypes.String,

@@ -27,3 +27,15 @@ interface IBuilding extends Document {
   additionalLinks: string[]
   likes?: number
 }
+
+interface BuildingUpdate {
+  name?: string
+  address?: string
+  foundingYear?: number
+  archiStyle?: string
+  locationType?: LocationType
+  description?: string
+  img?: string
+  coords?: number[]
+  additionalLinks?: string[]
+}
