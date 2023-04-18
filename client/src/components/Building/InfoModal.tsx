@@ -347,7 +347,7 @@ const InfoModal = ({
             error={imageURL === ''}
           />
         </Container>
-        <Container sx={{ display: 'flex' }}>
+        <Container sx={{ display: 'flex' }} className="info">
           <Container
             sx={{ display: 'flex', flexDirection: 'column' }}
             disableGutters
