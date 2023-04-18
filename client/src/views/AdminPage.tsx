@@ -240,7 +240,7 @@ const AdminPage = () => {
             </Button>
           </nav>
           <Map
-            image="/assets/map_clean.png"
+            image="assets/map_clean.png"
             markers={locations}
             addLocationLocally={addLocationLocally}
             deleteLocationLocally={deleteLocationLocally}
