@@ -14,7 +14,13 @@ import to from 'await-to-js'
 import { useEffect, useState } from 'react'
 
 import '../../styles/InfoModal.css'
-import { getBuildings, updateBuilding } from 'api/buildingsApi'
+import {
+  getBuildings,
+  getLikes,
+  like,
+  removeLike,
+  updateBuilding,
+} from 'api/buildingsApi'
 
 const modalStyle = {
   position: 'absolute' as 'absolute',
@@ -65,6 +71,24 @@ const InfoModal = ({
   const [imageURL, setImageURL] = useState('')
   const [linksInput, setLinksInput] = useState([''])
   const [linksIDs, setLinksIDs] = useState([0])
+  const [likes, setLikes] = useState(0)
+
+  const handleLikes = async () => {
+    try {
+      const [err, response] = await to(getLikes(_id))
+      if (err) {
+        console.log(err)
+        return
+      }
+
+      if (response && response.data.likes) {
+        const newLikes = response.data.likes
+        setLikes(newLikes)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const handleTitle = (e: any) => {
     setTitle(e.target.value)
@@ -139,6 +163,10 @@ const InfoModal = ({
   }, [name])
 
   useEffect(() => {
+    handleLikes()
+  }, [handleLikes])
+
+  useEffect(() => {
     setTitle(name)
     setAddressInput(address)
     setStyleInput(style)
@@ -149,8 +177,23 @@ const InfoModal = ({
     setLinksIDs(links.map(() => Math.round(Math.random() * 100)))
   }, [name, address, style, year, description, links, img])
 
-  const toggleFavorite = () => {
+  const toggleFavorite = async () => {
     localStorage.setItem(name, isFavorite ? 'false' : 'true')
+    if (!isFavorite) {
+      const [err] = await to(like(_id))
+      if (err) {
+        console.log(err)
+        return
+      }
+      setLikes(likes + 1)
+    } else {
+      const [err] = await to(removeLike(_id))
+      if (err) {
+        console.log(err)
+        return
+      }
+      setLikes(likes - 1)
+    }
     setIsFavorite(!isFavorite)
   }
 
@@ -207,7 +250,6 @@ const InfoModal = ({
 
         <img alt="error loading img" width="250" height="250" src={img} />
       </Container>
-
       <div />
       <button type="button" onClick={toggleFavorite} className="favorite">
         {isFavorite ? (
@@ -216,6 +258,7 @@ const InfoModal = ({
           <FontAwesomeIcon icon={HeartRegular} className="heartIcon" />
         )}
       </button>
+      {likes}
     </>
   )
 
@@ -302,7 +345,6 @@ const InfoModal = ({
         </Container>
         <Button type="submit">Save</Button>
       </form>
-
       <div />
     </>
   )

@@ -6,7 +6,7 @@ import {
   getBuildings,
   removeBuilding,
 } from 'controllers/building.controller'
-import updateLikes from 'controllers/counter.controller'
+import { getLikes, updateLikes } from 'controllers/counter.controller'
 
 const buildingRouter = Router()
 
@@ -24,6 +24,7 @@ buildingRouter.get('/', getBuildings)
 buildingRouter.post('/', verifyUser, addBuildings)
 buildingRouter.post('/', verifyUser, addBuildings)
 buildingRouter.delete('/', verifyUser, removeBuilding)
-buildingRouter.post('/likes', verifyUser, updateLikes)
+buildingRouter.post('/likes', updateLikes)
+buildingRouter.get('/likes', getLikes)
 
 export default buildingRouter
