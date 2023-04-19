@@ -72,3 +72,9 @@
 .adminPage .mainError {
   text-align: center;
 }
+
+@media (max-width: 600px) {
+  .adminPage .slider {
+    width: 75%;
+  }
+}

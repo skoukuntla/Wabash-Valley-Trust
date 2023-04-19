@@ -67,6 +67,7 @@ function Map({
   return (
     <Grid container justifyContent="center" marginTop="2vh">
       <Slider
+        className="slider"
         aria-label="Restricted values"
         onChange={async (e) => {
           const target = e.target as HTMLTextAreaElement

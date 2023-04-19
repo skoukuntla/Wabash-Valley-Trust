@@ -99,6 +99,35 @@ const AdminPage = () => {
     setPasswordActive(true)
   }
 
+  const loginHandler = async (e: any) => {
+    e.preventDefault()
+    setUsernameActive(true)
+    setPasswordActive(true)
+
+    if (username === '' || password === '') {
+      setErrorMessage('Enter all login information')
+      return
+    }
+
+    const req: IUserAuth = {
+      email: username,
+      password,
+    }
+
+    const [err] = await to(dispatch(login(req)).unwrap())
+
+    if (err) {
+      setErrorMessage('Incorrect login')
+    } else {
+      console.clear()
+      setLoggedIn(true)
+      setUsername('')
+      setPassword('')
+      setUsernameActive(false)
+      setPasswordActive(false)
+    }
+  }
+
   const logout = async () => {
     const [err] = await to(dispatch(_logout()).unwrap())
     if (err) console.log(err)
@@ -172,34 +201,6 @@ const AdminPage = () => {
 
     setLocations(items)
   }, [markersState])
-
-  const loginHandler = async (e: any) => {
-    e.preventDefault()
-    setUsernameActive(true)
-    setPasswordActive(true)
-
-    if (username === '' || password === '') {
-      setErrorMessage('Enter all login information')
-      return
-    }
-
-    const req: IUserAuth = {
-      email: username,
-      password,
-    }
-
-    const [err] = await to(dispatch(login(req)).unwrap())
-
-    if (err) {
-      setErrorMessage('Incorrect login')
-    } else {
-      setLoggedIn(true)
-      setUsername('')
-      setPassword('')
-      setUsernameActive(false)
-      setPasswordActive(false)
-    }
-  }
 
   return (
     <div className="adminPage">

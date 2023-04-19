@@ -305,7 +305,7 @@ const InfoModal = ({
           </div>
         </Container>
 
-        <img alt="error loading img" width="250" height="250" src={img} />
+        <img alt="error loading img" src={img} />
       </Container>
       <div />
       <IconButton type="button" onClick={toggleFavorite} className="favorite">
@@ -428,7 +428,7 @@ const InfoModal = ({
             </div>
           </Container>
 
-          <img alt="error loading img" width="250" height="250" src={img} />
+          <img alt="error loading img" src={img} />
         </Container>
       </form>
       <div />
