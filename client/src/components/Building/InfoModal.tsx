@@ -291,18 +291,20 @@ const InfoModal = ({
             {description}
           </Typography>
 
-          <div>
-            <p>Additional Links:</p>
-            <ul>
-              {links.map((item, i) => (
-                <li key={item}>
-                  <a href={item} target="_blank" rel="noreferrer">
-                    {linkNames[i]}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {links.length > 0 && (
+            <div>
+              <p>Additional Links:</p>
+              <ul>
+                {links.map((item, i) => (
+                  <li key={item}>
+                    <a href={item} target="_blank" rel="noreferrer">
+                      {linkNames[i]}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </Container>
 
         <img alt="error loading img" src={img} />
