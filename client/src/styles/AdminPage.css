@@ -68,3 +68,13 @@
   border: 1px solid #5294ff;
   background: #5294ff22;
 }
+
+.adminPage .mainError {
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .adminPage .slider {
+    width: 75%;
+  }
+}

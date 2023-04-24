@@ -19,21 +19,21 @@ interface RouteData {
 type MapProps = {
   image: string
   markers: Array<Array<any>>
-  addLocationLocally: any
-  deleteLocationLocally: any
-  updateLocationLocally: any
+  addLocation: any
+  deleteLocation: any
+  updateLocation: any
 }
 
 type MapEventsProps = {
-  addLocationLocally: Function
+  addLocation: Function
 }
 
 function Map({
   image,
   markers,
-  addLocationLocally,
-  deleteLocationLocally,
-  updateLocationLocally,
+  addLocation,
+  deleteLocation,
+  updateLocation,
 }: MapProps) {
   const [routes, setRoutes] = useState<Array<RouteData>>([])
   const [currentRoute, setCurrentRoute] = useState<number>(0)
@@ -67,6 +67,7 @@ function Map({
   return (
     <Grid container justifyContent="center" marginTop="2vh">
       <Slider
+        className="slider"
         aria-label="Restricted values"
         onChange={async (e) => {
           const target = e.target as HTMLTextAreaElement
@@ -145,12 +146,11 @@ function Map({
               />
             )
           }
-          // eslint-disable-next-line react/jsx-no-useless-fragment
-          return <></>
+          return ''
         })}
         <MapRoute currentRoute={currentRoute} routes={routes} />
         {window.location.href.includes('admin') && (
-          <MapEvents addLocationLocally={addLocationLocally} />
+          <MapEvents addLocation={addLocation} />
         )}
       </MapContainer>
       <InfoModal
@@ -165,33 +165,32 @@ function Map({
         open={open}
         _id={id}
         handleClose={handleClose}
-        deleteLocationLocally={deleteLocationLocally}
-        updateLocationLocally={updateLocationLocally}
+        deleteLocation={deleteLocation}
+        updateLocation={updateLocation}
       />
     </Grid>
   )
 }
 
 // used for click event that gets coordinates
-const MapEvents = ({ addLocationLocally }: MapEventsProps) => {
+const MapEvents = ({ addLocation }: MapEventsProps) => {
   useMapEvents({
     click(e) {
       // setState your coords here
       // coords exist in "e.latlng.lat" and "e.latlng.lng"
-      console.log(e.latlng.lat)
-      console.log(e.latlng.lng)
+      // console.log(e.latlng.lat)
+      // console.log(e.latlng.lng)
 
-      // TODO change
-      console.log(window.location.href.includes('admin'))
-      addLocationLocally({
+      // console.log(window.location.href.includes('admin'))
+      addLocation({
         coords: [e.latlng.lat, e.latlng.lng],
-        name: 'NAME',
-        address: 'here',
+        name: 'Name',
+        address: 'Address',
         foundingYear: '1930',
-        archiStyle: 'sand',
-        description: 'freshmen housing',
-        img: 'https://www.yummymummykitchen.com/wp-content/uploads/2022/12/long-hair-cow-1.jpg',
-        additionalLinks: ['https://google.com', 'https://bing.com'],
+        archiStyle: 'Style',
+        description: 'Description',
+        img: 'https://www.destguides.com/dynamic-files/itinerary/1244/background-image.jpg',
+        additionalLinks: ['https://google.com'],
         locationType: 'building',
       })
     },

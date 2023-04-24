@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom'
 import { getBuildings, getNeighborhoods } from 'api/buildingsApi'
 import districtImage from 'assets/districts_clean.png'
 import mapImage from 'assets/map_clean.png'
-import { markers, markers2 } from 'assets/markers'
 import Map from 'components/Map'
 import Map2 from 'components/Map2'
 import '../../styles/Main.css'
@@ -18,6 +17,7 @@ export default function Main() {
   const [showMap, setShowMap] = useState(false)
   const [items, setItems]: any = useState([]) // buildings
   const [items2, setItems2]: any = useState([]) // neighborhoods
+  const [requestError, setRequestError] = useState(false)
   const navigate = useNavigate()
 
   const toggleMap = () => {
@@ -28,6 +28,11 @@ export default function Main() {
     const fetchBuildings = async () => {
       const [err, res] = await to(getBuildings())
       if (err) {
+        if ((err as NodeJS.ErrnoException).code === 'ERR_NETWORK') {
+          console.log('Network error')
+        }
+
+        setRequestError(true)
         console.log(err)
         return
       }
@@ -87,7 +92,7 @@ export default function Main() {
         newItems.push(item)
       }
 
-      console.log(newItems)
+      // console.log(newItems)
       setItems2(newItems)
     }
 
@@ -97,34 +102,48 @@ export default function Main() {
 
   return (
     <main className="Main">
-      <nav>
-        <div className="spacer" />
-        <FormControlLabel
-          control={<Switch checked={showMap} onChange={toggleMap} />}
-          label="District Map"
-          className="switch"
-        />
+      {!requestError && (
+        <nav>
+          <div className="spacer" />
+          <FormControlLabel
+            control={<Switch checked={showMap} onChange={toggleMap} />}
+            label="District Map"
+            className="switch"
+          />
 
-        <div className="buttonContainer">
-          {/* a button is used instead of Link because links are draggable */}
-          <button
-            type="button"
-            onClick={() => navigate('/admin')}
-            className="admin"
-          >
-            <FontAwesomeIcon icon={AdminIcon} className="adminIcon" />
-          </button>
-        </div>
-      </nav>
-      {showMap && <Map2 image={districtImage} markers={items2} />}
-      {!showMap && (
+          <div className="buttonContainer">
+            {/* a button is used instead of Link because links are draggable */}
+            <button
+              type="button"
+              onClick={() => navigate('/admin')}
+              className="admin"
+            >
+              <FontAwesomeIcon icon={AdminIcon} className="adminIcon" />
+            </button>
+          </div>
+        </nav>
+      )}
+      {!requestError && items2.length > 0 && showMap && (
+        <Map2 image={districtImage} markers={items2} />
+      )}
+      {!requestError && items.length > 0 && !showMap && (
         <Map
           image={mapImage}
           markers={items}
-          addLocationLocally={null}
-          deleteLocationLocally={null}
-          updateLocationLocally={null}
+          addLocation={null}
+          deleteLocation={null}
+          updateLocation={null}
         />
+      )}
+
+      {requestError && (
+        <div className="mainError">
+          <h1>Couldn't connect to the server.</h1>
+          <p>
+            Try checking your internet connection. If the issue persists, check
+            that the server is running properly
+          </p>
+        </div>
       )}
     </main>
   )

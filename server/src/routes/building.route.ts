@@ -21,6 +21,7 @@ Building Routes:
 */
 
 buildingRouter.get('/', getBuildings)
+buildingRouter.get('/admin', verifyUser, getBuildings)
 buildingRouter.post('/', verifyUser, addBuildings)
 buildingRouter.post('/', verifyUser, addBuildings)
 buildingRouter.delete('/', verifyUser, removeBuilding)
