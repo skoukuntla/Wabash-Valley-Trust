@@ -54,7 +54,7 @@ const AdminPage = () => {
     fetchBuildings()
   }
 
-  const deleteLocation = async (_id: any, input: any) => {
+  const deleteLocation = async (_id: any) => {
     // console.log('delete location', input)
     // console.log('markers', markersState)
 

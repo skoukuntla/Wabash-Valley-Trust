@@ -18,7 +18,7 @@ import { Container } from '@mui/system'
 import to from 'await-to-js'
 import { useEffect, useState } from 'react'
 
-import { getLikes, like, removeBuilding, removeLike } from 'api/buildingsApi'
+import { getLikes, like, removeLike } from 'api/buildingsApi'
 
 import '../../styles/InfoModal.css'
 import paper from '../../assets/paper.png'
@@ -135,6 +135,7 @@ const InfoModal = ({
 
     for (let i = 0; i < linksInput.length; i += 1) {
       try {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
         const url = new URL(linksInput[i])
         // console.log('url', url)
       } catch (err) {
